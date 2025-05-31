@@ -174,7 +174,7 @@ If you browse this website, you will find a lot of examples that shows
 how to mount the socket to the workload. In addition, you can check out 
 the [Examples folder of the **VSecM** repository][examples] for more examples.
 
-[examples]: https://github.com/vmware-tanzu/secrets-manager/tree/main/examples
+[examples]: https://github.com/vmware/secrets-manager/tree/main/examples
 
 ### I Have an OpenShift Cluster and I Get All Kinds of Errors
 

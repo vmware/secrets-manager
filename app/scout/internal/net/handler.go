@@ -20,8 +20,8 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/vmware-tanzu/secrets-manager/app/scout/internal/filter"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/app/scout/internal/filter"
+	"github.com/vmware/secrets-manager/core/env"
 )
 
 func Webhook(w http.ResponseWriter, r *http.Request) {

@@ -15,10 +15,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/ci/test/assert"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/io"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/sentinel"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/vsecm"
+	"github.com/vmware/secrets-manager/ci/test/assert"
+	"github.com/vmware/secrets-manager/ci/test/io"
+	"github.com/vmware/secrets-manager/ci/test/sentinel"
+	"github.com/vmware/secrets-manager/ci/test/vsecm"
 )
 
 func setYAMLSecret(value, transform string) error {

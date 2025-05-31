@@ -13,7 +13,7 @@ package internal
 import (
 	"fmt"
 
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/crypto"
 )
 
 // PrintDecryptedKeys retrieves and prints the decrypted keys along with their

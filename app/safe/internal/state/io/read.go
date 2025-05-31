@@ -13,10 +13,10 @@ package io
 import (
 	"encoding/json"
 	"errors"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/core/env"
 
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/crypto"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // ReadFromDisk retrieves and decrypts a secret stored on disk, identified by

@@ -15,7 +15,7 @@ import (
 
 	"github.com/akamensky/argparse"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/sentinel"
+	"github.com/vmware/secrets-manager/core/constants/sentinel"
 )
 
 // PrintUsage prints the usage of the CLI.

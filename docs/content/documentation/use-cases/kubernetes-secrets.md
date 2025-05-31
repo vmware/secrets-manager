@@ -96,7 +96,7 @@ consume it. There are several strategies that you can follow for this.
 In this walkthrough we will assume that the VSecM-generated Kubernetes `Secret`
 will be created before the workload begins its lifecycle.
 
-[ticket-763]: https://github.com/vmware-tanzu/secrets-manager/issues/763
+[ticket-763]: https://github.com/vmware/secrets-manager/issues/763
 [k8s-operator]: https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
 [carvel]: https://carvel.dev
 [vsecm-init-container]: @/documentation/use-cases/init-container.md
@@ -109,7 +109,7 @@ pattern-based random secrets for workloads. For example, we can modify the
 `initCommand` stanza of sentinel Helm chart's `values.yaml` to register a 
 random username and password as secrets for our example workload.
 
-[helm-charts]: https://github.com/vmware-tanzu/secrets-manager/tree/gh-pages
+[helm-charts]: https://github.com/vmware/secrets-manager/tree/gh-pages
 
 To create a Kubernetes `Secret`, prefix the name of the workload with `k8s:` 
 similar to the following example:

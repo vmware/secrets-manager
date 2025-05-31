@@ -16,7 +16,7 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/symbol"
+	"github.com/vmware/secrets-manager/core/constants/symbol"
 )
 
 // toCustomCase formats a string to a custom case, replacing underscores

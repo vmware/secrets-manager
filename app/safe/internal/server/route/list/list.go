@@ -11,13 +11,13 @@
 package list
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/base/validation"
+	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/validation"
 	"net/http"
 
-	ioState "github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/io"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	ioState "github.com/vmware/secrets-manager/app/safe/internal/state/io"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Masked returns all registered workloads to the system with some metadata

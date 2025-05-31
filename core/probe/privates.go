@@ -15,7 +15,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/val"
+	"github.com/vmware/secrets-manager/core/constants/val"
 )
 
 func ok(w http.ResponseWriter, _ *http.Request) {

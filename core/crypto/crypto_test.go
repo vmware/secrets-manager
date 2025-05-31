@@ -13,7 +13,7 @@ package crypto
 import (
 	"crypto/rand"
 	"errors"
-	"github.com/vmware-tanzu/secrets-manager/lib/crypto"
+	"github.com/vmware/secrets-manager/lib/crypto"
 	"testing"
 )
 

@@ -14,8 +14,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/val"
+	"github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/val"
 )
 
 // InitCommandPathForSentinel returns the path to the initialization commands file

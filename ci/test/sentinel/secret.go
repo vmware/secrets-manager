@@ -16,9 +16,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/ci/test/io"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/vsecm"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/wait"
+	"github.com/vmware/secrets-manager/ci/test/io"
+	"github.com/vmware/secrets-manager/ci/test/vsecm"
+	"github.com/vmware/secrets-manager/ci/test/wait"
 )
 
 func DeleteSecret() error {

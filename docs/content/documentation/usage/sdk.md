@@ -19,8 +19,8 @@ This is the documentation for [VMware Secrets Manager Go SDK][go-sdk].
 
 You can also [check out the Go Docs on `pkg.go.dev` here][go-docs].
 
-[go-docs]: https://pkg.go.dev/github.com/vmware-tanzu/secrets-manager/sdk
-[go-sdk]: https://github.com/vmware-tanzu/secrets-manager/tree/main/sdk
+[go-docs]: https://pkg.go.dev/github.com/vmware/secrets-manager/sdk
+[go-sdk]: https://github.com/vmware/secrets-manager/tree/main/sdk
 
 ## Package `sentry`
 
@@ -48,7 +48,7 @@ behind the scenes to get its work done. Once it fetches the secrets,
 it saves them to the location defined in the `VSECM_SIDECAR_SECRETS_PATH`
 environment variable (*`/opt/vsecm/secrets.json` by default*).
 
-[vsecm-safe]: https://github.com/vmware-tanzu/secrets-manager/tree/main/app/safe
+[vsecm-safe]: https://github.com/vmware/secrets-manager/tree/main/app/safe
 
 ## Usage Example
 
@@ -85,7 +85,7 @@ Here follows a possible Deployment descriptor for such a workload.
 
 Check out [VMware Secrets Manager demo workload manifests][demos] for additional examples.
 
-[demos]: https://github.com/vmware-tanzu/secrets-manager/tree/main/examples/using_sdk_go/k8s "Demo Workloads"
+[demos]: https://github.com/vmware/secrets-manager/tree/main/examples/using_sdk_go/k8s "Demo Workloads"
 
 ```yaml
 apiVersion: v1

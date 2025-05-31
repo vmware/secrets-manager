@@ -14,11 +14,11 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/vmware-tanzu/secrets-manager/core/audit/journal"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/audit"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/audit/journal"
+	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // SendEncryptedValue takes a plain text value and encrypts it. If the

@@ -13,7 +13,7 @@ package json
 import (
 	"encoding/json"
 
-	reqres "github.com/vmware-tanzu/secrets-manager/core/entity/v1/reqres/safe"
+	reqres "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
 )
 
 // UnmarshalSecretUpsertRequest takes a JSON-encoded request body and attempts

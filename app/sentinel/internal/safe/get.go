@@ -22,12 +22,12 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	u "github.com/vmware-tanzu/secrets-manager/core/constants/url"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/rpc"
-	"github.com/vmware-tanzu/secrets-manager/core/spiffe"
-	"github.com/vmware-tanzu/secrets-manager/core/validation"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	u "github.com/vmware/secrets-manager/core/constants/url"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/rpc"
+	"github.com/vmware/secrets-manager/core/spiffe"
+	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // Check validates the connectivity to VSecM Safe by calling the "list secrets"

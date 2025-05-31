@@ -11,15 +11,15 @@
 package collection
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/crypto"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/stats"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	data "github.com/vmware-tanzu/secrets-manager/lib/entity"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/stats"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	data "github.com/vmware/secrets-manager/lib/entity"
 )
 
 // SecretByName retrieves a secret by its name.
@@ -177,14 +177,14 @@ func AllSecretsEncrypted(cid string) []entity.SecretEncrypted {
 	return result
 }
 
-func contains(s []string, e string) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
-}
+//func contains(s []string, e string) bool {
+//	for _, a := range s {
+//		if a == e {
+//			return true
+//		}
+//	}
+//	return false
+//}
 
 // RawSecrets returns a slice of entity.Secret containing all secrets
 // currently stored with keys prefixed by "raw:". If no raw secrets are found,

@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/core/env"
 )
 
 // httpClient is a minimal interface for making HTTP requests.

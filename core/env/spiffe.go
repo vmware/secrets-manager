@@ -11,7 +11,7 @@
 package env
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/env"
 )
 
 // SpiffeSocketUrl returns the URL for the SPIFFE endpoint socket used in the

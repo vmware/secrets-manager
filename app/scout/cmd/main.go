@@ -14,10 +14,10 @@ import (
 	"fmt"
 	"net/http"
 
-	nets "github.com/vmware-tanzu/secrets-manager/app/scout/internal/net"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	nets "github.com/vmware/secrets-manager/app/scout/internal/net"
+	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 func main() {

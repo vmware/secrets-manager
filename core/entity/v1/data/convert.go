@@ -17,8 +17,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	tpl "github.com/vmware-tanzu/secrets-manager/core/template"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	tpl "github.com/vmware/secrets-manager/core/template"
 )
 
 // convertMapToStringBytes converts a map[string]string into a map[string][]byte,

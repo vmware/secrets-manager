@@ -13,8 +13,8 @@ package template
 import (
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/symbol"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/val"
+	"github.com/vmware/secrets-manager/core/constants/symbol"
+	"github.com/vmware/secrets-manager/core/constants/val"
 )
 
 // removeKeyValueWithNoValue takes an input string containing key-value pairs

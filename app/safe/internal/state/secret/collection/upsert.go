@@ -14,11 +14,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/queue/insertion"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/stats"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/insertion"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/stats"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // UpsertSecret takes an entity.SecretStored object and inserts it into

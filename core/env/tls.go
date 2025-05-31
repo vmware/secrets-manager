@@ -11,7 +11,7 @@
 package env
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/env"
 )
 
 // TlsPort returns the secure port for VSecM Safe to listen on.

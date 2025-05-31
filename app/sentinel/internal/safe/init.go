@@ -23,13 +23,13 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	u "github.com/vmware-tanzu/secrets-manager/core/constants/url"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/reqres/safe"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/core/validation"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	u "github.com/vmware/secrets-manager/core/constants/url"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // CheckInitialization verifies if VSecM Sentinel has executed its init commands

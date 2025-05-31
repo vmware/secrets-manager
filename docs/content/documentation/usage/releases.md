@@ -26,7 +26,7 @@ You can download the latest release from the [GitHub Releases page][releases].
 
 The related container images can be found on [Docker Hub][docker-hub].
 
-[releases]: https://github.com/vmware-tanzu/secrets-manager/releases.
+[releases]: https://github.com/vmware/secrets-manager/releases.
 [docker-hub]: https://hub.docker.com/u/vsecm.
 
 ## Verifying Code Releases
@@ -37,7 +37,7 @@ To verify a release:
 **Clone the repository and navigate to it**:
 
 ```bash
-git clone https://github.com/vmware-tanzu/secrets-manager.git
+git clone https://github.com/vmware/secrets-manager.git
 cd secrets-manager
 ```
 

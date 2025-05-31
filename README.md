@@ -1,6 +1,6 @@
 ## **VMware Secrets Manager** *for cloud-native apps*
 
-![VSecM Logo](https://github.com/vmware-tanzu/secrets-manager/assets/1041224/885c11ac-7269-4344-a376-0d0a0fb082a7)
+![VSecM Logo](https://github.com/vmware/secrets-manager/assets/1041224/885c11ac-7269-4344-a376-0d0a0fb082a7)
 
 ## Project Status
 
@@ -35,14 +35,14 @@ Want to get started quickly? [Check out our quickstart tutorial][quickstart].
 ---
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/7793/badge)](https://www.bestpractices.dev/projects/7793)
-[![Version](https://img.shields.io/github/v/release/vmware-tanzu/secrets-manager?color=blueviolet)](https://github.com/vmware-tanzu/secrets-manager/releases)
-[![Contributors](https://img.shields.io/github/contributors/vmware-tanzu/secrets-manager.svg?color=orange)](https://github.com/vmware-tanzu/secrets-manager/graphs/contributors)
+[![Version](https://img.shields.io/github/v/release/vmware-tanzu/secrets-manager?color=blueviolet)](https://github.com/vmware/secrets-manager/releases)
+[![Contributors](https://img.shields.io/github/contributors/vmware-tanzu/secrets-manager.svg?color=orange)](https://github.com/vmware/secrets-manager/graphs/contributors)
 [![Slack](https://img.shields.io/badge/slack-vsecm-brightgreen.svg?logo=slack)](https://join.slack.com/t/a-101-103-105-s/shared_invite/zt-287dbddk7-GCX495NK~FwO3bh_DAMAtQ)
 [![Twitch](https://img.shields.io/twitch/status/vadidekivolkan)](https://twitch.tv/vadidekivolkan)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/vsecm)](https://artifacthub.io/packages/helm/vsecm/vsecm)
-[![License](https://img.shields.io/github/license/vmware-tanzu/secrets-manager)](https://github.com/vmware-tanzu/secrets-manager/blob/main/LICENSE)
-[![Go Report Card](https://goreportcard.com/badge/github.com/vmware-tanzu/secrets-manager)](https://goreportcard.com/report/github.com/vmware-tanzu/secrets-manager)
-[![Go Coverage](https://github.com/vmware-tanzu/secrets-manager/wiki/coverage.svg)](https://raw.githack.com/wiki/vmware-tanzu/secrets-manager/coverage.html)
+[![License](https://img.shields.io/github/license/vmware-tanzu/secrets-manager)](https://github.com/vmware/secrets-manager/blob/main/LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/vmware/secrets-manager)](https://goreportcard.com/report/github.com/vmware/secrets-manager)
+[![Go Coverage](https://github.com/vmware/secrets-manager/wiki/coverage.svg)](https://raw.githack.com/wiki/vmware-tanzu/secrets-manager/coverage.html)
 [![Using Better Commits](https://img.shields.io/badge/better--commits-enabled?style=for-the-badge&logo=git&color=a6e3a1&logoColor=D9E0EE&labelColor=302D41)](https://github.com/Everduin94/better-commits)
 
 ## The Elevator Pitch
@@ -291,7 +291,7 @@ We'd love to have them.
 [installation]: https://vsecm.com/documentation/getting-started/installation/ "Install VMware Secrets Manager"
 [kampus]: https://discord.gg/kampus
 [maintainers]: https://vsecm.com/community/maintainers/ "VSecM Maintainers"
-[pkg-go-dev]: https://pkg.go.dev/github.com/vmware-tanzu/secrets-manager "VSecM Go Docs"
+[pkg-go-dev]: https://pkg.go.dev/github.com/vmware/secrets-manager "VSecM Go Docs"
 [production]: https://vsecm.com/documentation/production/overview/ "VSecM Production Deployment"
 [quickstart]: https://vsecm.com/documentation/getting-started/overview/ "VSecM Quickstart"
 [sdk]: https://vsecm.com/documentation/usage/sdk/ "VSecM Developer SDK"
@@ -299,4 +299,4 @@ We'd love to have them.
 [spire]: https://spiffe.io/ "SPIFFE: Secure Production Identity Framework for Everyone"
 [use-the-source]: https://vsecm.com/documentation/development/use-the-source/ "Building, Deploying, and Testing"
 [vsecm]: https://vsecm.com/ "VMware Secrets Manager"
-[vuln]: https://github.com/vmware-tanzu/secrets-manager/blob/main/SECURITY.md "VSecM Security Disclosure"
+[vuln]: https://github.com/vmware/secrets-manager/blob/main/SECURITY.md "VSecM Security Disclosure"

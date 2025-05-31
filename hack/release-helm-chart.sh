@@ -72,7 +72,7 @@ case "$choice" in
     printf '\n%s***********************************************************\n'"$BOLD"
 
     echo -e "Click on below link to create pull-request and merge the pull-request"
-    echo -e "https://github.com/vmware-tanzu/secrets-manager/compare/gh-pages...$localBranchName"
+    echo -e "https://github.com/vmware/secrets-manager/compare/gh-pages...$localBranchName"
 
     printf '%s***********************************************************\n'"$BOLD"
 

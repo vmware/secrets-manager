@@ -15,10 +15,10 @@ import (
 	sys "log"
 	"os"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/lib/system"
+	"github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/crypto"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/lib/system"
 )
 
 func main() {

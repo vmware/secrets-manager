@@ -48,7 +48,7 @@ helm install vsecm vsecm/vsecm
 For detailed instruction on **VMware Secrets Manager** installation
 through Helm Charts please refer to VSecM Helm Charts [README.md][README.md]
 
-[README.md]: https://github.com/vmware-tanzu/secrets-manager/blob/main/helm-charts/README.md
+[README.md]: https://github.com/vmware/secrets-manager/blob/main/helm-charts/README.md
 
 ## Installing Using `make`
 
@@ -58,7 +58,7 @@ First, clone the repository:
 
 ```bash
 cd $WORKSPACE
-git clone https://github.com/vmware-tanzu/secrets-manager.git
+git clone https://github.com/vmware/secrets-manager.git
 cd secrets-manager
 ```
 

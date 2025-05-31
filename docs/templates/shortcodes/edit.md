@@ -11,7 +11,7 @@
 -->
 
 <p class="github-button" style="text-align: right;margin-top:2em;border-top:1px #ccc dashed;padding-top:2em;">
-  <a href="https://github.com/vmware-tanzu/secrets-manager/blob/main/docs/">
+  <a href="https://github.com/vmware/secrets-manager/blob/main/docs/">
     edit this page ✏️ 
   </a>
 </p>

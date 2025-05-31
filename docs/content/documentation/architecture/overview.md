@@ -66,9 +66,9 @@ workloads.
 [`vsecm-sentinel`][sentinel] is a pod you can shell in and do administrative
 tasks such as registering secrets for workloads.
 
-[safe]: https://github.com/vmware-tanzu/secrets-manager/tree/main/app/safe
-[sidecar]: https://github.com/vmware-tanzu/secrets-manager/tree/main/app/sidecar
-[sentinel]: https://github.com/vmware-tanzu/secrets-manager/tree/main/app/sentinel
+[safe]: https://github.com/vmware/secrets-manager/tree/main/app/safe
+[sidecar]: https://github.com/vmware/secrets-manager/tree/main/app/sidecar
+[sentinel]: https://github.com/vmware/secrets-manager/tree/main/app/sentinel
 
 Here is a simplified overview of how various actors on a
 **VMware Secrets Manager** system interact with each other:
@@ -89,7 +89,7 @@ You can also use **VSecM Keygen** to decrypt secrets that **VSecM Safe** stores.
 This will require you to provide the root key that **VSecM Safe** uses.
 Again, can check out the [CLI documentation][cli] for more information.
 
-[keygen]: https://github.com/vmware-tanzu/secrets-manager/tree/main/app/keygen
+[keygen]: https://github.com/vmware/secrets-manager/tree/main/app/keygen
 [cli]: @/documentation/usage/cli.md
 
 ### VSecM Keystone
@@ -364,7 +364,7 @@ of **VSecM Sidecar** or **VSecM SDK**.
 Check out the [examples folder][github-examples] for examples of how to use
 **VSecM** to transform secrets and generate **Kubernetes** `Secret` objects.
 
-[github-examples]: https://github.com/vmware-tanzu/secrets-manager/tree/main/examples "VSecM Examples"
+[github-examples]: https://github.com/vmware/secrets-manager/tree/main/examples "VSecM Examples"
 
 ## Liveness and Readiness Probes
 

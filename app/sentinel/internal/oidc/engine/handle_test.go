@@ -19,7 +19,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/reqres/sentinel"
+	"github.com/vmware/secrets-manager/core/entity/v1/reqres/sentinel"
 )
 
 func TestEngine_HandleSecrets(t *testing.T) {

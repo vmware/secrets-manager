@@ -185,7 +185,7 @@ Create a workspace folder and clone **VMware Secrets Manager** into it.
 ```bash 
 mkdir $HOME/Desktop/WORKSPACE
 cd $HOME/Desktop/WORKSPACE
-git clone "https://github.com/vmware-tanzu/secrets-manager.git"
+git clone "https://github.com/vmware/secrets-manager.git"
 cd secrets-manager 
 ```
 
@@ -196,8 +196,8 @@ cd secrets-manager
 
 
 [fork]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks
-[contributing]: https://github.com/vmware-tanzu/secrets-manager/blob/main/CONTRIBUTING_DCO.md
-[coc]: https://github.com/vmware-tanzu/secrets-manager/blob/main/CODE_OF_CONDUCT.md
+[contributing]: https://github.com/vmware/secrets-manager/blob/main/CONTRIBUTING_DCO.md
+[coc]: https://github.com/vmware/secrets-manager/blob/main/CODE_OF_CONDUCT.md
 
 ## Getting Help
 
@@ -556,6 +556,6 @@ Just explore the [Makefile][makefile] and get a feeling of it.
 [Feel free to touch base](@/community/hello.md) if you have any questions, comments,
 recommendations.
 
-[makefile]: https://github.com/vmware-tanzu/secrets-manager/blob/main/Makefile
+[makefile]: https://github.com/vmware/secrets-manager/blob/main/Makefile
 
 {{ edit() }}

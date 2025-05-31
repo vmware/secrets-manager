@@ -17,10 +17,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/sentinel"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/symbol"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/core/constants/sentinel"
+	"github.com/vmware/secrets-manager/core/constants/symbol"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/lib/backoff"
 )
 
 func (i *Initializer) commandFileScanner(

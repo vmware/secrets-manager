@@ -14,7 +14,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/ci/test/io"
+	"github.com/vmware/secrets-manager/ci/test/io"
 )
 
 func Example() (string, error) {

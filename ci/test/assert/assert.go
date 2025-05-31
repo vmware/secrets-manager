@@ -15,9 +15,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/ci/test/io"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/vsecm"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/workload"
+	"github.com/vmware/secrets-manager/ci/test/io"
+	"github.com/vmware/secrets-manager/ci/test/vsecm"
+	"github.com/vmware/secrets-manager/ci/test/workload"
 )
 
 func SentinelCanEncryptSecret(value string) error {

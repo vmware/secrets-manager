@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/constants/key"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 	"github.com/stretchr/testify/assert"

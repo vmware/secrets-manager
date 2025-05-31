@@ -14,8 +14,8 @@ import (
 	"context"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	"github.com/vmware-tanzu/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/lib/backoff"
 )
 
 func (i *Initializer) initCommandsExecutedAlready(

@@ -497,7 +497,7 @@ secure environment.
 Here are some suggestions to consider; as always, you should consult
 the [SPIRE documentation][spire-docs] for more details.
 
-[usage-examples]: https://github.com/vmware-tanzu/secrets-manager/tree/main/examples "VSecM Usage Examples"
+[usage-examples]: https://github.com/vmware/secrets-manager/tree/main/examples "VSecM Usage Examples"
 
 ### Enabling Kubelet Verification
 
@@ -754,7 +754,7 @@ data:
     size: 1Gi
 ```
 
-[vsecm-safe-deployment-yaml]: https://github.com/vmware-tanzu/secrets-manager/blob/main/helm-charts/charts/safe/templates/Deployment.yaml
+[vsecm-safe-deployment-yaml]: https://github.com/vmware/secrets-manager/blob/main/helm-charts/charts/safe/templates/Deployment.yaml
 [k8s-pv]: https://kubernetes.io/docs/concepts/storage/volumes/
 
 ## Volume Selection for SPIRE Server Data

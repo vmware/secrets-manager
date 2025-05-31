@@ -12,7 +12,7 @@ package rpc
 
 //
 //import (
-//	core "github.com/vmware-tanzu/secrets-manager/core/log"
+//	core "github.com/vmware/secrets-manager/core/log"
 //	"regexp"
 //	"testing"
 //)

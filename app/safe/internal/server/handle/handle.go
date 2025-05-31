@@ -15,11 +15,11 @@ import (
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	routeFallback "github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/fallback"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/core/validation"
-	s "github.com/vmware-tanzu/secrets-manager/lib/spiffe"
+	routeFallback "github.com/vmware/secrets-manager/app/safe/internal/server/route/fallback"
+	"github.com/vmware/secrets-manager/core/crypto"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/validation"
+	s "github.com/vmware/secrets-manager/lib/spiffe"
 )
 
 // InitializeRoutes initializes the HTTP routes for the web server. It sets up

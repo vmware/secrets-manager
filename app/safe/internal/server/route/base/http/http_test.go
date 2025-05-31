@@ -20,7 +20,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	http_vmware "github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/base/http" // Replace with the actual path to the `http` package
+	http_vmware "github.com/vmware/secrets-manager/app/safe/internal/server/route/base/http" // Replace with the actual path to the `http` package
 )
 
 func TestReadBody_Success(t *testing.T) {

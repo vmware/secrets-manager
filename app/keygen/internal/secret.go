@@ -15,8 +15,8 @@ import (
 	"log"
 	"os"
 
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/reqres/safe"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
+	"github.com/vmware/secrets-manager/core/env"
 )
 
 func secrets() entity.SecretEncryptedListResponse {

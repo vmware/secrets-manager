@@ -18,7 +18,7 @@ import (
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/constants/key"
 )
 
 func TestInitializer_ensureApiConnectivity(t *testing.T) {

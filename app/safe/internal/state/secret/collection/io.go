@@ -5,16 +5,16 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/crypto"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 	"os"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/stats"
-	f "github.com/vmware-tanzu/secrets-manager/core/constants/file"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/stats"
+	f "github.com/vmware/secrets-manager/core/constants/file"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 func populateSecretsFromFileStore(cid string) error {

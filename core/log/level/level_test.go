@@ -15,7 +15,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/core/env"
 )
 
 func TestLogLevel(t *testing.T) {

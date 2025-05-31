@@ -17,7 +17,7 @@ import (
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // TODO: some of these type may need to go to a common package

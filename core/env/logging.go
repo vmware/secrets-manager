@@ -14,8 +14,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/val"
+	"github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/val"
 )
 
 type Level int

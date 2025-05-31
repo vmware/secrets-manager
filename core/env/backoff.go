@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/env"
 )
 
 // Redefine some constants to avoid import cycle.

@@ -14,9 +14,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/vmware-tanzu/secrets-manager/ci/test/assert"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/deploy"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/sentinel"
+	"github.com/vmware/secrets-manager/ci/test/assert"
+	"github.com/vmware/secrets-manager/ci/test/deploy"
+	"github.com/vmware/secrets-manager/ci/test/sentinel"
 )
 
 func SecretEncryption() error {

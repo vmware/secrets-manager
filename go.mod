@@ -1,4 +1,4 @@
-module github.com/vmware-tanzu/secrets-manager
+module github.com/vmware/secrets-manager
 
 go 1.23.2
 
@@ -13,7 +13,7 @@ require (
 	github.com/stretchr/testify v1.10.0
 	golang.org/x/text v0.22.0
 	google.golang.org/grpc v1.67.1
-	google.golang.org/protobuf v1.35.1
+	google.golang.org/protobuf v1.36.6
 	gopkg.in/yaml.v3 v3.0.1
 	k8s.io/api v0.30.0
 	k8s.io/apimachinery v0.30.0

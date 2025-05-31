@@ -50,7 +50,7 @@ You can find the deployment manifests inside the
 [`./examples/workload-using-sidecar/k8s`][workload-yaml] folder of your
 cloned **VMware Secrets Manager** project.
 
-[workload-yaml]: https://github.com/vmware-tanzu/secrets-manager/tree/main/examples/using_sidecar/k8s
+[workload-yaml]: https://github.com/vmware/secrets-manager/tree/main/examples/using_sidecar/k8s
 
 ### Deploying the Example Workload
 
@@ -84,7 +84,7 @@ that folder:
 [Here is the source code of the demo container's app][workload-src] for the
 sake of completeness.
 
-[workload-src]: https://github.com/vmware-tanzu/secrets-manager/blob/main/examples/using_sidecar/main.go
+[workload-src]: https://github.com/vmware/secrets-manager/blob/main/examples/using_sidecar/main.go
 
 When you check the source code, you'll see that our demo app tries to read a
 secret file every 5 seconds forever:
@@ -288,7 +288,7 @@ Assuming you've had a chance to review the deployment manifests as recommended
 at the start of this tutorial, you might have noticed something similar to what's
 presented below in the [`Identity.yaml`][identity-yaml].
 
-[identity-yaml]: https://github.com/vmware-tanzu/secrets-manager/blob/main/examples/using_sidecar/k8s/Identity.yaml
+[identity-yaml]: https://github.com/vmware/secrets-manager/blob/main/examples/using_sidecar/k8s/Identity.yaml
 [clusterspiffeid]: https://github.com/spiffe/spire-controller-manager/blob/main/docs/clusterspiffeid-crd.md
 
 ```txt

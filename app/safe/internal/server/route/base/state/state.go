@@ -11,16 +11,16 @@
 package state
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/core/env"
 	"io"
 	"net/http"
 
-	net "github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/collection"
-	"github.com/vmware-tanzu/secrets-manager/core/audit/journal"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/audit"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	net "github.com/vmware/secrets-manager/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/collection"
+	"github.com/vmware/secrets-manager/core/audit/journal"
+	"github.com/vmware/secrets-manager/core/constants/audit"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Upsert handles the insertion or update of a secret in the application's

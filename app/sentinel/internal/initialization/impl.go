@@ -17,11 +17,11 @@ import (
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware-tanzu/secrets-manager/app/sentinel/internal/safe"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	"github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/core/spiffe"
+	"github.com/vmware/secrets-manager/app/sentinel/internal/safe"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/spiffe"
 )
 
 // OSFileOpener is a struct that provides a method to open files.

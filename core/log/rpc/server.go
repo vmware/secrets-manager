@@ -18,7 +18,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/vmware-tanzu/secrets-manager/core/log/rpc/generated"
+	"github.com/vmware/secrets-manager/core/log/rpc/generated"
 )
 
 // server struct implements the UnimplementedLogServiceServer interface generated

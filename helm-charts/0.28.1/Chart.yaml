@@ -22,7 +22,7 @@ description: Helm chart for VMware Secrets Manager
 # pipeline. Library charts do not define any templates and therefore cannot be deployed.
 type: application
 sources:
-- https://github.com/vmware-tanzu/secrets-manager
+- https://github.com/vmware/secrets-manager
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.

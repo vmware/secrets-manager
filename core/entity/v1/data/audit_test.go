@@ -15,7 +15,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/core/constants/audit"
 )
 
 // Corrected regex pattern for the log message

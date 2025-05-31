@@ -14,7 +14,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 func TestRootKeyStoreTypeForSafe(t *testing.T) {

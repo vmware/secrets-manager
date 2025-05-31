@@ -13,8 +13,8 @@ package stats
 import (
 	"sync"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/queue/insertion"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/insertion"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // CurrentState is a global Status object that represents the current state of

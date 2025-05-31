@@ -15,17 +15,17 @@ import (
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/bootstrap"
-	server "github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/engine"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/collection"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	cEnv "github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/core/probe"
+	"github.com/vmware/secrets-manager/app/safe/internal/bootstrap"
+	server "github.com/vmware/secrets-manager/app/safe/internal/server/engine"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/collection"
+	"github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/crypto"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	cEnv "github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/probe"
 )
 
 func main() {

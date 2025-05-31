@@ -19,13 +19,13 @@ import (
 
 	"github.com/akamensky/argparse"
 
-	"github.com/vmware-tanzu/secrets-manager/app/sentinel/internal/cli"
-	"github.com/vmware-tanzu/secrets-manager/app/sentinel/internal/safe"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/sentinel"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/app/sentinel/internal/cli"
+	"github.com/vmware/secrets-manager/app/sentinel/internal/safe"
+	"github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/constants/sentinel"
+	"github.com/vmware/secrets-manager/core/crypto"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 func main() {

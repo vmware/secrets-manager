@@ -11,7 +11,7 @@
 package main
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/lib/system"
+	"github.com/vmware/secrets-manager/lib/system"
 )
 
 func main() {

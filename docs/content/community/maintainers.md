@@ -44,6 +44,6 @@ with the [Carvel](https://carvel.dev) suite of tools. He has helped enhance the
 stability and reliability of both the **VSecM** and **SPIRE**. And he is 
 actively involved in making **VSecM** even more robust.
 
-[codeowners]: https://github.com/vmware-tanzu/secrets-manager/blob/main/CODEOWNERS "VMware Secrets Manager CODEOWNERS"
+[codeowners]: https://github.com/vmware/secrets-manager/blob/main/CODEOWNERS "VMware Secrets Manager CODEOWNERS"
 
 {{ edit() }}

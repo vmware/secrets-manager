@@ -51,7 +51,7 @@ func verifyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	// https://github.com/vmware-tanzu/secrets-manager
+	// https://github.com/vmware/secrets-manager
 
 	// Parse JSON data
 	err = json.Unmarshal(body, &data)

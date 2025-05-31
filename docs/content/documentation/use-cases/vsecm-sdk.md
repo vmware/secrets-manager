@@ -210,10 +210,10 @@ By contributing to the development of the **VSecM SDK** in various programming
 languages, you are not merely coding; you are pioneering a movement towards a 
 more secure, efficient, and community-driven approach in application development. 
 
-[sdk-java]: https://github.com/vmware-tanzu/secrets-manager/issues/448
-[sdk-cpp]: https://github.com/vmware-tanzu/secrets-manager/issues/450
-[sdk-rust]: https://github.com/vmware-tanzu/secrets-manager/issues/556
-[sdk-python]: https://github.com/vmware-tanzu/secrets-manager/issues/505
+[sdk-java]: https://github.com/vmware/secrets-manager/issues/448
+[sdk-cpp]: https://github.com/vmware/secrets-manager/issues/450
+[sdk-rust]: https://github.com/vmware/secrets-manager/issues/556
+[sdk-python]: https://github.com/vmware/secrets-manager/issues/505
 
 ## List of Use Cases in This Section
 
