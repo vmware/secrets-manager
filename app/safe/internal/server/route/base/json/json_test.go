@@ -11,7 +11,7 @@
 package json_test
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/base/json"
+	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/json"
 	"testing"
 )
 

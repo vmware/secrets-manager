@@ -13,9 +13,9 @@ package initialization
 import (
 	"context"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/keystone"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/core/constants/keystone"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/lib/backoff"
 )
 
 func (i *Initializer) markKeystone(ctx context.Context, cid *string) bool {

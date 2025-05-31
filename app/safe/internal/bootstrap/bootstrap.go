@@ -18,12 +18,12 @@ import (
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/val"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/core/validation"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/constants/val"
+	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // NotifyTimeout waits for the duration specified by

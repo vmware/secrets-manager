@@ -15,8 +15,8 @@ import (
 
 	"github.com/spiffe/vsecm-sdk-go/sentry"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/symbol"
-	"github.com/vmware-tanzu/secrets-manager/lib/system"
+	"github.com/vmware/secrets-manager/core/constants/symbol"
+	"github.com/vmware/secrets-manager/lib/system"
 )
 
 func main() {

@@ -27,15 +27,15 @@ locally.
 
 If you are new to **VMware Secrets Manager** or looking for smaller tasks to
 start contributing, we have a set of issues labeled as
-["*good first issue*"](https://github.com/vmware-tanzu/secrets-manager/labels/good%20first%20issue)
+["*good first issue*"](https://github.com/vmware/secrets-manager/labels/good%20first%20issue)
 on our GitHub repository. These issues are a great place to start if you are
 looking to make your first contribution.
 
 ### How to Find Good First Issues
 
-1. Navigate to the [Issues tab](https://github.com/vmware-tanzu/secrets-manager/issues)
+1. Navigate to the [Issues tab](https://github.com/vmware/secrets-manager/issues)
    in the GitHub repository.
-2. Use the label filter and select the ["*good first issue*"](https://github.com/vmware-tanzu/secrets-manager/labels/good%20first%20issue)
+2. Use the label filter and select the ["*good first issue*"](https://github.com/vmware/secrets-manager/labels/good%20first%20issue)
    label.
 3. Browse through the list and pick an issue that interests you.
 
@@ -82,7 +82,7 @@ More items may be checked depending on the nature of the change.
 
 ### How to Conduct a Code Review
 
-1. Navigate to the [Pull Requests tab](https://github.com/vmware-tanzu/secrets-manager/pulls)
+1. Navigate to the [Pull Requests tab](https://github.com/vmware/secrets-manager/pulls)
    in the GitHub repository.
 2. Choose a PR that is awaiting review.
 3. Review the code changes and provide your feedback, keeping the above criteria
@@ -216,7 +216,7 @@ are new to Docker, we recommend going through the [Docker Get
 Started](https://docs.docker.com/get-started/) guide.
 
 [fork]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks
-[contributing]: https://github.com/vmware-tanzu/secrets-manager/blob/main/CONTRIBUTING_DCO.md
-[coc]: https://github.com/vmware-tanzu/secrets-manager/blob/main/CODE_OF_CONDUCT.md
+[contributing]: https://github.com/vmware/secrets-manager/blob/main/CONTRIBUTING_DCO.md
+[coc]: https://github.com/vmware/secrets-manager/blob/main/CODE_OF_CONDUCT.md
 
 {{ edit() }}

@@ -20,11 +20,11 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/core/crypto"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/lib/backoff"
 )
 
 var (

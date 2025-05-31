@@ -11,7 +11,7 @@
 package env
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/env"
 )
 
 // SecretsPathForSidecar returns the path to the secrets file used by the sidecar.

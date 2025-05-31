@@ -14,14 +14,14 @@ import (
 	"io"
 	"net/http"
 
-	ioState "github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware-tanzu/secrets-manager/core/audit/journal"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/audit"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/val"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/core/validation"
+	ioState "github.com/vmware/secrets-manager/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/core/audit/journal"
+	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/core/constants/val"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // IsSentinel evaluates if a given SPIFFE ID corresponds to a VSecM Sentinel

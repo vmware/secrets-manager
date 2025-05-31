@@ -15,9 +15,9 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Strategy is a configuration for the backoff strategy to use when retrying

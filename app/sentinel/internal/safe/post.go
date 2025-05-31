@@ -25,13 +25,13 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	u "github.com/vmware-tanzu/secrets-manager/core/constants/url"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/rpc"
-	"github.com/vmware-tanzu/secrets-manager/core/spiffe"
-	"github.com/vmware-tanzu/secrets-manager/lib/template"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	u "github.com/vmware/secrets-manager/core/constants/url"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/rpc"
+	"github.com/vmware/secrets-manager/core/spiffe"
+	"github.com/vmware/secrets-manager/lib/template"
 )
 
 var seed = time.Now().UnixNano()

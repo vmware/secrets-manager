@@ -11,9 +11,9 @@
 package bootstrap
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/queue"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/core/probe"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/queue"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/probe"
 )
 
 func completeInitialization(correlationId *string) {

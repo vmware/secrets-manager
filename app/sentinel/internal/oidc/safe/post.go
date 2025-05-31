@@ -24,10 +24,10 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	"github.com/vmware-tanzu/secrets-manager/lib/template"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/lib/template"
 )
 
 // Post handles the HTTP POST request for secret management using the provided

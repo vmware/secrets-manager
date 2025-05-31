@@ -19,8 +19,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/crypto"
+	"github.com/vmware/secrets-manager/core/constants/env"
 )
 
 func TestDecryptValue(t *testing.T) {

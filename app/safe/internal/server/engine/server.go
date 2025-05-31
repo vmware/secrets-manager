@@ -19,9 +19,9 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/handle"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	"github.com/vmware-tanzu/secrets-manager/core/validation"
+	"github.com/vmware/secrets-manager/app/safe/internal/server/handle"
+	"github.com/vmware/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // Serve initializes and starts an mTLS-secured HTTP server using the given

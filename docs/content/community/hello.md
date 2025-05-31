@@ -21,7 +21,7 @@ weight = 1
 
 ## Empower Our Journey ✊
 
-[⭐️ Star **VMware Secrets Manager** to show your support](https://github.com/vmware-tanzu/secrets-manager).
+[⭐️ Star **VMware Secrets Manager** to show your support](https://github.com/vmware/secrets-manager).
 
 Your support enables us to connect with even more individuals through this 
 incredible technology.
@@ -54,7 +54,7 @@ channel, rather than dispersing them across multiple platforms.
 
 Thanks so much for your interest: It means a lot 🙏.
 
-[ticket]: https://github.com/vmware-tanzu/secrets-manager/issues/new/choose
+[ticket]: https://github.com/vmware/secrets-manager/issues/new/choose
 [slack]: https://join.slack.com/t/a-101-103-105-s/shared_invite/zt-287dbddk7-GCX495NK~FwO3bh_DAMAtQ "Join VSecM Slack"
 
 {{ edit() }}

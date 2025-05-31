@@ -14,9 +14,9 @@ import (
 	"encoding/json"
 	"regexp"
 
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // WorkloadIdAndParts extracts the workload identifier and its constituent parts

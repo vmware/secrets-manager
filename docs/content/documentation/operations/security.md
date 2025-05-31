@@ -78,6 +78,6 @@ We take **VMware Secrets Manager**'s security seriously. If you believe you have
 found a vulnerability, please [**follow this guideline**][vuln]
 to responsibly disclose it.
 
-[vuln]: https://github.com/vmware-tanzu/secrets-manager/blob/main/SECURITY.md
+[vuln]: https://github.com/vmware/secrets-manager/blob/main/SECURITY.md
 
 {{ edit() }}

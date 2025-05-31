@@ -21,9 +21,9 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffeid"
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	reqres "github.com/vmware-tanzu/secrets-manager/core/entity/v1/reqres/safe"
-	"github.com/vmware-tanzu/secrets-manager/core/validation"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	reqres "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
+	"github.com/vmware/secrets-manager/core/validation"
 )
 
 func createAuthorizer() tlsconfig.Authorizer {

@@ -11,8 +11,8 @@
 package queue
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/queue/deletion"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/queue/insertion"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/deletion"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/insertion"
 )
 
 // Initialize starts two goroutines: one to process the secret queue and

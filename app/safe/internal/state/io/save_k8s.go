@@ -21,10 +21,10 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	ec "github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	"github.com/vmware-tanzu/secrets-manager/lib/backoff"
+	ec "github.com/vmware/secrets-manager/core/constants/env"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/lib/backoff"
 )
 
 // saveSecretToKubernetes saves a given SecretStored entity to a Kubernetes

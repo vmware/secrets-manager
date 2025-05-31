@@ -13,11 +13,11 @@ package main
 import (
 	"fmt"
 	"github.com/spiffe/vsecm-sdk-go/sentry"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	env3 "github.com/vmware-tanzu/secrets-manager/core/env"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/lib/system"
+	"github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/crypto"
+	env3 "github.com/vmware/secrets-manager/core/env"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/lib/system"
 	"os"
 )
 

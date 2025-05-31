@@ -18,7 +18,7 @@ import (
 	"github.com/akamensky/argparse"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/sentinel"
+	"github.com/vmware/secrets-manager/core/constants/sentinel"
 )
 
 // captureOutput captures log output. It sets the os.Stdout to a pipe and returns the output as a string. It also restores the original os.Stdout.

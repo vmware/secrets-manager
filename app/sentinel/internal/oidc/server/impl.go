@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/vmware-tanzu/secrets-manager/app/sentinel/internal/oidc/safe"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/log/rpc"
+	"github.com/vmware/secrets-manager/app/sentinel/internal/oidc/safe"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/log/rpc"
 )
 
 // SafeOperations is an interface that defines the methods for safe operations.

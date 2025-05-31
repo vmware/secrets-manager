@@ -15,7 +15,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/constants/key"
 )
 
 // RunInitCommands reads and processes initialization commands from a file.

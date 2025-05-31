@@ -346,9 +346,9 @@ To add a snapshot of the current documentation:
    documentation snapshot.
 10. Create a PR and merge it into the `main` branch.
 
-[release_script]: https://github.com/vmware-tanzu/secrets-manager/blob/main/hack/release-helm-chart.sh
+[release_script]: https://github.com/vmware/secrets-manager/blob/main/hack/release-helm-chart.sh
 
-[init_script]: https://github.com/vmware-tanzu/secrets-manager/blob/main/hack/init-next-helm-chart.sh
+[init_script]: https://github.com/vmware/secrets-manager/blob/main/hack/init-next-helm-chart.sh
 
 ### 13. Add a Snapshot of the Kubernetes Manifests
 

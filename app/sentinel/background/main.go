@@ -13,16 +13,16 @@ package main
 import (
 	"context"
 
-	"github.com/vmware-tanzu/secrets-manager/app/sentinel/internal/initialization"
-	"github.com/vmware-tanzu/secrets-manager/app/sentinel/internal/oidc/server"
-	e "github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	"github.com/vmware-tanzu/secrets-manager/core/log/rpc"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	"github.com/vmware-tanzu/secrets-manager/core/probe"
-	"github.com/vmware-tanzu/secrets-manager/lib/system"
+	"github.com/vmware/secrets-manager/app/sentinel/internal/initialization"
+	"github.com/vmware/secrets-manager/app/sentinel/internal/oidc/server"
+	e "github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/core/log/rpc"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/probe"
+	"github.com/vmware/secrets-manager/lib/system"
 )
 
 func main() {

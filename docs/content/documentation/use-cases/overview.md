@@ -34,7 +34,7 @@ To complete the tutorials listed here, you will need the following:
 
 
 [quickstart]: @/documentation/getting-started/overview.md
-[repo]: https://github.com/vmware-tanzu/secrets-manager
+[repo]: https://github.com/vmware/secrets-manager
 
 ## Minikube Instructions
 
@@ -53,7 +53,7 @@ installed on your system.
 # Switch to your workspace folder (e.g., `~/Desktop/WORKSPACE`).
 cd $WORKSPACE
 # Clone VMware Secrets Manager repository if you haven't already done so:
-git clone https://github.com/vmware-tanzu/secrets-manager.git
+git clone https://github.com/vmware/secrets-manager.git
 # cd into the cloned project folder
 cd secrets-manager
 # Test if `make` is working, if it fails, install `make` first
@@ -115,7 +115,7 @@ All the above workload-to-safe and sentinel-to-safe communication are
 encrypted through **mTLS** using the **X.509 SVID**s that **SPIRE**
 dispatches to all the actors.
 
-[go-sdk]: https://github.com/vmware-tanzu/secrets-manager/tree/main/sdk
+[go-sdk]: https://github.com/vmware/secrets-manager/tree/main/sdk
 
 ## List of Use Cases in This Section
 

@@ -17,9 +17,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/reqres/sentinel"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/entity/v1/reqres/sentinel"
 )
 
 const defaultNamespace = "default"

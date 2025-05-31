@@ -19,8 +19,8 @@ import (
 	"testing"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/base/state"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/state"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 // Mock the UpsertSecret function from the collection package
 type mockCollection struct {

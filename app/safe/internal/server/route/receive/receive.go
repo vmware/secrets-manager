@@ -15,16 +15,16 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/bootstrap"
-	httq "github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/base/http"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/base/json"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/base/validation"
-	"github.com/vmware-tanzu/secrets-manager/core/audit/journal"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/audit"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	s "github.com/vmware-tanzu/secrets-manager/lib/spiffe"
+	"github.com/vmware/secrets-manager/app/safe/internal/bootstrap"
+	httq "github.com/vmware/secrets-manager/app/safe/internal/server/route/base/http"
+	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/json"
+	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/validation"
+	"github.com/vmware/secrets-manager/core/audit/journal"
+	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	s "github.com/vmware/secrets-manager/lib/spiffe"
 )
 
 // Keys processes a request to set root cryptographic keys within the application,

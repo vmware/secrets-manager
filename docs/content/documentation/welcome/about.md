@@ -120,6 +120,6 @@ your cluster to securely use **VMware Secrets Manager**.
 
 [config-ref]: @/documentation/configuration/overview.md "VSecM Configuration"
 [production]: @/documentation/production/overview.md
-[github]: https://github.com/vmware-tanzu/secrets-manager/tree/main/docs "VMware Secrets Manager Documentation on GitHub"
+[github]: https://github.com/vmware/secrets-manager/tree/main/docs "VMware Secrets Manager Documentation on GitHub"
 
 {{ edit() }}

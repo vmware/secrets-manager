@@ -16,9 +16,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/lib/entity"
+	"github.com/vmware/secrets-manager/core/constants/crypto"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/lib/entity"
 )
 
 func TestSecretUpsertRequest_JSONMarshalling(t *testing.T) {

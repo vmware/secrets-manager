@@ -16,8 +16,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/ci/test/assert"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/sentinel"
+	"github.com/vmware/secrets-manager/ci/test/assert"
+	"github.com/vmware/secrets-manager/ci/test/sentinel"
 )
 
 func SecretRegistrationYAMLFormatSidecar() error {

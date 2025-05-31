@@ -18,7 +18,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/vmware-tanzu/secrets-manager/core/log/rpc/generated"
+	"github.com/vmware/secrets-manager/core/log/rpc/generated"
 )
 
 func log(message string) {

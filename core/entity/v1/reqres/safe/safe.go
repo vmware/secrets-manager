@@ -11,8 +11,8 @@
 package safe
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/core/constants/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/constants/crypto"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // SecretUpsertRequest is the request to upsert a secret.

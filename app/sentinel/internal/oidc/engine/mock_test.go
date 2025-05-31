@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/stretchr/testify/mock"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 type MockSafeOperations struct {

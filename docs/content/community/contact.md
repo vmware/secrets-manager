@@ -52,10 +52,10 @@ We also have a [Discord Server][kampus] mainly for Turkish-speaking folks.
 If you have found a security vulnerability, please [**follow this guideline**][vuln]
 to responsibly disclose it.
 
-[ticket]: https://github.com/vmware-tanzu/secrets-manager/issues/new "Create a new issue"
+[ticket]: https://github.com/vmware/secrets-manager/issues/new "Create a new issue"
 
-[vuln]: https://github.com/vmware-tanzu/secrets-manager/blob/main/SECURITY.md
-[code-of-conduct]: https://github.com/vmware-tanzu/secrets-manager/blob/main/CODE_OF_CONDUCT.md
+[vuln]: https://github.com/vmware/secrets-manager/blob/main/SECURITY.md
+[code-of-conduct]: https://github.com/vmware/secrets-manager/blob/main/CODE_OF_CONDUCT.md
 
 ## Contribute to VMware Secrets Manager
 
@@ -66,14 +66,14 @@ Please read [the contribution guidelines][contributing] and
 [the code of conduct][code-of-conduct], and let us know if you need anything
 else.
 
-[contributing]: https://github.com/vmware-tanzu/secrets-manager/blob/main/CONTRIBUTING.md
-[code-of-conduct]: https://github.com/vmware-tanzu/secrets-manager/blob/main/CODE_OF_CONDUCT.md
+[contributing]: https://github.com/vmware/secrets-manager/blob/main/CONTRIBUTING.md
+[code-of-conduct]: https://github.com/vmware/secrets-manager/blob/main/CODE_OF_CONDUCT.md
 
 ## Thank You  ❤️
 
 Thanks so much for your interest: It means a lot 🙏.
 
-[ticket]: https://github.com/vmware-tanzu/secrets-manager/issues/new/choose
+[ticket]: https://github.com/vmware/secrets-manager/issues/new/choose
 [slack]: https://join.slack.com/t/a-101-103-105-s/shared_invite/zt-287dbddk7-GCX495NK~FwO3bh_DAMAtQ "Join VSecM Slack"
 
 {{ edit() }}

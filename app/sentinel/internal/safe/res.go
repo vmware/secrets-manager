@@ -15,7 +15,7 @@ import (
 	"io"
 	"net/http"
 
-	log "github.com/vmware-tanzu/secrets-manager/core/log/rpc"
+	log "github.com/vmware/secrets-manager/core/log/rpc"
 )
 
 func respond(cid *string, r *http.Response) {

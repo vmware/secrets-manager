@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/vmware-tanzu/secrets-manager/ci/test/deploy"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/eval"
-	"github.com/vmware-tanzu/secrets-manager/ci/test/state"
+	"github.com/vmware/secrets-manager/ci/test/deploy"
+	"github.com/vmware/secrets-manager/ci/test/eval"
+	"github.com/vmware/secrets-manager/ci/test/state"
 )
 
 func sadCuddle(err error) {

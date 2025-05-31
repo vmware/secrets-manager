@@ -17,7 +17,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/lib/entity"
+	"github.com/vmware/secrets-manager/lib/entity"
 )
 
 var (

@@ -19,7 +19,7 @@ a project called [**Aegis**][aegis]. The project was [renamed to
 organization][vsecm].
 
 [aegis]: https://github.com/shieldworks/aegis "Aegis"
-[vsecm]: https://github.com/vmware-tanzu/secrets-manager "VMware Secrets Manager for Cloud-Native Apps"
+[vsecm]: https://github.com/vmware/secrets-manager "VMware Secrets Manager for Cloud-Native Apps"
 
 In the meantime, you can check out the videos that relate to **Aegis**. Aside
 from the name, the videos are still relevant.

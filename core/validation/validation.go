@@ -16,8 +16,8 @@ import (
 	"strings"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-	e "github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	e "github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/env"
 )
 
 // Any SPIFFE ID regular expression matcher shall start with the

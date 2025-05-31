@@ -23,8 +23,8 @@ import (
 
 	"filippo.io/age"
 
-	c "github.com/vmware-tanzu/secrets-manager/core/constants/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	c "github.com/vmware/secrets-manager/core/constants/crypto"
+	"github.com/vmware/secrets-manager/core/env"
 )
 
 // DecryptValue takes a base64-encoded and encrypted string value and returns

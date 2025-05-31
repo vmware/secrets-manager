@@ -108,7 +108,7 @@ you safeguard your business and protect against data breaches.
 [Check out **VMware Secret Manager**'s *GitHub* for details][vsecm-github].
 
 [spire]: https://spiffe.io/spire
-[vsecm-github]: https://github.com/vmware-tanzu/secrets-manager
+[vsecm-github]: https://github.com/vmware/secrets-manager
 
 If you haven't watched them yet, now might be a good time 🙂.
 

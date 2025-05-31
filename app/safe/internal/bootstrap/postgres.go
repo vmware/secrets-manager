@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/collection"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/collection"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // PollForConfig continuously polls for the VSecM Safe internal configuration.

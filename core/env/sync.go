@@ -15,8 +15,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/env"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/val"
+	"github.com/vmware/secrets-manager/core/constants/env"
+	"github.com/vmware/secrets-manager/core/constants/val"
 )
 
 // infiniteDuration is used to indicate that no synchronization should occur.

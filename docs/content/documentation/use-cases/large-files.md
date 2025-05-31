@@ -80,7 +80,7 @@ kubectl exec $SENTINEL -n vsecm-system -- safe \
 > Your contributions are welcome.
 {: .block-warning }
 
-[ticket-764]: https://github.com/vmware-tanzu/secrets-manager/issues/764
+[ticket-764]: https://github.com/vmware/secrets-manager/issues/764
 
 ### The Operator Encrypts the File Using the Key
 
@@ -122,7 +122,7 @@ The decryption of the file can also be done in a custom init container so that
 it will be ready once the workload starts its lifecycle, or [you can help with 
 this issue][ticket-765] and add this capability to the **VSecM Init Container**.
 
-[ticket-765]: https://github.com/vmware-tanzu/secrets-manager/issues/765
+[ticket-765]: https://github.com/vmware/secrets-manager/issues/765
 
 ## Conclusion
 

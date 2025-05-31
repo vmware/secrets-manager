@@ -15,7 +15,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/vmware-tanzu/secrets-manager/core/log/level"
+	"github.com/vmware/secrets-manager/core/log/level"
 )
 
 // getMaxEnvVarLength finds the maximum length of environment

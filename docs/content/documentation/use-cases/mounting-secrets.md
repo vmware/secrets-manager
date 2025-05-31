@@ -352,8 +352,8 @@ the secret associated with the workload and update `/opt/app/credentials`.
 >   secret key `#761`][ticket-761]
 
 
-[ticket-759]: https://github.com/vmware-tanzu/secrets-manager/issues/759
-[ticket-761]: https://github.com/vmware-tanzu/secrets-manager/issues/761
+[ticket-759]: https://github.com/vmware/secrets-manager/issues/759
+[ticket-761]: https://github.com/vmware/secrets-manager/issues/761
 
 Here's the YAML manifest without change markers:
 
@@ -494,7 +494,7 @@ app when everything is ready.
 > consume the secret and create the file needed.
 
 
-[ticket-759]: https://github.com/vmware-tanzu/secrets-manager/issues/759
+[ticket-759]: https://github.com/vmware/secrets-manager/issues/759
 
 ### Providing Randomized Secrets to the Workload
 
@@ -517,7 +517,7 @@ initCommand:
     --
 ```
 
-[init-command]: https://github.com/vmware-tanzu/secrets-manager/commit/cbd3b33d9f50569d7b14034a7551ccc6d6575ed7#diff-f4d0a065a7104f6d7271039d0c61dd6ff5155e7a86ca98570c49ecbd48947122R91-R120
+[init-command]: https://github.com/vmware/secrets-manager/commit/cbd3b33d9f50569d7b14034a7551ccc6d6575ed7#diff-f4d0a065a7104f6d7271039d0c61dd6ff5155e7a86ca98570c49ecbd48947122R91-R120
 
 ## Conclusion
 

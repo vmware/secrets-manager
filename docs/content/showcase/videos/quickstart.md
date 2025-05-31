@@ -57,7 +57,7 @@ This is useful when you want to contribute to the source code, and you
 want to build everything from the source:
 
 ```bash
-git clone https://github.com/vmware-tanzu/secrets-manager.git
+git clone https://github.com/vmware/secrets-manager.git
 cd secrets-manager
 make k8s-delete
 make k8s-start

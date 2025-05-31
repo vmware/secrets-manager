@@ -13,8 +13,8 @@ package journal
 import (
 	"net/http"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/audit"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // Log prints an audit log entry to the standard output. The log entry includes

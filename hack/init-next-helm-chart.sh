@@ -84,7 +84,7 @@ git commit -S -s -m "Introducing initial helm-chart for version ${newHelmChartVe
 git push origin "${localBranchName}"
 printf '\n%s***********************************************************\n'"$BOLD"
 echo -e "Click on below link to create pull-request and merge the pull-request"
-echo -e "https://github.com/vmware-tanzu/secrets-manager/compare/main...$localBranchName"
+echo -e "https://github.com/vmware/secrets-manager/compare/main...$localBranchName"
 printf '\n%s***********************************************************\n'"$BOLD"
 
 exit 0

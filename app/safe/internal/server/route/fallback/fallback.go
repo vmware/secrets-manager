@@ -14,7 +14,7 @@ import (
 	"io"
 	"net/http"
 
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Fallback handles requests that don't match any defined routes.

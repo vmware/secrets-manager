@@ -15,11 +15,11 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/file"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/symbol"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
-	"github.com/vmware-tanzu/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/core/constants/file"
+	"github.com/vmware/secrets-manager/core/constants/symbol"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/lib/backoff"
 )
 
 // PersistToDisk saves a given secret to disk and also creates a backup copy

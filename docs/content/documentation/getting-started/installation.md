@@ -19,7 +19,7 @@ Let's start by cloning the **VMware Secrets Manager** repository first:
 
 ```bash
 cd $WORKSPACE
-git clone https://github.com/vmware-tanzu/secrets-manager.git
+git clone https://github.com/vmware/secrets-manager.git
 cd secrets-manager
 ```
 

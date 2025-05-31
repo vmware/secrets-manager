@@ -15,15 +15,15 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/server/route/base/validation"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/collection"
-	"github.com/vmware-tanzu/secrets-manager/core/audit/journal"
-	"github.com/vmware-tanzu/secrets-manager/core/constants/audit"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	reqres "github.com/vmware-tanzu/secrets-manager/core/entity/v1/reqres/safe"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
-	s "github.com/vmware-tanzu/secrets-manager/lib/spiffe"
+	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/validation"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/collection"
+	"github.com/vmware/secrets-manager/core/audit/journal"
+	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/core/crypto"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	reqres "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
+	log "github.com/vmware/secrets-manager/core/log/std"
+	s "github.com/vmware/secrets-manager/lib/spiffe"
 )
 
 // Delete handles the deletion of a secret identified by a workload ID.

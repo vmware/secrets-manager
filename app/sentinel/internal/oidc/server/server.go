@@ -14,8 +14,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/vmware-tanzu/secrets-manager/app/sentinel/internal/oidc/engine"
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/app/sentinel/internal/oidc/engine"
+	"github.com/vmware/secrets-manager/core/env"
 )
 
 // Serve initializes and starts an HTTP server for VSecM Sentinel.

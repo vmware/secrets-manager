@@ -11,8 +11,8 @@
 package journal
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/core/constants/audit"
-	"github.com/vmware-tanzu/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/core/log/std"
 )
 
 func printAudit(correlationId string, e audit.Event,

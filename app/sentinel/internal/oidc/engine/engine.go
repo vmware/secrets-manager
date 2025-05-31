@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/vmware-tanzu/secrets-manager/core/constants/key"
-	"github.com/vmware-tanzu/secrets-manager/core/crypto"
-	"github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/core/constants/key"
+	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // safeOperations is an interface that defines the methods for safe operations.

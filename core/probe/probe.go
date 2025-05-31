@@ -16,7 +16,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/vmware-tanzu/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/core/env"
 )
 
 // CreateLiveness sets up and starts an HTTP server on the port specified by

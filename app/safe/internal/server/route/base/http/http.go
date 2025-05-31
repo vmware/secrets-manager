@@ -14,7 +14,7 @@ import (
 	"io"
 	"net/http"
 
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // ReadBody reads the body from an HTTP request and returns it as a byte slice.
@@ -26,8 +26,8 @@ import (
 //
 // It returns:
 //   - A byte slice containing the body of the request.
-//   - An error if there was an issue reading the body or closing the request 
-//   body.
+//   - An error if there was an issue reading the body or closing the request
+//     body.
 //
 // Example usage:
 //

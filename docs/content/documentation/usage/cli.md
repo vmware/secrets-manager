@@ -18,7 +18,7 @@ weight = 3
 This section contains usage examples and documentation for
 [**VSecM Sentinel**][sentinel]'s Command Line Interface (*CLI*).
 
-[sentinel]: https://github.com/vmware-tanzu/secrets-manager/tree/main/app/sentinel
+[sentinel]: https://github.com/vmware/secrets-manager/tree/main/app/sentinel
 
 ## Finding **VSecM Sentinel**
 
@@ -397,7 +397,7 @@ kubectl get secret example-kubernetes-secret -o yaml
 > Check out the [examples folder][github-examples] for more information.
 
 
-[github-examples]: https://github.com/vmware-tanzu/secrets-manager/tree/main/examples "VSecM Examples"
+[github-examples]: https://github.com/vmware/secrets-manager/tree/main/examples "VSecM Examples"
 
 
 ## Setting the Root Key Manually

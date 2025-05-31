@@ -11,10 +11,10 @@
 package collection
 
 import (
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/secret/queue/deletion"
-	"github.com/vmware-tanzu/secrets-manager/app/safe/internal/state/stats"
-	entity "github.com/vmware-tanzu/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware-tanzu/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/deletion"
+	"github.com/vmware/secrets-manager/app/safe/internal/state/stats"
+	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // DeleteSecret orchestrates the deletion of a specified secret from both the

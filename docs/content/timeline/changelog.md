@@ -31,11 +31,11 @@ This is a security patch to recent CVE scan results.
 ### Security
 
 * Fixed CVE-2024-45337 [Misuse of ServerConfig.PublicKeyCallback may cause 
-  authorization bypass in golang.org/x/crypto](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/34)
+  authorization bypass in golang.org/x/crypto](https://github.com/vmware/secrets-manager/security/dependabot/34)
 * Fixed CVE-2024-45338 [Non-linear parsing of case-insensitive content 
-  in golang.org/x/net/html](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/38)
+  in golang.org/x/net/html](https://github.com/vmware/secrets-manager/security/dependabot/38)
 * Fixed GHSA-32gq-x56h-299c [age vulnerable to malicious plugin names, 
-  recipients, or identities causing arbitrary binary execution](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/35)
+  recipients, or identities causing arbitrary binary execution](https://github.com/vmware/secrets-manager/security/dependabot/35)
 
 ## [0.28.0] - 2024-10-05
 
@@ -52,7 +52,7 @@ This is a security patch to recent CVE scan results.
 
 * Fixed GHSA-xr7q-jx4m-x55m [Private tokens could appear in logs if context 
   containing gRPC metadata is logged in 
-  github.com/grpc/grpc-go](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/22)
+  github.com/grpc/grpc-go](https://github.com/vmware/secrets-manager/security/dependabot/22)
 
 ## [0.27.3] - 2024-10-03
 
@@ -98,7 +98,7 @@ and made the components more robust.
 
 ### Security 
 
-* Fixed GHSA-xr7q-jx4m-x55m [Private tokens could appear in logs if context containing gRPC metadata is logged in ](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/21)
+* Fixed GHSA-xr7q-jx4m-x55m [Private tokens could appear in logs if context containing gRPC metadata is logged in ](https://github.com/vmware/secrets-manager/security/dependabot/21)
 
 ## [0.27.0] - 2024-07-28
 
@@ -345,11 +345,11 @@ more reliable and resilient.
 
 ### Security
 
-* Fixed CVE-2023-45288 [net/http, x/net/http2: close connections when receiving too many headers](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/12)
-* Fixed GHSA-pxvg-2qj5-37jq [Nokogiri updates packaged libxml2 to v2.10.4 to resolve multiple CVEs](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/13)
-* Fixed GHSA-xc9x-jj77-9p9j [Nokogiri update packaged libxml2 to v2.12.5 to resolve CVE-2024-25062](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/14)
-* Fixed GHSA-vcc3-rw6f-jv97 [Use-after-free in libxml2 via Nokogiri::XML::Reader](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/15)
-* Addressed CVE-2020-8559 [Privilege Escalation in Kubernetes](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/16)
+* Fixed CVE-2023-45288 [net/http, x/net/http2: close connections when receiving too many headers](https://github.com/vmware/secrets-manager/security/dependabot/12)
+* Fixed GHSA-pxvg-2qj5-37jq [Nokogiri updates packaged libxml2 to v2.10.4 to resolve multiple CVEs](https://github.com/vmware/secrets-manager/security/dependabot/13)
+* Fixed GHSA-xc9x-jj77-9p9j [Nokogiri update packaged libxml2 to v2.12.5 to resolve CVE-2024-25062](https://github.com/vmware/secrets-manager/security/dependabot/14)
+* Fixed GHSA-vcc3-rw6f-jv97 [Use-after-free in libxml2 via Nokogiri::XML::Reader](https://github.com/vmware/secrets-manager/security/dependabot/15)
+* Addressed CVE-2020-8559 [Privilege Escalation in Kubernetes](https://github.com/vmware/secrets-manager/security/dependabot/16)
 
 ## [v0.24.1] - 2024-03-31
 
@@ -474,7 +474,7 @@ more reliable and resilient.
   their latest version.
 * Increased the Go version to the recent stable.
 * Fixed CVE-2024-28180 [Go JOSE vulnerable to Improper Handling of Highly
-  Compressed Data](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/11)
+  Compressed Data](https://github.com/vmware/secrets-manager/security/dependabot/11)
 
 ## [v0.23.0] - 2024-03-01
 
@@ -533,7 +533,7 @@ more reliable and resilient.
 
 * Fixed CVE-2024-25062 [When using the XML Reader interface with DTD validation
   and XInclude expansion enabled, processing crafted XML documents can lead to
-  an xmlValidatePopElement use-after-free](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/10)
+  an xmlValidatePopElement use-after-free](https://github.com/vmware/secrets-manager/security/dependabot/10)
 
 ## [v0.22.3] - 2024-02-04
 
@@ -618,7 +618,7 @@ more reliable and resilient.
 ### Security
 
 * Fixed CVE-2023-48795 [Russh vulnerable to Prefix Truncation Attack against
-  ChaCha20-Poly1305 and Encrypt-then-MAC](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/9)
+  ChaCha20-Poly1305 and Encrypt-then-MAC](https://github.com/vmware/secrets-manager/security/dependabot/9)
 
 ## [v0.21.4] - 2023-11-30
 
@@ -629,7 +629,7 @@ documentation updates.
 
 * This is a patch release to address GHSA-2c7c-3mj9-8fqh [Decryption of malicious
   PBES2 JWE objects can consume unbounded system
-  resources](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/8)
+  resources](https://github.com/vmware/secrets-manager/security/dependabot/8)
 
 ## [v0.21.3] - 2023-11-03
 
@@ -642,7 +642,7 @@ documentation updates.
 ### Security
 
 * Fixed GHSA-m425-mq94-257g [gRPC-Go HTTP/2 Rapid Reset
-  vulnerability](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/7)
+  vulnerability](https://github.com/vmware/secrets-manager/security/dependabot/7)
 
 ## [v0.21.2] - 2023-10-18
 
@@ -652,11 +652,11 @@ also hardens the AES encryption flow against time-based attacks.
 ### Security
 
 * Fixed CVE-2023-3978 [Improper rendering of text nodes in
-  golang.org/x/net/html](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/4)
+  golang.org/x/net/html](https://github.com/vmware/secrets-manager/security/dependabot/4)
 * Fixed CVE-2023-39325 [HTTP/2 rapid reset can cause excessive work
-  in net/http](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/5)
+  in net/http](https://github.com/vmware/secrets-manager/security/dependabot/5)
 * Fixed CVE-2023-44487 [swift-nio-http2 vulnerable to HTTP/2 Stream Cancellation
-  Attack](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/6)
+  Attack](https://github.com/vmware/secrets-manager/security/dependabot/6)
 * Fixed an issue with possible memory overflow when doing a cryptographic size
   computation.
 * Added a configurable throttle to AES IV computation to make it harder to
@@ -713,8 +713,8 @@ also hardens the AES encryption flow against time-based attacks.
   our ideal response time for security vulnerabilities.
 * Fixed a minor vulnerability in `activesupport` dependency:
   ([CVE-2023-38037](https://access.redhat.com/security/cve/cve-2023-38037)).
-  [fix](https://github.com/vmware-tanzu/secrets-manager/pull/215);
-  [dependabot](https://github.com/vmware-tanzu/secrets-manager/security/dependabot/2).
+  [fix](https://github.com/vmware/secrets-manager/pull/215);
+  [dependabot](https://github.com/vmware/secrets-manager/security/dependabot/2).
   The vulnerability affects only the website build process, not the **VSecM**
   codebase itself. It is not exploitable in our case, but we still wanted to
   fix it.
@@ -724,7 +724,7 @@ also hardens the AES encryption flow against time-based attacks.
 ### Added
 
 * Migrated the source code from <https://github.com/shieldworks/aegis> to
-  <https://github.com/vmware-tanzu/secrets-manager>
+  <https://github.com/vmware/secrets-manager>
 * Did necessary changes for the project to run build and pass tests.
 * Created new container image repositories at <https://hub.docker.com/u/vsecm>.
 
