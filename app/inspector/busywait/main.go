@@ -15,6 +15,7 @@ import (
 )
 
 func main() {
+
 	// Run on the main thread to wait forever.
 	system.KeepAlive()
 }
