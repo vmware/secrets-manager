@@ -31,7 +31,7 @@
 #    VSECM_NAMESPACE_SPIRE ?= "spire-system-custom"
 #    VSECM_NAMESPACE_SPIRE_SERVER ?= "spire-server-custom"
 #
-# 2. $un the following command at the root of the project:
+# 2. Run the following command at the root of the project:
 #    ./hack/create-custom-manifest.sh
 #       Note that this action will override the existing values.yaml at the root
 #      of the ./helm-charts/$version/ directory.
