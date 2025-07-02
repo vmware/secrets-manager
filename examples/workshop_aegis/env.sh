@@ -12,11 +12,11 @@
 
 export SECRET="ComputeMe!"
 
-SENTINEL=$(kubectl get po -n vsecm-system \
+SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
 export SENTINEL=$SENTINEL
 
-SAFE=$(kubectl get po -n vsecm-system \
+SAFE=$(kubectl get po -n vsecm \
   | grep "vsecm-safe-" | awk '{print $1}')
 export SAFE=$SAFE
 

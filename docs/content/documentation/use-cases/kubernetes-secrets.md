@@ -138,14 +138,14 @@ o create a Kubernetes `Secret` instead of a VSecM "secret".
 The above stanza is equivalent to this [**VSecM Sentinel** command][vsecm-cli]:
 
 ```yaml
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w "k8s:example-secret" \
   -s 'gen:{"username":"admin-[a-z0-9]{6}","password":"[a-zA-Z0-9]{12}"}' \
   -t '{"ADMIN_USER":"{{.username}}","ADMIN_PASS":"{{.password}}"}'
 
 sleep(5)
 
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w "example" \
   -s 'init'
 ```

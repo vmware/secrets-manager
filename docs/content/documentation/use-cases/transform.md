@@ -139,16 +139,16 @@ kubectl apply -f Identity.yaml
 Let us define a few aliases first, they will speed things up:
 
 ```bash 
-SENTINEL=$(kubectl get po -n vsecm-system \
+SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
-SAFE=$(kubectl get po -n vsecm-system \
+SAFE=$(kubectl get po -n vsecm \
   | grep "vsecm-safe-" | awk '{print $1}')
 WORKLOAD=$(kubectl get po -n default \
   | grep "vsecm-inspector-" | awk '{print $1}')
 
 # Delete secrets assigned to the workload:
 alias delete-secret="kubectl exec $SENTINEL \
-  -n vsecm-system -- safe \
+  -n vsecm -- safe \
   -w example -s x -d"
 
 alias inspect="kubectl exec $INSPECTOR -- ./env"
@@ -184,7 +184,7 @@ we'll be explicit and provide this argument at all times.
 ### Registering a JSON Secret
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{"username": "admin", "password": "VSecMRocks!"}' \
   -f json
@@ -197,7 +197,7 @@ inspect
 ### Registering a YAML Secret
 
 ```bash 
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{"username": "admin", "password": "VSecMRocks!"}' \
   -f yaml
@@ -214,7 +214,7 @@ Now we'll deliberately make an error in our JSON. Notice the missing `"`
 in `username"`: That is not valid JSON.
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{username": "admin", "password": "VSecMRocks!"}' \
   -f json
@@ -229,7 +229,7 @@ inspect
 Since the JSON cannot be parsed, the output will not be a YAML:
 
 ```bash 
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{username": "admin", "password": "VSecMRocks!"}' \
   -f yaml
@@ -242,7 +242,7 @@ inspect
 ### Transforming A JSON Secret
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{"username": "admin", "password": "VSecMRocks!"}' \
   -t '{"USR":"{{.username}}", "PWD":"{{.password}}"}' \
@@ -256,7 +256,7 @@ inspect
 ### Transforming a YAML Secret
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{"username": "admin", "password": "VSecMRocks!"}' \
   -t '{"USR":"{{.username}}", "PWD":"{{.password}}"}' \
@@ -274,7 +274,7 @@ If our secret is not valid JSON, then the YAML transformation will not be
 possible. **VMware Secrets Manager** will still try its best to provide something.
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{username": "admin", "password": "VSecMRocks!"}' \
   -t '{"USR":"{{.username}}", "PWD":"{{.password}}"}' \
@@ -290,7 +290,7 @@ inspect
 Since template is not valid, the template transformation will not happen.
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{"username": "admin", "password": "VSecMRocks!"}' \
   -t '{USR":"{{.username}}", "PWD":"{{.password}}"}' \
@@ -306,7 +306,7 @@ inspect
 **VMware Secrets Manager** will still try its best:
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{username": "admin", "password": "VSecMRocks!"}' \
   -t '{USR":"{{.username}}", "PWD":"{{.password}}"}' \
@@ -320,7 +320,7 @@ inspect
 ### Transforming YAML Secret (invalid JSON)
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{username": "admin", "password": "VSecMRocks!"}' \
   -t '{"USR":"{{.username}}", "PWD":"{{.password}}"}' \
@@ -334,7 +334,7 @@ inspect
 ### Transforming YAML Secret (invalid template)
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{"username": "admin", "password": "VSecMRocks!"}' \
   -t '{USR":"{{.username}}", "PWD":"{{.password}}"}' \
@@ -348,7 +348,7 @@ inspect
 ### Transforming YAML Secret (invalid JSON and template)
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s '{username": "admin", "password": "VSecMRocks!"}' \
   -t '{USR":"{{.username}}", "PWD":"{{.password}}"}' \

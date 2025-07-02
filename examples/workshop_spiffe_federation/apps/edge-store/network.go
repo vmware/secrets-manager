@@ -208,7 +208,7 @@ func registerSecretToVSecM(workloadName, secretValue string) {
 		panic(err)
 	}
 
-	namespace := "vsecm-system"
+	namespace := "vsecm"
 	containerName := "" // Leave empty to use the first container
 	podPrefix := "vsecm-sentinel"
 

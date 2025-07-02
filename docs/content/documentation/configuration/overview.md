@@ -375,7 +375,7 @@ exposes from its `Service`.
 **workloads** need this URL configured.
 
 If not provided, it will default to:
-`"https://vsecm-safe.vsecm-system.svc.cluster.local:8443/"`.
+`"https://vsecm-safe.vsecm.svc.cluster.local:8443/"`.
 
 ### VSECM_SAFE_FIPS_COMPLIANT
 
@@ -743,7 +743,7 @@ If the prefix is a regular expression, it MUST start with
 (`vsecm.com` by default).
 
 If not provided, it will default to:
-`"^spiffe://vsecm.com/workload/vsecm-safe/ns/vsecm-system/sa/vsecm-safe/n/[^/]+$"`
+`"^spiffe://vsecm.com/workload/vsecm-safe/ns/vsecm/sa/vsecm-safe/n/[^/]+$"`
 
 ### VSECM_SPIFFEID_PREFIX_SENTINEL
 
@@ -760,7 +760,7 @@ If the prefix is a regular expression, it MUST start with
 (`vsecm.com` by default).
 
 If not provided, it will default to:
-`"^spiffe://vsecm.com/workload/vsecm-sentinel/ns/vsecm-system/sa/vsecm-sentinel/n/[^/]+$"`
+`"^spiffe://vsecm.com/workload/vsecm-sentinel/ns/vsecm/sa/vsecm-sentinel/n/[^/]+$"`
 
 ### VSECM_SPIFFEID_PREFIX_WORKLOAD
 

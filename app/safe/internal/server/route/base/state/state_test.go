@@ -58,7 +58,7 @@ func TestUpsert_Success(t *testing.T) {
 		CorrelationId: "1234",
 		Payload:       "test-payload",
 		Method:        "POST",
-		Url:           "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/workload/v1/secrets",
+		Url:           "https://vsecm-safe.vsecm.svc.cluster.local:8443/workload/v1/secrets",
 		SpiffeId:      "spiffe://example.org/service",
 	}
 	workloadId := "workload-1"
@@ -96,7 +96,7 @@ func TestUpsert_ResponseWriteError(t *testing.T) {
 		CorrelationId: "1234",
 		Payload:       "test-payload",
 		Method:        "POST",
-		Url:           "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/workload/v1/secrets",
+		Url:           "https://vsecm-safe.vsecm.svc.cluster.local:8443/workload/v1/secrets",
 		SpiffeId:      "spiffe://example.org/service",
 	}
 	workloadId := "workload-1"

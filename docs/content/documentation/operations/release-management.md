@@ -103,10 +103,10 @@ make deploy-local
 ```
 
 When everything completes, you should be able to see **VMware Secrets Manager**
-pods in the `vsecm-system` namespace.
+pods in the `vsecm` namespace.
 
 ```bash
-kubectl get po -n vsecm-system
+kubectl get po -n vsecm
 
 # Output should list `vsecm-safe` and `vsecm-sentinel`.
 ```

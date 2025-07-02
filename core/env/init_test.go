@@ -81,12 +81,12 @@ func TestSystemNamespace(t *testing.T) {
 		{
 			name: "system_namespace_from_env",
 			setup: func() error {
-				return os.Setenv("VSECM_SYSTEM_NAMESPACE", "vsecm-system")
+				return os.Setenv("VSECM_SYSTEM_NAMESPACE", "vsecm")
 			},
 			cleanup: func() error {
 				return os.Unsetenv("VSECM_SYSTEM_NAMESPACE")
 			},
-			want: "vsecm-system",
+			want: "vsecm",
 		},
 		//{
 		//	name: "empty_system_namespace",

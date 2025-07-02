@@ -62,7 +62,7 @@ We'll create an AES key and store it in VSecM through [**VSecM CLI**][vsecm-cli]
 # Create an 256-bit AES Key:
 AES_KEY=$(openssl rand -hex 32)
 # Save the key in VSECM for our example workload:
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s $AES_KEY
 ```

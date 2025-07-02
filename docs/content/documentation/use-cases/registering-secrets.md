@@ -43,7 +43,7 @@ To register a secret in VMware Secrets Manager, you can use the CLI as follows:
 
 ```bash 
 # $SENTINEL is the name of VSecM Sentinel pod.
- kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+ kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example-workload-demo" \
   -n "default" \
   -s 'TopSecret!#'

@@ -22,10 +22,10 @@ This section contains usage examples and documentation for
 
 ## Finding **VSecM Sentinel**
 
-First, find which pod belongs to `vsecm-system`:
+First, find which pod belongs to `vsecm`:
 
 ```bash
-kubectl get po -n vsecm-system
+kubectl get po -n vsecm
 ```
 
 The response to the above command will be similar to the following:
@@ -42,7 +42,7 @@ You can also execute a script similar to the following to save the Pod's name
 into an environment variable:
 
 ```bash
-SENTINEL=$(kubectl get po -n vsecm-system \
+SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
 ```
 
@@ -56,7 +56,7 @@ Pod name.
 for `safe`:
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe --help
+kubectl exec $SENTINEL -n vsecm- -- safe --help
 ```
 
 > **About `--help`**
@@ -70,7 +70,7 @@ kubectl exec $SENTINEL -n vsecm-system -- safe --help
 Given our workload has the SPIFFE ID `"spiffe://vsecm.com/workload/billing/: ...[truncated]"`
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w billing \
   -s "very secret value"
 ```
@@ -92,7 +92,7 @@ For this, you'll need to prefix the workload name with
 (*which is `k8s:` by default*):
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "k8s:example-secret" \
   -n "default" \
   -s '{"username": "root", \
@@ -115,12 +115,12 @@ You can use the `-a` (*append*) argument to register more than one secret
 to a workload.
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w billing \
   -s "first part of the token" \
   -a
 
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w billing \
   -s "second part of the token" \
   -a
@@ -131,7 +131,7 @@ kubectl exec $SENTINEL -n vsecm-system -- safe \
 Use the `-e` flag to encrypt a secret.
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -s "very secret value" \
   -e 
 
@@ -144,7 +144,7 @@ kubectl exec $SENTINEL -n vsecm-system -- safe \
 Again, `-e` flag can be used to register an encrypted secret to a workload:
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w billing \
   -s $ENCRYPTED_SECRET \
   -e
@@ -155,7 +155,7 @@ kubectl exec $SENTINEL -n vsecm-system -- safe \
 To delete the secret associated to a workload, use the `-d` flag:
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w billing \
   -d
 ```
@@ -167,7 +167,7 @@ However, you can use the `-l` flag to get certain metadata about the secrets
 registered to a workload.
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe -l
+kubectl exec $SENTINEL -n vsecm -- safe -l
 # Output:
 # {"secrets":[{"name":"example",
 #  "created":"Tue Jan 02 02:06:30 +0000 2024",
@@ -179,7 +179,7 @@ If you have adequate privileges to get the VSecM root key, you can use
 the root key to decrypt the secrets.
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe -l -e
+kubectl exec $SENTINEL -n vsecm -- safe -l -e
 # Output:
 # {"secrets":[{"name":"example",
 #  "value":["YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0...truncated"],
@@ -200,7 +200,7 @@ The following commands stores the secret to the backing volume
 (*default behavior*):
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w billing \
   -s "very secret value" \
   -b file
@@ -210,7 +210,7 @@ This one, will **not** store the secret on file; the secret will only be
 persisted in memory, and will be lost if **VSecM Sentinel** needs to restart:
 
 ```bash
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w billing \
   -s "very secret value" \
   -b memory
@@ -221,7 +221,7 @@ kubectl exec $SENTINEL -n vsecm-system -- safe \
 You can transform how the stored secret is displayed to the consuming workloads:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -s '{"username": "root", \
     "password": "SuperSecret", \
@@ -241,7 +241,7 @@ it sees as the value:
 Instead of this default transformation, you can output it as `yaml` too:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -s '{"username": "root", \
     "password": "SuperSecret", \
@@ -270,7 +270,7 @@ You can create a YAML secret value without the `-t` flag too. In that case
 **VSecM Safe** will assume an identity transformation:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm- -- safe \
   -w "example" \
   -s '{"username": "root", \
     "password": "SuperSecret", \
@@ -301,7 +301,7 @@ in a format that the workload is not expecting.
 The following is also possible:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm- -- safe \
   -w "example" \
   -s 'USER»»»{{.username}}'
 ```
@@ -315,7 +315,7 @@ USER»»»root
 Or, equivalently:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -s 'USER»»»{{.username}}' \
   -f json
@@ -330,7 +330,7 @@ USER»»»root
 Similarly, the following will **not** raise an error:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -s 'USER»»»{{.username}}' \
   -f yaml
@@ -349,7 +349,7 @@ bind them to the workloads with usual Kubernetes mechanisms such as environment
 variables, or volume mounts.
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "k8s:example-kubernetes-secret" \
   -n "default" \
   -s '{"username": "root","password": "SuperSecret"}' \
@@ -392,7 +392,7 @@ kubectl get secret example-kubernetes-secret -o yaml
 > its job and let the workload start:
 >
 > ```bash 
-> kubectl exec "$SENTINEL" -n vsecm-system -- safe -w "k8s:$WORKLOAD_NAME"
+> kubectl exec "$SENTINEL" -n vsecm -- safe -w "k8s:$WORKLOAD_NAME"
 > 
 > Check out the [examples folder][github-examples] for more information.
 
@@ -408,7 +408,7 @@ convenience. However, if you want you can set `VSECM_ROOT_KEY_INPUT_MODE_MANUAL`
 to `"true"` and provide the *root key* manually.
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -i "AGE-SECRET-KEY-1RZU...\nage1...\na6...ceec"
   
 # Output:
@@ -475,7 +475,7 @@ docker run --rm \
 ```
 
 Where `key.txt` is the new root key you want to use, and `secrets.json` is
-the output of `kubectl exec $SENTINEL -n vsecm-system -- safe -l -e`.
+the output of `kubectl exec $SENTINEL -n vsecm -- safe -l -e`.
 
 ## Registering Random Pattern-Based Secrets to a Workload
 
@@ -501,7 +501,7 @@ To use these patterns, simply prefix the `-v` flag with `gen:` (*or
 to override it*) as follows:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -s "gen:football[\w]{8}bartender"
 # The secret will be randomized based on the pattern above.  
@@ -535,14 +535,14 @@ initCommand:
 The above stanza is equivalent to this [**VSecM Sentinel** command][vsecm-cli]:
 
 ```yaml
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w "k8s:example-secret" \
   -s 'gen:{"username":"admin-[a-z0-9]{6}","password":"[a-zA-Z0-9]{12}"}' \
   -t '{"ADMIN_USER":"{{.username}}","ADMIN_PASS":"{{.password}}"}'
 
 sleep(5)
 
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -w "example" \
   -s 'init'
 ```

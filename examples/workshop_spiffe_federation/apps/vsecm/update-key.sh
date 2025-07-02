@@ -3,7 +3,7 @@
 set -e
 
 # Default values
-NAMESPACE="vsecm-system"
+NAMESPACE="vsecm"
 SECRET_NAME="vsecm-root-key"
 KEY_FILE="key.txt"
 STATEFULSET_NAME="vsecm-safe"

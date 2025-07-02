@@ -27,10 +27,10 @@ DEPLOYMENT_NAME=vsecm
 VSECM_DOCKERHUB_REGISTRY_URL ?= "vsecm"
 VSECM_LOCAL_REGISTRY_URL ?= "localhost:5000"
 
-VSECM_NAMESPACE_SYSTEM ?= "vsecm-system"
+VSECM_NAMESPACE_SYSTEM ?= "vsecm"
 VSECM_NAMESPACE_SPIRE ?= "spire-system"
 VSECM_NAMESPACE_SPIRE_SERVER ?= "spire-server"
-# VSECM_NAMESPACE_SYSTEM ?= "vsecm-system-custom"
+# VSECM_NAMESPACE_SYSTEM ?= "vsecm-custom"
 # VSECM_NAMESPACE_SPIRE ?= "spire-system-custom"
 # VSECM_NAMESPACE_SPIRE_SERVER ?= "spire-server-custom"
 

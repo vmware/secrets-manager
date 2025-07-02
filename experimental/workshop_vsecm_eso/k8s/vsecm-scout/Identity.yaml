@@ -13,5 +13,5 @@ spec:
     matchLabels:
       app.kubernetes.io/name: vsecm-scout
   workloadSelectorTemplates:
-    - "k8s:ns:vsecm-system"
+    - "k8s:ns:vsecm"
     - "k8s:sa:vsecm-scout"

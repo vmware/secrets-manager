@@ -26,7 +26,7 @@ func TestIsSentinel(t *testing.T) {
 		{
 			name: "has_prefix",
 			args: args{
-				spiffeid: "spiffe://vsecm.com/workload/vsecm-sentinel/ns/vsecm-system/sa/vsecm-sentinel/n/test",
+				spiffeid: "spiffe://vsecm.com/workload/vsecm-sentinel/ns/vsecm/sa/vsecm-sentinel/n/test",
 			},
 			want: true,
 		},
@@ -59,7 +59,7 @@ func TestIsSafe(t *testing.T) {
 		{
 			name: "has_prefix",
 			args: args{
-				spiffeid: "spiffe://vsecm.com/workload/vsecm-safe/ns/vsecm-system/sa/vsecm-safe/n/test",
+				spiffeid: "spiffe://vsecm.com/workload/vsecm-safe/ns/vsecm/sa/vsecm-safe/n/test",
 			},
 			want: true,
 		},

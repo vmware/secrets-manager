@@ -31,7 +31,7 @@ func SentinelCanEncryptSecret(value string) error {
 
 	// Execute the encryption command within the sentinel pod.
 	res, err := io.Exec("kubectl", "exec", sentinel,
-		"-n", "vsecm-system", "--", "safe", "-s", value, "-e")
+		"-n", "vsecm", "--", "safe", "-s", value, "-e")
 	if err != nil {
 		return errors.Join(
 			err,

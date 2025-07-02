@@ -17,7 +17,7 @@ import (
 // NamespaceForVSecMSystem returns the namespace for the VSecM apps.
 // The namespace is determined by the environment variable
 // "VSECM_NAMESPACE_SYSTEM". If the variable is not set or is empty,
-// it defaults to "vsecm-system".
+// it defaults to "vsecm".
 //
 // Returns:
 //

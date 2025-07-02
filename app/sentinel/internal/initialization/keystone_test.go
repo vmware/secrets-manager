@@ -37,7 +37,7 @@ func TestInitializer_markKeystone(t *testing.T) {
 			setupMocks: func(ml *MockLogger, ms *MockSafeOps, me *MockEnvReader) {
 				ml.On("TraceLn", mock.Anything, mock.Anything).Return()
 				ms.On("Post", mock.Anything, mock.Anything).Return(nil)
-				me.On("NamespaceForVSecMSystem").Return("vsecm-system")
+				me.On("NamespaceForVSecMSystem").Return("vsecm")
 			},
 			expectPanic: false,
 			expectTrue:  true,
@@ -48,7 +48,7 @@ func TestInitializer_markKeystone(t *testing.T) {
 				ml.On("TraceLn", mock.Anything, mock.Anything).Return()
 				ml.On("ErrorLn", mock.Anything, mock.Anything).Return()
 				ms.On("Post", mock.Anything, mock.Anything).Return(errors.New("post error"))
-				me.On("NamespaceForVSecMSystem").Return("vsecm-system")
+				me.On("NamespaceForVSecMSystem").Return("vsecm")
 			},
 			expectPanic: true,
 			expectTrue:  false,

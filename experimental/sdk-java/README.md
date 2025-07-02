@@ -11,10 +11,10 @@
 ```
     public void start() {
         LOGGER.info("START....");
-        String fetch = fetch("https://vsecm-safe.vsecm-system.svc.cluster.local:8443/sentinel/v1/secrets?reveal=true");
+        String fetch = fetch("https://vsecm-safe.vsecm.svc.cluster.local:8443/sentinel/v1/secrets?reveal=true");
         LOGGER.info("RESULT .... " + fetch);
         TaskFactory taskFactory = new FetchSecretsTaskFactory();
-        Future<String> watchedData = watch(taskFactory, "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/sentinel/v1/secrets?reveal=true");
+        Future<String> watchedData = watch(taskFactory, "https://vsecm-safe.vsecm.svc.cluster.local:8443/sentinel/v1/secrets?reveal=true");
         if (watchedData.isDone()) {
             try {
                 saveData(watchedData.get(), "/opt/vsecm/secrets.json");

@@ -41,7 +41,7 @@ spec:
             - name: VSECM_SPIFFEID_PREFIX_WORKLOAD
               value: "spiffe://vsecm.com/workload/"
             - name: VSECM_SPIFFEID_PREFIX_SAFE
-              value: "spiffe://vsecm.com/workload/vsecm-safe/ns/vsecm-system/sa/vsecm-safe/n/"
+              value: "spiffe://vsecm.com/workload/vsecm-safe/ns/vsecm/sa/vsecm-safe/n/"
       volumes:
         - name: spire-agent-socket
           csi:

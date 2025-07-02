@@ -34,7 +34,7 @@ func Cleanup() error {
 
 	// Execute command within the sentinel pod to delete the secret.
 	_, err = io.Exec("kubectl", "exec",
-		sentinel, "-n", "vsecm-system", "--", "safe", "-w", "example", "-d")
+		sentinel, "-n", "vsecm", "--", "safe", "-w", "example", "-d")
 	if err != nil {
 		return errors.Join(
 			err,

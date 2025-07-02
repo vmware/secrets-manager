@@ -10,7 +10,7 @@
 # >/'  SPDX-License-Identifier: BSD-2-Clause
 # */
 
-SENTINEL=$(kubectl get po -n vsecm-system \
+SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
 
 # To make the init container exit successfully and initialize the main
@@ -25,7 +25,7 @@ SENTINEL=$(kubectl get po -n vsecm-system \
 # -t : will be used to transform the fields of the payload.
 # -s : is the actual value of the secret.
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -n "default" \
   -s '{"username": "root", "password": "SuperSecret", "value": "VSecMRocks"}' \

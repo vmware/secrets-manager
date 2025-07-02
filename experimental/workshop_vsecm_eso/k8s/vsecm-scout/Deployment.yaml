@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vsecm-scout
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     app: vsecm-scout
     app.kubernetes.io/name: vsecm-scout

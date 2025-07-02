@@ -12,13 +12,13 @@
 
 source ./env.sh
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -n "default" \
   -s '{"name": "USERNAME", "value": "operator"}' \
   -a
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -n "default" \
   -s '{"name": "PASSWORD", "value": "!KeepYourSecrets!"}' \

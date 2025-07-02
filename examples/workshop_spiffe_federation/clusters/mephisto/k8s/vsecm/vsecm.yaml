@@ -2,18 +2,18 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: vsecm-system
+  name: vsecm
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: vsecm-keystone
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: keystone-0.40.0
     app.kubernetes.io/name: vsecm-keystone
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
 automountServiceAccountToken: false
@@ -22,12 +22,12 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: vsecm-safe
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: safe-0.40.0
     app.kubernetes.io/name: vsecm-safe
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
@@ -41,12 +41,12 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: vsecm-sentinel
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: sentinel-0.40.0
     app.kubernetes.io/name: vsecm-sentinel
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
@@ -60,12 +60,12 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: vsecm-root-key
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: safe-0.40.0
     app.kubernetes.io/name: vsecm-safe
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/operated-by: vsecm
@@ -79,12 +79,12 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: vsecm-sentinel-init-secret
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: sentinel-0.40.0
     app.kubernetes.io/name: vsecm-sentinel
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/operated-by: vsecm
@@ -110,7 +110,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: vsecm-safe
-    namespace: vsecm-system
+    namespace: vsecm
 roleRef:
   kind: ClusterRole
   name: vsecm-secret-readwriter
@@ -120,7 +120,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: vsecm-sentinel-secret-reader
-  namespace: vsecm-system
+  namespace: vsecm
 rules:
   - apiGroups: [""]
     resources: ["secrets"]
@@ -131,11 +131,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: read-secrets
-  namespace: vsecm-system
+  namespace: vsecm
 subjects:
   - kind: ServiceAccount
     name: vsecm-sentinel
-    namespace: vsecm-system
+    namespace: vsecm
 roleRef:
   kind: Role
   name: vsecm-sentinel-secret-reader
@@ -145,12 +145,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: vsecm-safe
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: safe-0.40.0
     app.kubernetes.io/name: vsecm-safe
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -163,18 +163,18 @@ spec:
   selector:
     app.kubernetes.io/name: vsecm-safe
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vsecm-keystone
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: keystone-0.40.0
     app.kubernetes.io/name: vsecm-keystone
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -183,13 +183,13 @@ spec:
     matchLabels:
       app.kubernetes.io/name: vsecm-keystone
       app.kubernetes.io/instance: vsecm
-      app.kubernetes.io/part-of: vsecm-system
+      app.kubernetes.io/part-of: vsecm
   template:
     metadata:
       labels:
         app.kubernetes.io/name: vsecm-keystone
         app.kubernetes.io/instance: vsecm
-        app.kubernetes.io/part-of: vsecm-system
+        app.kubernetes.io/part-of: vsecm
     spec:
       serviceAccountName: vsecm-keystone
       securityContext:
@@ -245,13 +245,13 @@ spec:
             - name: VSECM_LOG_LEVEL
               value: "7"
             - name: VSECM_SAFE_ENDPOINT_URL
-              value: "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/"
+              value: "https://vsecm-safe.vsecm.svc.cluster.local:8443/"
             - name: VSECM_SPIFFEID_PREFIX_SAFE
-              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-safe/ns/vsecm-system/sa/vsecm-safe/n/[^/]+$"
+              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-safe/ns/vsecm/sa/vsecm-safe/n/[^/]+$"
             - name: VSECM_SPIFFEID_PREFIX_WORKLOAD
               value: "^spiffe://mephisto.vsecm.com/workload/[^/]+/ns/[^/]+/sa/[^/]+/n/[^/]+$"
             - name: VSECM_NAMESPACE_SYSTEM
-              value: "vsecm-system"
+              value: "vsecm"
             - name: VSECM_NAMESPACE_SPIRE
               value: "spire-system"
             - name: SPIFFE_TRUST_DOMAIN
@@ -283,12 +283,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vsecm-sentinel
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: sentinel-0.40.0
     app.kubernetes.io/name: vsecm-sentinel
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -297,13 +297,13 @@ spec:
     matchLabels:
       app.kubernetes.io/name: vsecm-sentinel
       app.kubernetes.io/instance: vsecm
-      app.kubernetes.io/part-of: vsecm-system
+      app.kubernetes.io/part-of: vsecm
   template:
     metadata:
       labels:
         app.kubernetes.io/name: vsecm-sentinel
         app.kubernetes.io/instance: vsecm
-        app.kubernetes.io/part-of: vsecm-system
+        app.kubernetes.io/part-of: vsecm
     spec:
       serviceAccountName: vsecm-sentinel
       securityContext:
@@ -414,15 +414,15 @@ spec:
             - name: VSECM_SENTINEL_SECRET_GENERATION_PREFIX
               value: "gen:"
             - name: VSECM_SAFE_ENDPOINT_URL
-              value: "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/"
+              value: "https://vsecm-safe.vsecm.svc.cluster.local:8443/"
             - name: VSECM_SPIFFEID_PREFIX_SAFE
-              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-safe/ns/vsecm-system/sa/vsecm-safe/n/[^/]+$"
+              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-safe/ns/vsecm/sa/vsecm-safe/n/[^/]+$"
             - name: VSECM_SPIFFEID_PREFIX_SENTINEL
-              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-sentinel/ns/vsecm-system/sa/vsecm-sentinel/n/[^/]+$"
+              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-sentinel/ns/vsecm/sa/vsecm-sentinel/n/[^/]+$"
             - name: VSECM_SPIFFEID_PREFIX_WORKLOAD
               value: "^spiffe://mephisto.vsecm.com/workload/[^/]+/ns/[^/]+/sa/[^/]+/n/[^/]+$"
             - name: VSECM_NAMESPACE_SYSTEM
-              value: "vsecm-system"
+              value: "vsecm"
             - name: VSECM_NAMESPACE_SPIRE
               value: "spire-system"
 
@@ -453,12 +453,12 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: vsecm-safe
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     helm.sh/chart: safe-0.40.0
     app.kubernetes.io/name: vsecm-safe
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -468,13 +468,13 @@ spec:
     matchLabels:
       app.kubernetes.io/name: vsecm-safe
       app.kubernetes.io/instance: vsecm
-      app.kubernetes.io/part-of: vsecm-system
+      app.kubernetes.io/part-of: vsecm
   template:
     metadata:
       labels:
         app.kubernetes.io/name: vsecm-safe
         app.kubernetes.io/instance: vsecm
-        app.kubernetes.io/part-of: vsecm-system
+        app.kubernetes.io/part-of: vsecm
     spec:
       serviceAccountName: vsecm-safe
       securityContext:
@@ -627,15 +627,15 @@ spec:
             - name: VSECM_SAFE_TLS_PORT
               value: ":8443"
             - name: VSECM_SAFE_ENDPOINT_URL
-              value: "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/"
+              value: "https://vsecm-safe.vsecm.svc.cluster.local:8443/"
             - name: VSECM_SPIFFEID_PREFIX_SAFE
-              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-safe/ns/vsecm-system/sa/vsecm-safe/n/[^/]+$"
+              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-safe/ns/vsecm/sa/vsecm-safe/n/[^/]+$"
             - name: VSECM_SPIFFEID_PREFIX_SENTINEL
-              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-sentinel/ns/vsecm-system/sa/vsecm-sentinel/n/[^/]+$"
+              value: "^spiffe://mephisto.vsecm.com/workload/vsecm-sentinel/ns/vsecm/sa/vsecm-sentinel/n/[^/]+$"
             - name: VSECM_SPIFFEID_PREFIX_WORKLOAD
               value: "^spiffe://mephisto.vsecm.com/workload/[^/]+/ns/[^/]+/sa/[^/]+/n/[^/]+$"
             - name: VSECM_NAMESPACE_SYSTEM
-              value: "vsecm-system"
+              value: "vsecm"
             - name: VSECM_NAMESPACE_SPIRE
               value: "spire-system"
             - name: SPIFFE_TRUST_DOMAIN
@@ -685,7 +685,7 @@ metadata:
     helm.sh/chart: keystone-0.40.0
     app.kubernetes.io/name: vsecm-keystone
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -694,9 +694,9 @@ spec:
   podSelector:
     matchLabels:
       app.kubernetes.io/name: vsecm-keystone
-      app.kubernetes.io/part-of: vsecm-system
+      app.kubernetes.io/part-of: vsecm
   workloadSelectorTemplates:
-    - "k8s:ns:vsecm-system"
+    - "k8s:ns:vsecm"
     - "k8s:sa:vsecm-keystone"
 ---
 apiVersion: spire.spiffe.io/v1alpha1
@@ -707,7 +707,7 @@ metadata:
     helm.sh/chart: safe-0.40.0
     app.kubernetes.io/name: vsecm-safe
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -716,9 +716,9 @@ spec:
   podSelector:
     matchLabels:
       app.kubernetes.io/name: vsecm-safe
-      app.kubernetes.io/part-of: vsecm-system
+      app.kubernetes.io/part-of: vsecm
   workloadSelectorTemplates:
-    - "k8s:ns:vsecm-system"
+    - "k8s:ns:vsecm"
     - "k8s:sa:vsecm-safe"
 ---
 apiVersion: spire.spiffe.io/v1alpha1
@@ -729,7 +729,7 @@ metadata:
     helm.sh/chart: sentinel-0.40.0
     app.kubernetes.io/name: vsecm-sentinel
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "0.40.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -738,7 +738,7 @@ spec:
   podSelector:
     matchLabels:
       app.kubernetes.io/name: vsecm-sentinel
-      app.kubernetes.io/part-of: vsecm-system
+      app.kubernetes.io/part-of: vsecm
   workloadSelectorTemplates:
-    - "k8s:ns:vsecm-system"
+    - "k8s:ns:vsecm"
     - "k8s:sa:vsecm-sentinel"

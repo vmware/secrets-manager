@@ -12,15 +12,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: vsecm-safe
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     app.kubernetes.io/name: vsecm-safe
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
 spec:
   type: LoadBalancer
   selector:
     app.kubernetes.io/name: vsecm-safe
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
   ports:
     - protocol: TCP
       port: 8443

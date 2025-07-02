@@ -10,17 +10,17 @@
 # >/'  SPDX-License-Identifier: BSD-2-Clause
 # */
 
-SENTINEL=$(kubectl get po -n vsecm-system \
+SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
 export SENTINEL=$SENTINEL
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "k8s:keycloak-secret" \
   -n "smo-app" \
   -s 'gen:{"username": "admin-[a-z0-9]{6}", "password": "[a-zA-Z0-9]{12}"}' \
   -t '{"KEYCLOAK_ADMIN_USER":"{{.username}}", "KEYCLOAK_ADMIN_PASSWORD":"{{.password}}"}'
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "k8s:keycloak.smo-postgres.credentials" \
   -n "smo-app" \
   -s 'gen:{"username": "dbroot-[a-z0-9]{6}", "password": "[a-zA-Z0-9]{12}"}' \

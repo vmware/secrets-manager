@@ -12,7 +12,7 @@
 
 source ./env.sh
 
-secret=$(kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+secret=$(kubectl exec "$SENTINEL" -n vsecm -- safe \
 	-s '{"username": "*root*", "password": "*Ca$#C0w*", "value": "🎸 İstanbul Gophers 🤘"}' \
 	-e 2>&1)
 

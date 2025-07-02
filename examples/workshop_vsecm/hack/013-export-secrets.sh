@@ -10,8 +10,8 @@
 # >/'  SPDX-License-Identifier: BSD-2-Clause
 # */
 
-SENTINEL=$(kubectl get po -n vsecm-system \
+SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
 export SENTINEL=$SENTINEL
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe -l -e | tee secrets.json
+kubectl exec "$SENTINEL" -n vsecm -- safe -l -e | tee secrets.json

@@ -12,4 +12,4 @@
 
 . ./env.sh
 
-kubectl logs "$SAFE" -n vsecm-system -f
+kubectl logs "$SAFE" -n vsecm -f

@@ -49,7 +49,7 @@ The output will be something similar to this:
 ```txt
 2024/03/25 17:30:32 fetch
 2024/03/25 17:30:32 [TRACE] RpyyPfqx Sentry:Fetch 
-https://vsecm-safe.vsecm-system.svc.cluster.local:8443/workload/v1/secrets
+https://vsecm-safe.vsecm.svc.cluster.local:8443/workload/v1/secrets
 2024/03/25 17:30:32 [TRACE] RpyyPfqx Sentry:Fetch svid:id:  
 spiffe://vsecm.com/workload/example/ns/default/sa/example/n
 /example-6cbb96b768-dhm7c
@@ -57,7 +57,7 @@ Failed to read the secrets file. Will retry in 5 seconds...
 Secret does not exist
 2024/03/25 17:30:37 fetch
 2024/03/25 17:30:37 [TRACE] kUWlDyo3 Sentry:Fetch 
-https://vsecm-safe.vsecm-system.svc.cluster.local:8443/workload/v1/secrets
+https://vsecm-safe.vsecm.svc.cluster.local:8443/workload/v1/secrets
 2024/03/25 17:30:37 [TRACE] kUWlDyo3 Sentry:Fetch svid:id:
 spiffe://vsecm.com/workload/example/ns/default/sa/example/n/
 example-6cbb96b768-dhm7c
@@ -65,7 +65,7 @@ Failed to read the secrets file. Will retry in 5 seconds...
 Secret does not exist
 2024/03/25 17:30:42 fetch
 2024/03/25 17:30:42 [TRACE] dorrPbVN Sentry:Fetch 
-https://vsecm-safe.vsecm-system.svc.cluster.local:8443/workload/v1/secrets
+https://vsecm-safe.vsecm.svc.cluster.local:8443/workload/v1/secrets
 2024/03/25 17:30:42 [TRACE] dorrPbVN Sentry:Fetch svid:id:  
 spiffe://vsecm.com/workload/example/ns/default/sa/example/n/
 example-6cbb96b768-dhm7c

@@ -73,11 +73,11 @@ That's it. You are all set 🤘.
 
 ## Verifying the Installation
 
-To verify installation, check out the `vsecm-system`, `spire-system`, and 
+To verify installation, check out the `vsecm`, `spire-system`, and 
 `spire-server` namespaces:
 
 ```bash
-kubectl get po -n vsecm-system
+kubectl get po -n vsecm
 # Example Output:
 # NAME                              READY   STATUS    RESTARTS   AGE
 # vsecm-keystone-59fc9568b6-hhnsj   1/1     Running   0          27s

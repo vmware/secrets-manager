@@ -23,5 +23,5 @@ spec:
         values:
           - spire-server
           - spire-system
-          - vsecm-system
+          - vsecm
 {{- end }}

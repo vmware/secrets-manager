@@ -12,7 +12,7 @@
 
 . ./env.sh
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "k8s:example" \
   -n "default" \
   -s '{"username": "root", "password": "SuperSecret", "value": "VSecMRocks"}' \

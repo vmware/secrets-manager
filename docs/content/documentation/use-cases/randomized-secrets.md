@@ -51,7 +51,7 @@ generate a randomized secret.
 Here is an example:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w example \
   -n default \
   -s 'gen:{"username":"admin-[a-z0-9]{6}","password":"[a-zA-Z0-9]{12}"}'

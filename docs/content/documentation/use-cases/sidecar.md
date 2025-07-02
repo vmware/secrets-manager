@@ -198,10 +198,10 @@ Let's register a secret and see how the logs change:
 
 ```bash 
 # Find the name of the VSecM Sentinel pod.
-kubectl get po -n vsecm-system
+kubectl get po -n vsecm
 
 # register a secret to our workload using VSecM Sentinel
-kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n vsecm-system \
+kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n vsecm \
   -- safe \
   -w "example" \
   -s "VSecMRocks!"
@@ -240,7 +240,7 @@ If needed, you can associate more than one secret to a workload, for this, you'l
 need to use the `-a` (for "*append*") flag.
 
 ```bash 
-kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n vsecm-system \
+kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n vsecm \
   -- safe \
   -w "example" \
   -s "VSecMRocks!" \
@@ -249,7 +249,7 @@ kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n vsecm-system \
 # Response:
 # OK
   
-kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n vsecm-system \
+kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n vsecm \
   -- safe \
   -w "example" \
   -s "YouRockToo!" \
@@ -306,7 +306,7 @@ the secret to our workload.
 ### **VSecM Sentinel** Commands
 
 You can execute
-`kubectl exec -it $sentinelPod -n vsecm-system -- safe --help`
+`kubectl exec -it $sentinelPod -n vsecm -- safe --help`
 for a list of all available commands and command-line flags
 that **VSecM Sentinel** has.
 

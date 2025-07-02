@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # Find the pod
-S=$(microk8s kubectl get po -n vsecm-system \
+S=$(microk8s kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
 
 # Execute the command and save output directly to secrets.json in the project root
-microk8s kubectl exec "$S" -n vsecm-system -- safe -l -e > ./secrets.json
+microk8s kubectl exec "$S" -n vsecm -- safe -l -e > ./secrets.json
 
 mv secrets.json "$HOME"/WORKSPACE/data
 cp "$HOME/WORKSPACE/secrets-manager/examples/workshop_spiffe_federation/clusters/diablo/hack/endpoints.json" "$HOME/WORKSPACE/data"

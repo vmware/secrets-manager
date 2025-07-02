@@ -71,7 +71,7 @@ make deploy-local
 ```bash
 kubectl get po -n spire-server
 kubectl get po -n spire-system
-kubectl get po -n vsecm-system
+kubectl get po -n vsecm
 kubectl get clusterspiffeid
 ```
 
@@ -86,8 +86,8 @@ kubectl apply -f .
 
 ```bash
 # Find vsecm-sentinel:
-kubectl get po -n vsecm-system
-kubectl exec vsecm-sentinel-c6cf9f894-j9vfq -n vsecm-system \
+kubectl get po -n vsecm
+kubectl exec vsecm-sentinel-c6cf9f894-j9vfq -n vsecm \
 -- safe \
 -w example \
 -s VSecMRocks \

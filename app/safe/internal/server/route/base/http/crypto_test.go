@@ -76,7 +76,7 @@ func TestSendEncryptedValue(t *testing.T) {
 				CorrelationId: "1234",
 				Payload:       "[\"{\\\"name\\\": \\\"PASSWORD\\\", \\\"value\\\": \\\"VSecMRocks!\\\"}\",\"{\\\"name\\\": \\\"USERNAME\\\", \\\"value\\\": \\\"admin\\\"}\",\"VSecMRocks\"]",
 				Method:        "POST",
-				Url:           "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/workload/v1/secrets",
+				Url:           "https://vsecm-safe.vsecm.svc.cluster.local:8443/workload/v1/secrets",
 				SpiffeId:      "spiffe://vsecm.com/workload/example/ns/default/sa/example/n/example-c5dccdb67-xxtpv",
 				Event:         "", // No event should be set on success
 			},

@@ -65,11 +65,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vsecm-safe
-  namespace: vsecm-system
+  namespace: vsecm
   labels:
     app.kubernetes.io/name: vsecm-safe
     app.kubernetes.io/instance: vsecm
-    app.kubernetes.io/part-of: vsecm-system
+    app.kubernetes.io/part-of: vsecm
     app.kubernetes.io/version: "latest"
 spec:
   replicas: 1
@@ -77,13 +77,13 @@ spec:
     matchLabels:
       app.kubernetes.io/name: vsecm-safe
       app.kubernetes.io/instance: vsecm
-      app.kubernetes.io/part-of: vsecm-system
+      app.kubernetes.io/part-of: vsecm
   template:
     metadata:
       labels:
         app.kubernetes.io/name: vsecm-safe
         app.kubernetes.io/instance: vsecm
-        app.kubernetes.io/part-of: vsecm-system
+        app.kubernetes.io/part-of: vsecm
     spec:
       serviceAccountName: vsecm-safe
       containers:
@@ -165,7 +165,7 @@ Safe this output in a file named `key.txt`.
 Here is how you provide the root key manually and unseal **VSecM Safe**:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -i "AGE-SECRET-KEY-1RZU...\nage1...\na6...ceec"
   
 # Output:

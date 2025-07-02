@@ -12,4 +12,4 @@
 
 . ./env.sh
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe -l
+kubectl exec "$SENTINEL" -n vsecm -- safe -l

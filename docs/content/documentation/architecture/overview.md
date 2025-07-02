@@ -174,10 +174,10 @@ spiffe://vsecm.com/workload/$workloadName
   /n/{{ .PodMeta.Name }}
 ```
 
-For the non-`vsecm-system` workloads that **Safe** injects secrets,
+For the non-`vsecm` workloads that **VSecM Safe** injects secrets,
 `$workloadName` is determined by the workload's `ClusterSPIFFEID` CRD.
 
-For `vsecm-system` components, we use `vsecm-safe` and `vsecm-sentinel`
+For `vsecm` components, we use `vsecm-safe` and `vsecm-sentinel`
 for the `$workloadName` (*along with other attestors such as attesting
 the service account and namespace*):
 

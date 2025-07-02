@@ -95,8 +95,8 @@ for a demo setup on a single-node minikube cluster to give an idea:
 
 ```txt 
 NAMESPACE     WORKLOAD            CPU(cores) MEMORY(bytes)
-vsecm-system  vsecm-safe          1m         9Mi
-vsecm-system  vsecm-sentinel      1m         3Mi
+vsecm         vsecm-safe          1m         9Mi
+vsecm         vsecm-sentinel      1m         3Mi
 default       example 2m         7Mi
 spire-system  spire-agent         4m         35Mi
 spire-system  spire-server        6m         41Mi
@@ -156,7 +156,7 @@ cluster's last known good state.
 > **Make Sure You Back Up `vsecm-root-key`**
 >
 > The Kubernetes `Secret` names `vsecm-root-key` that resides in the
-> `vsecm-system` namespace is especially important, and needs to be
+> `vsecm` namespace is especially important, and needs to be
 > securely backed up.
 >
 > The reason is; if you lose this secret, you will lose access to all the
@@ -195,7 +195,7 @@ For mor information [check out the **VSecM** configuration reference][config].
 
 ## Restrict Access To `vsecm-root-key`
 
-The `vsecm-root-key` secret that **VSecM Safe** stores in the `vsecm-system`
+The `vsecm-root-key` secret that **VSecM Safe** stores in the `vsecm`
 namespace contains the keys to encrypt and decrypt secret data on the data
 volume of **VSecM Safe**.
 
@@ -206,7 +206,7 @@ privilege** guideline and do not allow anyone on the cluster read or write
 to the `vsecm-root-key` secret.
 
 The only entity allowed to have read/write (*but not delete*) access to
-`vsecm-root-key` should be the **VSecM Safe** Pod inside the `vsecm-system`
+`vsecm-root-key` should be the **VSecM Safe** Pod inside the `vsecm`
 namespace with an `vsecm-safe` service account.
 
 > **With Great Power Comes Great Responsibility**
@@ -263,7 +263,7 @@ secret storage needs, and your workloads do **not** bind any Kubernetes `Secret`
 (*i.e., instead of using Kubernetes `Secret` objects, you use tools like 
 **VSecM SDK**or **VSecM Sidecar** to securely dispatch secrets to your 
 workloads*) then as long as you secure access to the secret `vsecm-root-key` 
-inside the `vsecm-system` namespace, you should be good to go.
+inside the `vsecm` namespace, you should be good to go.
 
 With the help of **VSecM SDK**, **VSecM Sidecar**, and **VSecM Init Container**,
 and with some custom coding/shaping
@@ -353,9 +353,9 @@ attacker.
 [rbac]: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
 [kms]: https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
 
-## Restrict Access to `vsecm-system` and `spire-system` Namespaces
+## Restrict Access to `vsecm` and `spire-system` Namespaces
 
-Rigorously define and enforce access policies for the `vsecm-system` and
+Rigorously define and enforce access policies for the `vsecm` and
 `spire-system` namespaces. These namespaces contain the **VSecM Safe** and
 **SPIRE** components, respectively, and are critical to the security of
 **VMware Secrets Manager**. Only a **Cluster Administrator** should have
@@ -369,11 +369,11 @@ mechanisms to ensure that the access policies are not violated.
 All **VMware Secrets Manager** images are based on [distroless][distroless] 
 containers for an additional layer of security. Thus, an operator cannot execute 
 a shell on the Pod to try a privilege escalation or container escape attack. 
-However, this does not mean you can leave the `vsecm-system` namespace like an 
+However, this does not mean you can leave the `vsecm` namespace like an 
 open buffet.
 
 Always take a **principle of least privilege** stance. For example, do not let
-anyone who does not need to fiddle with the `vsecm-system` namespace see and use
+anyone who does not need to fiddle with the `vsecm` namespace see and use
 the resources there.
 
 This stance is especially important for the **VSecM Sentinel** Pod since an
@@ -410,10 +410,10 @@ The secrets stored in **VSecM Safe** are encrypted using `age` or `AES-256-GCM`
 (*in FIPS-compliant environments*) and stored in memory for performance
 and security, necessitating sufficient memory allocation for all secrets.
 
-In this architecture any pod in the `vsecm-system` namespace that has the
+In this architecture any pod in the `vsecm` namespace that has the
 `vsecm-sentinel` service account can access **VSecM Safe**.
 
-Securing access to the `vsecm-system` namespace is important because if an 
+Securing access to the `vsecm` namespace is important because if an 
 attacker gains access to this namespace, they could potentially introduce a fake 
 *VSecM Safe*. 
 
@@ -424,7 +424,7 @@ practices to further enhance security.
 To secure your system even further, follow these best practices:
 
 * **Restrict Namespace Access**: Tighten the security around the 
-  **vsecm-system** namespace to prevent unauthorized access. This could involve 
+  **vsecm** namespace to prevent unauthorized access. This could involve 
   network policies, stricter RBAC rules, and audit logging to monitor for 
   unusual activities.
 * **Least Privilege Principle**: Ensuring that only the minimal necessary 
@@ -432,7 +432,7 @@ To secure your system even further, follow these best practices:
   surface.
 * **Regular Audits and Anomaly Detection**: Conduct regular audits of your 
   Kubernetes environment and implement anomaly detection mechanisms to identify 
-  and respond to unauthorized access or changes in the **vsecm-system** 
+  and respond to unauthorized access or changes in the **vsecm** 
   namespace.
 * **Security Scanning and Compliance Tools**: Integrate security scanning and 
   compliance tools to continuously monitor for vulnerabilities and enforce 
@@ -1002,7 +1002,7 @@ section of the **VSecM Safe** helm chart.
 
 Since **VMware Secrets Manager** is a *Kubernetes-native* framework, its 
 security is strongly related to how you secure your cluster. You should be safe 
-if you keep your cluster and the `vsecm-system` namespace secure and follow
+if you keep your cluster and the `vsecm` namespace secure and follow
 "*the principle of least privilege*" as a guideline.
 
 **VMware Secrets Manager** is a lightweight secrets manager; however, that does 

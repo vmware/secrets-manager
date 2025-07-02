@@ -123,7 +123,7 @@ and made the components more robust.
 
 * Introduced new Architecture Decision Records (ADRs) as drafts. These ADRs
   will be reviewed and finalized in the upcoming releases. 
-* Namespaces of `vsecm-system`, `spire-server`, and `spire-system` can now
+* Namespaces of `vsecm`, `spire-server`, and `spire-system` can now
   be dynamically configurable via Helm charts.
 * Various documentation and README updates.
 
@@ -276,7 +276,7 @@ happen on time. We will re-enable them before the next release.
 * Simplified audit journaling
 * Refactoring and code organization
 * Now helm-chart can deploy VSecM and SPIRE to any namespace, before it had
-  to be `vsecm-system` and `spire-system` respectively.
+  to be `vsecm` and `spire-system` respectively.
 * removed "backing store" from secret meta info; backing store will be set
   at a global level.
 * removed `-b` (backing store) flag from VSecM Sentinel's CLI too.

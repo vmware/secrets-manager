@@ -42,9 +42,9 @@ spec:
           value: "unix:///spire-agent-socket/spire-agent.sock"
 
         - name: VSECM_SPIFFEID_PREFIX_SAFE
-          value: "^spiffe://baal.vsecm.com/workload/vsecm-safe/ns/vsecm-system/sa/vsecm-safe/n/[^/]+$"
+          value: "^spiffe://baal.vsecm.com/workload/vsecm-safe/ns/vsecm/sa/vsecm-safe/n/[^/]+$"
         - name: VSECM_SPIFFEID_PREFIX_SENTINEL
-          value: "^spiffe://baal.vsecm.com/workload/vsecm-sentinel/ns/vsecm-system/sa/vsecm-sentinel/n/[^/]+$"
+          value: "^spiffe://baal.vsecm.com/workload/vsecm-sentinel/ns/vsecm/sa/vsecm-sentinel/n/[^/]+$"
         - name: VSECM_SPIFFEID_PREFIX_WORKLOAD
           value: "^spiffe://baal.vsecm.com/workload/[^/]+/ns/[^/]+/sa/[^/]+/n/[^/]+$"
         - name: VSECM_WORKLOAD_NAME_REGEXP

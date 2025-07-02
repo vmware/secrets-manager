@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SCOUT_DNS="vsecm-scout.vsecm-system.svc.cluster.local"
+SCOUT_DNS="vsecm-scout.vsecm.svc.cluster.local"
 
 # Generate a private key
 openssl genrsa -out server.key 2048

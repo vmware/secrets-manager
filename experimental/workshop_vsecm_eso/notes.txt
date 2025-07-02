@@ -17,7 +17,7 @@ curl -k "https://192.168.49.200/webhook?key=key%3Dcoca-cola.cluster-001%
 26path%3Dnamespaces.cokeSystem.secrets.adminCredentials.value"
 
 # To debug the connectivity externally:
-curl -k "https://vsecm-scout.vsecm-system.svc.cluster.local/webhook?
+curl -k "https://vsecm-scout.vsecm.svc.cluster.local/webhook?
 key=key%3Dcoca-cola.cluster-001%26path%3Dnamespaces.cokeSystem.secrets.adminCredentials.value"
 
 addresses:  192.168.49.200-192.168.49.250

@@ -234,7 +234,7 @@ func TestEnvConfigReader_NamespaceForVSecMSystem(t *testing.T) {
 		},
 		{
 			name: "default value",
-			want: "vsecm-system",
+			want: "vsecm",
 		},
 	}
 	for _, tt := range tests {

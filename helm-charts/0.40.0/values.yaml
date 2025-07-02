@@ -9,13 +9,9 @@
 # */
 
 global:
-  # -- Set it to true to enable kapp annotations. This is useful when you are
-  # using kapp to deploy the VSecM components. (ref: https://carvel.dev/kapp/)
-  enableKAppAnnotations: false
-
   # -- Set it to true to enable the pre-installation of the VSecM namespaces.
   # If set to false, the VSecM namespaces will not be pre-installed; you will
-  # need to create a `vsecm-system` namespace manually.
+  # need to create a `vsecm` namespace manually.
   preInstallVSecMNamespaces: true
 
   # -- Set it to true to enable the pre-installation of the SPIRE namespaces.
@@ -129,23 +125,23 @@ global:
   # - VSecM-related global configuration.
   vsecm:
     # - This is where all VSecM components will be deployed.
-    namespace: vsecm-system
+    namespace: vsecm
 
     # - The endpoint URL of the VSecM Safe Service
     # should match https://<service-name>.<namespace>.svc.cluster.local:<port>
     # unless you have a custom setup.
-    safeEndpointUrl: "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/"
+    safeEndpointUrl: "https://vsecm-safe.vsecm.svc.cluster.local:8443/"
 
     # - The SPIFFE ID prefix that is used to verify the authenticity of a
     # request coming from VSecM Safe. You can also use regular expression
     # matchers. Check out the official documentation at https://vsecm.com
     # for details.
-    safeSpiffeIdPrefix: "^spiffe://vsecm.com/workload/vsecm-safe/ns/vsecm-system/sa/vsecm-safe/n/[^/]+$"
+    safeSpiffeIdPrefix: "^spiffe://vsecm.com/workload/vsecm-safe/ns/vsecm/sa/vsecm-safe/n/[^/]+$"
     # - The SPIFFE ID prefix that is used to verify the authenticity of a
     # request coming from VSecM Sentinel. You can also use regular expression
     # matchers. Check out the official documentation at https://vsecm.com
     # for details.
-    sentinelSpiffeIdPrefix: "^spiffe://vsecm.com/workload/vsecm-sentinel/ns/vsecm-system/sa/vsecm-sentinel/n/[^/]+$"
+    sentinelSpiffeIdPrefix: "^spiffe://vsecm.com/workload/vsecm-sentinel/ns/vsecm/sa/vsecm-sentinel/n/[^/]+$"
     # - The SPIFFE ID prefix that is used to verify the authenticity of a
     # request coming from a Workload. If the SPIFFE ID of the workload does not
     # match this pattern, then VSecM Safe will reject the workload's request.

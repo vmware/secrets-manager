@@ -66,13 +66,13 @@ clean slate:
 # Remove the workload deployment:
 kubectl delete deployment example
 # Find the sentinel pod's name:
-kubectl get po -n vsecm-system 
+kubectl get po -n vsecm 
 # Delete the secret:
 kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n \
-  vsecm-system -- safe -w example -d
+  vsecm -- safe -w example -d
 # Make sure that the secret is gone:
 kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n \
-  vsecm-system -- safe -l
+  vsecm -- safe -l
 # Output:
 # {"secrets":[]}
 ```
@@ -192,11 +192,11 @@ container of the Pod, execute the following script:
 # ./examples/using_init_container/register.sh
 
 # Find a Sentinel node.
-SENTINEL=$(kubectl get po -n vsecm-system \
+SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
 
 # Execute the command needed to interpolate the secret.
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
 -w "k8s:example-secret" \
 -n "default" \
 -s '{"username": "root", \
@@ -222,7 +222,7 @@ This will make the init container exit successfully and let the main container
 of the workload initialize.
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -s "trigger" \
   -n default

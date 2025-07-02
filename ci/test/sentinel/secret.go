@@ -30,7 +30,7 @@ func DeleteSecret() error {
 		)
 	}
 
-	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm-system",
+	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm",
 		"--", "safe", "-w", "example", "-n", "default", "-d")
 	if err != nil {
 		return errors.Join(
@@ -60,7 +60,7 @@ func SetKubernetesSecretToTriggerInitContainer() error {
 	secretData := `{"username": "root", "password": "SuperSecret", "value": "VSecMRocks"}`
 	transformTemplate := `{"USERNAME":"{{.username}}", "PASSWORD":"{{.password}}", "VALUE": "{{.value}}"}`
 
-	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm-system",
+	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm",
 		"--", "safe", "-w", "example", "-n", "default",
 		"-s", secretData, "-t", transformTemplate,
 	)
@@ -96,7 +96,7 @@ func SetSecret(value string) error {
 	}
 
 	// Executing command within the sentinel pod to set the secret.
-	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm-system",
+	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm",
 		"--", "safe", "-w", "example", "-n", "default", "-s", value)
 	if err != nil {
 		return errors.Join(
@@ -122,7 +122,7 @@ func SetEncryptedSecret(value string) error {
 	}
 
 	// Execute the command to encrypt and set the secret.
-	res, err := io.Exec("kubectl", "exec", sentinel, "-n", "vsecm-system",
+	res, err := io.Exec("kubectl", "exec", sentinel, "-n", "vsecm",
 		"--", "safe", "-s", value, "-e")
 	if err != nil {
 		return errors.Join(
@@ -146,7 +146,7 @@ func SetEncryptedSecret(value string) error {
 	}
 
 	// Assuming res is the encrypted secret, now setting it.
-	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm-system",
+	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm",
 		"--", "safe", "-w", "example", "-n", "default", "-s", out, "-e")
 	if err != nil {
 		return errors.Join(
@@ -172,7 +172,7 @@ func SetJSONSecret(value, transform string) error {
 	}
 
 	// Executing command within the sentinel pod to set the JSON secret with transformation.
-	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm-system",
+	_, err = io.Exec("kubectl", "exec", sentinel, "-n", "vsecm",
 		"--", "safe", "-w", "example", "-n", "default",
 		"-s", value, "-t", transform, "-f", "json")
 	if err != nil {

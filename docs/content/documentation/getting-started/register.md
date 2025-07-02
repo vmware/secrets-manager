@@ -18,12 +18,12 @@ weight = 40
 Now, let's register a secret and see what happens.
 
 To register a secret we'll need to find the `vsecm-sentinel` pod in the
-`vsecm-system` namespace and execute a command inside the pod.
+`vsecm` namespace and execute a command inside the pod.
 
 Let's get the pod first:
 
 ```bash
-kubectl get po -n vsecm-system
+kubectl get po -n vsecm
 ```
 
 Here's a sample output:
@@ -40,7 +40,7 @@ vsecm-sentinel-74d648675b-8zdn2   1/1     Running   0
 Let's use it and register a secret to our example workload:
 
 ```bash
-kubectl exec vsecm-sentinel-74d648675b-8zdn2 -n vsecm-system -- \
+kubectl exec vsecm-sentinel-74d648675b-8zdn2 -n vsecm -- \
 safe -w "example" -n "default" -s "VSecMRocks"
 ```
 
@@ -158,14 +158,14 @@ And the output would be something like this:
 ```txt
 2024/03/25 17:36:13 fetch
 2024/03/25 17:36:13 [TRACE] ZjmdoNn9 Sentry:Fetch https://vsecm-safe.
-vsecm-system.svc.cluster.local:8443/workload/v1/secrets
+vsecm.svc.cluster.local:8443/workload/v1/secrets
 2024/03/25 17:36:13 [TRACE] ZjmdoNn9 Sentry:Fetch svid:id:  spiffe://vsecm.com/
 workload/example/ns/default/sa/example/n/example-6cbb96b768-dhm7c
 secret: updated: "2024-03-25T17:34:25Z", created: 
 "2024-03-25T17:34:25Z", value: VSecMRocks
 2024/03/25 17:36:18 fetch
 2024/03/25 17:36:18 [TRACE] kcOZQXeH Sentry:Fetch https://vsecm-safe.
-vsecm-system.svc.cluster.local:8443/workload/v1/secrets
+vsecm.svc.cluster.local:8443/workload/v1/secrets
 2024/03/25 17:36:18 [TRACE] kcOZQXeH Sentry:Fetch svid:id:  spiffe://vsecm.com/
 workload/example/ns/default/sa/example/n/example-6cbb96b768-dhm7c
 secret: updated: "2024-03-25T17:34:25Z", created: "2024-03-25T17:34:25Z", 

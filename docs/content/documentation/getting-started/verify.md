@@ -16,7 +16,7 @@ weight = 15
 ## Verify Installation
 
 Let's check that the installation was successful by listing the pods int
-the `spire-system` , `vsecm-system` and `keystone-system` namespaces:
+the `spire-system` , `vsecm` and `keystone-system` namespaces:
 
 ```bash
 kubectl get po -n spire-system
@@ -30,7 +30,7 @@ spire-server-b594bdfc-szssx   2/2     Running   0
 ```
 
 ```bash
-kubectl get po -n vsecm-system
+kubectl get po -n vsecm
 ```
 
 ```txt
@@ -188,7 +188,7 @@ Charts][helm-charts] to install **VSecM**.
 ## Still Facing Issues?
 
 If you are still having issues, it would be useful to check the logs of
-**VSecM Safe**, **VSecM Sentinel**, **VSecM Keystone** pods in the `vsecm-system`
+**VSecM Safe**, **VSecM Sentinel**, **VSecM Keystone** pods in the `vsecm`
 namespace; **SPIRE Server** in the `spire-server` namespace; and **SPIRE Agent**
 in the `spire-agent` namespace.
 

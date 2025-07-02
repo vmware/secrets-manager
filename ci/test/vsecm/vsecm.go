@@ -24,7 +24,7 @@ func Sentinel() (string, error) {
 	var sentinel string
 
 	for retryCount := 0; retryCount < maxRetries; retryCount++ {
-		output, err := io.Exec("kubectl", "get", "pods", "-n", "vsecm-system",
+		output, err := io.Exec("kubectl", "get", "pods", "-n", "vsecm",
 			"--selector=app.kubernetes.io/name=vsecm-sentinel",
 			"--output=jsonpath={.items[*].metadata.name}")
 

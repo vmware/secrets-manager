@@ -51,7 +51,7 @@ Let's start by exporting our secrets in encrypted form.
 To export a secret in encrypted form, you can use the **VSecM CLI** as follows:
 
 ```bash
-kubectl exec "$SENTINEL" -n vsecm-system -- safe -l -e | tee secrets.json
+kubectl exec "$SENTINEL" -n vsecm -- safe -l -e | tee secrets.json
 ```
 
 ### Getting Root Keys From the Cluster
@@ -60,7 +60,7 @@ If you are a cluster admin, you can get the **VSecM** root keys from the cluster
 using the following command:
 
 ```bash
-kubectl get secret vsecm-root-key -n vsecm-system \
+kubectl get secret vsecm-root-key -n vsecm \
   -o jsonpath="{.data.KEY_TXT}" | base64 --decode
 ```
 

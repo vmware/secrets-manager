@@ -76,11 +76,11 @@ Next, delete the secret associated with this workload:
 
 ```bash
 # Find the sentinel pod's name:
-kubectl get po -n vsecm-system
+kubectl get po -n vsecm
 
 # Delete secrets:
 kubectl exec vsecm-sentinel-778b7fdc78-86v6d -n \
-  vsecm-system -- safe -w example -d
+  vsecm -- safe -w example -d
 
 OK
 ```
@@ -116,10 +116,10 @@ kubectl exec $INSPECTOR -- ./env
 Now, let's encrypt a secret using **VSecM Sentinel**:
 
 ```bash
-export SENTINEL=$(kubectl get po -n vsecm-system \
+export SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
   
-kubectl exec $SENTINEL -n vsecm-system -- safe \
+kubectl exec $SENTINEL -n vsecm -- safe \
   -s "VSecMRocks" \
   -e
 
@@ -143,7 +143,7 @@ To register an encrypted secret, we use the `-e` flag to indicate that the
 secret is not plain text, and it is encrypted.
 
 ```bash
-kubect exec $SENTINEL -n vsecm-system -- safe \
+kubect exec $SENTINEL -n vsecm -- safe \
   -w example \
   -s "$ENCRYPTED_SECRET" \
   -e 
@@ -162,7 +162,7 @@ And yes, it did.
 ### Be Aware of the `vsecm-root-key` Kubernetes `Secret`
 
 One thing to note is, if you lose access to the Kubernetes `Secret` named
-`vsecm-root-key` in the `vsecm-system` namespace, then you will lose the
+`vsecm-root-key` in the `vsecm` namespace, then you will lose the
 ability to register your encrypted secrets (*since, during bootstrapping
 when VSecM Safe cannot find the secret, it will create a brand new one,
 invalidating all encrypted values*).

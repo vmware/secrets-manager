@@ -12,6 +12,6 @@
 
 . ./env.sh
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -s '{"username": "*root*", "password": "*Ca$#C0w*", "value": "!VSecMRocks!"}' \
   -e

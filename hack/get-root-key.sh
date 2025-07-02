@@ -11,6 +11,6 @@
 # */
 
 echo ""
-kubectl get secret vsecm-root-key -n vsecm-system \
+kubectl get secret vsecm-root-key -n vsecm \
   -o jsonpath="{.data.KEY_TXT}" | base64 --decode
 echo ""

@@ -23,7 +23,7 @@ spec:
   podSelector:
     matchLabels:
       app.kubernetes.io/name: vsecm-sentinel
-      app.kubernetes.io/part-of: vsecm-system
+      app.kubernetes.io/part-of: vsecm
   workloadSelectorTemplates:
-  - "k8s:ns:vsecm-system"
+  - "k8s:ns:vsecm"
   - "k8s:sa:vsecm-sentinel"

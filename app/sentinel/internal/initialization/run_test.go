@@ -40,7 +40,7 @@ func TestInitializer_RunInitCommands(t *testing.T) {
 		//		mer.On("InitCommandRunnerWaitBeforeExecIntervalForSentinel").Return(time.Millisecond)
 		//		mer.On("InitCommandRunnerWaitIntervalBeforeInitComplete").Return(time.Millisecond)
 		//		mer.On("InitCommandPathForSentinel").Return("/path/to/file")
-		//		mer.On("NamespaceForVSecMSystem").Return("vsecm-system")
+		//		mer.On("NamespaceForVSecMSystem").Return("vsecm")
 		//		msp.On("AcquireSourceForSentinel", mock.Anything).Return(&workloadapi.X509Source{}, true)
 		//		ms.On("Check", mock.Anything, mock.Anything).Return(nil)
 		//		ms.On("CheckInitialization", mock.Anything, mock.Anything).Return(false, nil)

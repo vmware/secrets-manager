@@ -25,16 +25,16 @@ func TestSafeEndpointUrl(t *testing.T) {
 		{
 			name: "endpoint_url_from_env_variable",
 			setup: func() error {
-				return os.Setenv("VSECM_SAFE_ENDPOINT_URL", "https://vsecm-safe.vsecm-system.svc.cluster.local:5000/")
+				return os.Setenv("VSECM_SAFE_ENDPOINT_URL", "https://vsecm-safe.vsecm.svc.cluster.local:5000/")
 			},
 			cleanup: func() error {
 				return os.Unsetenv("VSECM_SAFE_ENDPOINT_URL")
 			},
-			want: "https://vsecm-safe.vsecm-system.svc.cluster.local:5000/",
+			want: "https://vsecm-safe.vsecm.svc.cluster.local:5000/",
 		},
 		{
 			name: "default_endpoint_url",
-			want: "https://vsecm-safe.vsecm-system.svc.cluster.local:8443/",
+			want: "https://vsecm-safe.vsecm.svc.cluster.local:8443/",
 		},
 	}
 	for _, tt := range tests {

@@ -10,16 +10,16 @@
 # >/'  SPDX-License-Identifier: BSD-2-Clause
 # */
 
-SENTINEL=$(kubectl get po -n vsecm-system \
+SENTINEL=$(kubectl get po -n vsecm \
   | grep "vsecm-sentinel-" | awk '{print $1}')
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -n "default" \
   -s '{"name": "USERNAME", "value": "admin"}' \
   -a
 
-kubectl exec "$SENTINEL" -n vsecm-system -- safe \
+kubectl exec "$SENTINEL" -n vsecm -- safe \
   -w "example" \
   -n "default" \
   -s '{"name": "PASSWORD", "value": "VSecMRocks!"}' \
