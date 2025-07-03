@@ -88,7 +88,7 @@ spec:
       serviceAccountName: vsecm-safe
       containers:
         - name: main
-          image: "vsecm/vsecm-ist-safe:latest"
+          image: "vsecm/vsecm-safe:latest"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8443

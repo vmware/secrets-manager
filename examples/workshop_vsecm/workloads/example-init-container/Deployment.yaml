@@ -53,7 +53,7 @@ spec:
 
       initContainers:
       - name: init-container
-        image: vsecm/vsecm-ist-init-container:0.40.0
+        image: vsecm/vsecm-init-container:0.40.0
         volumeMounts:
         - name: spire-agent-socket
           mountPath: /spire-agent-socket

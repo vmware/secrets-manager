@@ -10,30 +10,30 @@
 
 # Packages the "VSecM Sentinel" binary into a container image.
 sentinel-bundle-ist:
-	./hack/bundle.sh "vsecm-ist-sentinel" \
-		$(VERSION) "dockerfiles/vsecm-ist/sentinel.Dockerfile"
+	./hack/bundle.sh "vsecm-sentinel" \
+		$(VERSION) "dockerfiles/vsecm/sentinel.Dockerfile"
 
 # Packages the "VSecM Sentinel" binary into a container image for FIPS.
 sentinel-bundle-ist-fips:
-	./hack/bundle.sh "vsecm-ist-fips-sentinel" \
-		$(VERSION) "dockerfiles/vsecm-ist-fips/sentinel.Dockerfile"
+	./hack/bundle.sh "vsecm-fips-sentinel" \
+		$(VERSION) "dockerfiles/vsecm-fips/sentinel.Dockerfile"
 
 # Pushes the "VSecM Sentinel" container image the the public registry.
 sentinel-push-ist:
-	./hack/push.sh "vsecm-ist-sentinel" \
-		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-ist-sentinel"
+	./hack/push.sh "vsecm-sentinel" \
+		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-sentinel"
 
 # Pushes the "VSecM Sentinel" (FIPS) container image to the public registry.
 sentinel-push-ist-fips:
-	./hack/push.sh "vsecm-ist-fips-sentinel" \
-		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-ist-fips-sentinel"
+	./hack/push.sh "vsecm-fips-sentinel" \
+		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-fips-sentinel"
 
 # Pushes the "VSecM Sentinel" container image to the local registry.
 sentinel-push-ist-local:
-	./hack/push.sh "vsecm-ist-sentinel" \
-		$(VERSION) "$(VSECM_LOCAL_REGISTRY_URL)/vsecm-ist-sentinel"
+	./hack/push.sh "vsecm-sentinel" \
+		$(VERSION) "$(VSECM_LOCAL_REGISTRY_URL)/vsecm-sentinel"
 
 # Pushes the "VSecM Sentinel" (FIPS) container image to the local registry.
 sentinel-push-ist-fips-local:
-	./hack/push.sh "vsecm-ist-fips-sentinel" \
-		$(VERSION) "$(VSECM_LOCAL_REGISTRY_URL)/vsecm-ist-fips-sentinel"
+	./hack/push.sh "vsecm-fips-sentinel" \
+		$(VERSION) "$(VSECM_LOCAL_REGISTRY_URL)/vsecm-fips-sentinel"

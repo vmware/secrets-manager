@@ -34,7 +34,7 @@ spec:
       # See `./register.sh` to register the workload and finalize
       # this init container.
       - name: init-container
-        image: vsecm/vsecm-ist-init-container:latest
+        image: vsecm/vsecm-init-container:latest
         volumeMounts:
         # Volume mount for SPIRE unix domain socket.
         - name: spire-agent-socket

@@ -23,17 +23,17 @@ fi
 echo ""
 echo "--------"
 echo "vsecm-safe"
-docker trust sign vsecm/vsecm-ist-safe:"$VERSION"
-docker trust sign vsecm/vsecm-ist-safe:latest
+docker trust sign vsecm/vsecm-safe:"$VERSION"
+docker trust sign vsecm/vsecm-safe:latest
 echo "vsecm-sentinel"
-docker trust sign vsecm/vsecm-ist-sentinel:"$VERSION"
-docker trust sign vsecm/vsecm-ist-sentinel:latest
+docker trust sign vsecm/vsecm-sentinel:"$VERSION"
+docker trust sign vsecm/vsecm-sentinel:latest
 echo "vsecm-sidecar"
-docker trust sign vsecm/vsecm-ist-sidecar:"$VERSION"
-docker trust sign vsecm/vsecm-ist-sidecar:latest
+docker trust sign vsecm/vsecm-sidecar:"$VERSION"
+docker trust sign vsecm/vsecm-sidecar:latest
 echo "vsecm-init-container"
-docker trust sign vsecm/vsecm-ist-init-container:"$VERSION"
-docker trust sign vsecm/vsecm-ist-init-container:latest
+docker trust sign vsecm/vsecm-init-container:"$VERSION"
+docker trust sign vsecm/vsecm-init-container:latest
 echo "example-using-sidecar"
 docker trust sign vsecm/example-using-sidecar:"$VERSION"
 docker trust sign vsecm/example-using-sidecar:latest

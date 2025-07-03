@@ -9,25 +9,25 @@
 # */
 
 relay-server-bundle-ist:
-	./hack/bundle.sh "vsecm-ist-relay-server" \
-		$(VERSION) "dockerfiles/vsecm-ist/relay-server.Dockerfile"
+	./hack/bundle.sh "vsecm-relay-server" \
+		$(VERSION) "dockerfiles/vsecm/relay-server.Dockerfile"
 
 relay-server-bundle-ist-fips:
-	./hack/bundle.sh "vsecm-ist-fips-relay-server" \
-		$(VERSION) "dockerfiles/vsecm-ist-fips/relay-server.Dockerfile"
+	./hack/bundle.sh "vsecm-fips-relay-server" \
+		$(VERSION) "dockerfiles/vsecm-fips/relay-server.Dockerfile"
 
 relay-server-push-ist:
-	./hack/push.sh "vsecm-ist-relay-server" \
-		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-ist-relay-server"
+	./hack/push.sh "vsecm-relay-server" \
+		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-relay-server"
 
 relay-server-push-ist-fips:
-	./hack/push.sh "vsecm-ist-fips-relay-server" \
-		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-ist-fips-relay-server"
+	./hack/push.sh "vsecm-fips-relay-server" \
+		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-fips-relay-server"
 
 relay-server-push-ist-local:
-	./hack/push.sh "vsecm-ist-relay-server" $(VERSION) \
-		"$(VSECM_LOCAL_REGISTRY_URL)/vsecm-ist-relay-server"
+	./hack/push.sh "vsecm-relay-server" $(VERSION) \
+		"$(VSECM_LOCAL_REGISTRY_URL)/vsecm-relay-server"
 
 relay-server-push-ist-fips-local:
-	./hack/push.sh "vsecm-ist-fips-relay-server" $(VERSION) \
-		"$(VSECM_LOCAL_REGISTRY_URL)/vsecm-ist-fips-relay-server"
+	./hack/push.sh "vsecm-fips-relay-server" $(VERSION) \
+		"$(VSECM_LOCAL_REGISTRY_URL)/vsecm-fips-relay-server"

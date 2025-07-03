@@ -34,7 +34,7 @@ spec:
         - mountPath: /opt/vsecm
           name: vsecm-secrets-volume
       - name: sidecar
-        image: vsecm/vsecm-ist-sidecar:latest
+        image: vsecm/vsecm-sidecar:latest
         volumeMounts:
         # /opt/vsecm/secrets.json is the place the secrets will be at.
         - mountPath: /opt/vsecm

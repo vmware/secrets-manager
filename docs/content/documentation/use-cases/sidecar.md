@@ -76,7 +76,7 @@ You'll see that there are two images in the `Deployment` object declared inside
 that folder:
 
 * `vsecm/example`: This is the container that has the business logic.
-* `vsecm/vsecm-ist-sidecar`: This **VMware Secrets Manager**-managed container 
+* `vsecm/vsecm-sidecar`: This **VMware Secrets Manager**-managed container 
   injects secrets to a place that our demo container can consume.
 
 ### The Demo App

@@ -44,22 +44,22 @@ global:
   registry: vsecm
   images:
     keystone:
-      distrolessRepository: vsecm-ist-keystone
-      distrolessFipsRepository: vsecm-ist-fips-keystone
+      distrolessRepository: vsecm-keystone
+      distrolessFipsRepository: vsecm-fips-keystone
       tag: 0.40.0
       pullPolicy: IfNotPresent
     safe:
-      distrolessRepository: vsecm-ist-safe
-      distrolessFipsRepository: vsecm-ist-fips-safe
+      distrolessRepository: vsecm-safe
+      distrolessFipsRepository: vsecm-fips-safe
       tag: 0.40.0
       pullPolicy: IfNotPresent
     sentinel:
-      distrolessRepository: vsecm-ist-sentinel
-      distrolessFipsRepository: vsecm-ist-fips-sentinel
+      distrolessRepository: vsecm-sentinel
+      distrolessFipsRepository: vsecm-fips-sentinel
       tag: 0.40.0
       pullPolicy: IfNotPresent
     initContainer:
-      repository: vsecm-ist-init-container
+      repository: vsecm-init-container
       tag: 0.40.0
     spireAgent:
       repository: ghcr.io/spiffe/spire-agent

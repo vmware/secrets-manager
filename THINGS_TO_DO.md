@@ -23,3 +23,6 @@
 * Make SPIRE helm charts manage vsecm clusterspiffeids.
 * have a special secret kind for SPIKE; a way to transform it back and forth.
 * Read and update all documentation since a lot will change.
+* remove spire from subcharts; we will install it from upstream directly.
+* remove keystone and scout
+* remove crds; SPIRE chart already includes them.

@@ -71,7 +71,7 @@ verify the image signature before pulling it.
 
 ```bash
 docker pull vsecm/$yourImage
-# For, e.g.: docker pull vsecm/vsecm-ist-safe
+# For, e.g.: docker pull vsecm/vsecm-safe
 ```
 
 If the image signature is valid, the image will be pulled; otherwise, you will

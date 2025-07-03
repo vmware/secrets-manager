@@ -178,7 +178,7 @@ Here are the containers in that [`Deployment.yaml`][deployment-yaml]
       
       initContainers:
       - name: init-container
-        image: vsecm/vsecm-ist-init-container:latest
+        image: vsecm/vsecm-init-container:latest
 ```
 
 It's the `init-container` that waits until the workload acquires a secret.

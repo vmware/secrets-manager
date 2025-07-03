@@ -17,40 +17,4 @@
 
 VERSION="0.40.0"
 
-export DOCKER_CONTENT_TRUST=0
-
-docker pull vsecm/vsecm-ist-safe:"$VERSION"
-docker pull vsecm/vsecm-ist-safe:latest
-docker pull vsecm/vsecm-ist-sentinel:"$VERSION"
-docker pull vsecm/vsecm-ist-sentinel:latest
-docker pull vsecm/vsecm-ist-sidecar:"$VERSION"
-docker pull vsecm/vsecm-ist-sidecar:latest
-docker pull vsecm/vsecm-ist-init-container:"$VERSION"
-docker pull vsecm/vsecm-ist-init-container:latest
-docker pull vsecm/example-using-sidecar:"$VERSION"
-docker pull vsecm/example-using-sidecar:latest
-docker pull vsecm/example-using-sdk-go:"$VERSION"
-docker pull vsecm/example-using-sdk-go:latest
-docker pull vsecm/example-multiple-secrets:"$VERSION"
-docker pull vsecm/example-multiple-secrets:latest
-docker pull vsecm/example-using-init-container:"$VERSION"
-docker pull vsecm/example-using-init-container:latest
-
-export DOCKER_CONTENT_TRUST=1
-
-docker trust sign vsecm/vsecm-ist-safe:"$VERSION"
-docker trust sign vsecm/vsecm-ist-safe:latest
-docker trust sign vsecm/vsecm-ist-sentinel:"$VERSION"
-docker trust sign vsecm/vsecm-ist-sentinel:latest
-docker trust sign vsecm/vsecm-ist-sidecar:"$VERSION"
-docker trust sign vsecm/vsecm-ist-sidecar:latest
-docker trust sign vsecm/vsecm-ist-init-container:"$VERSION"
-docker trust sign vsecm/vsecm-ist-init-container:latest
-docker trust sign vsecm/example-using-sidecar:"$VERSION"
-docker trust sign vsecm/example-using-sidecar:latest
-docker trust sign vsecm/example-using-sdk-go:"$VERSION"
-docker trust sign vsecm/example-using-sdk-go:latest
-docker trust sign vsecm/example-multiple-secrets:"$VERSION"
-docker trust sign vsecm/example-multiple-secrets:latest
-docker trust sign vsecm/example-using-init-container:"$VERSION"
-docker trust sign vsecm/example-using-init-container:latest
+echo "TODO: docker pull will change since we will use gcr."

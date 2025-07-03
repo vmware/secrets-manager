@@ -308,7 +308,7 @@ spec:
 
 ## <--- BEGIN CHANGE
       - name: sidecar
-        image: vsecm/vsecm-ist-sidecar:0.24.1
+        image: vsecm/vsecm-sidecar:0.24.1
         volumeMounts:
         - mountPath: /opt/app/credentials
           name: credentials-volume
@@ -384,7 +384,7 @@ spec:
           mountPath: /opt/app/credentials
           readOnly: true
       - name: sidecar
-        image: vsecm/vsecm-ist-sidecar:0.24.1
+        image: vsecm/vsecm-sidecar:0.24.1
         volumeMounts:
         - mountPath: /opt/app/credentials
           name: credentials-volume
@@ -441,7 +441,7 @@ spec:
 ## <--- BEGIN CHANGE
       initContainers:
       - name: vsecm-init-container
-        image: vsecm/vsecm-ist-init-container:latest
+        image: vsecm/vsecm-init-container:latest
         volumeMounts:
         - name: credentials-volume
           mountPath: /opt/vsecm/secrets
@@ -456,7 +456,7 @@ spec:
           mountPath: /opt/app/credentials
           readOnly: true
       - name: sidecar
-        image: vsecm/vsecm-ist-sidecar:0.24.1
+        image: vsecm/vsecm-sidecar:0.24.1
         volumeMounts:
         - mountPath: /opt/app/credentials
           name: credentials-volume

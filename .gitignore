@@ -49,10 +49,10 @@ vendor
 /example-using-sidecar
 /example-using-sdk-go
 /example-multiple-secrets
-/vsecm-ist-init-container
-/vsecm-ist-safe
-/vsecm-ist-sentinel
-/vsecm-ist-sidecar
+/vsecm-init-container
+/vsecm-safe
+/vsecm-sentinel
+/vsecm-sidecar
 /docs/public
 experimental/workshop_vsecm_eso/hack/ca.crt
 experimental/workshop_vsecm_eso/hack/cluster-secret-store.yaml

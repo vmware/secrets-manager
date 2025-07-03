@@ -10,28 +10,28 @@
 
 # Packages the "VSecM Keystone" into a container image.
 keystone-bundle-ist:
-	./hack/bundle.sh "vsecm-ist-keystone" \
-		$(VERSION) "dockerfiles/vsecm-ist/keystone.Dockerfile"
+	./hack/bundle.sh "vsecm-keystone" \
+		$(VERSION) "dockerfiles/vsecm/keystone.Dockerfile"
 
 # Packages the "VSecM Keystone" into a container image for FIPS.
 keystone-bundle-ist-fips:
-	./hack/bundle.sh "vsecm-ist-fips-keystone" \
-		$(VERSION) "dockerfiles/vsecm-ist-fips/keystone.Dockerfile"
+	./hack/bundle.sh "vsecm-fips-keystone" \
+		$(VERSION) "dockerfiles/vsecm-fips/keystone.Dockerfile"
 
 # Pushes the "VSecM Keystone" container to the public registry.
 keystone-push-ist:
-	./hack/push.sh "vsecm-ist-keystone" $(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-ist-keystone"
+	./hack/push.sh "vsecm-keystone" $(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-keystone"
 
 # Pushes the "VSecM Keystone" (FIPS) container to the public registry.
 keystone-push-ist-fips:
-	./hack/push.sh "vsecm-ist-fips-keystone" \
-		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-ist-fips-keystone"
+	./hack/push.sh "vsecm-fips-keystone" \
+		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-fips-keystone"
 
 # Pushes the "VSecM Safe" container image to the local registry.
 keystone-push-ist-local:
-	./hack/push.sh "vsecm-ist-keystone" $(VERSION) "$(VSECM_LOCAL_REGISTRY_URL)/vsecm-ist-keystone"
+	./hack/push.sh "vsecm-keystone" $(VERSION) "$(VSECM_LOCAL_REGISTRY_URL)/vsecm-keystone"
 
 # Pushes the "VSecM Safe" container image to the local registry.
 keystone-push-ist-fips-local:
-	./hack/push.sh "vsecm-ist-fips-keystone" \
-		$(VERSION) "$(VSECM_LOCAL_REGISTRY_URL)/vsecm-ist-fips-keystone"
+	./hack/push.sh "vsecm-fips-keystone" \
+		$(VERSION) "$(VSECM_LOCAL_REGISTRY_URL)/vsecm-fips-keystone"

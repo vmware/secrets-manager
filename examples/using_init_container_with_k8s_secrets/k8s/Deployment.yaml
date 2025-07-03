@@ -56,7 +56,7 @@ spec:
 
       # `main` shares this volume with `sidecar`.
       - name: sidecar
-        image: vsecm/vsecm-ist-sidecar:latest
+        image: vsecm/vsecm-sidecar:latest
         volumeMounts:
           # /opt/vsecm/secrets.json is the place the secrets will be at.
           # The main application can read the secrets from this location too.
@@ -100,7 +100,7 @@ spec:
       # See `./register.sh` to register the workload and finalize
       # this init container.
       - name: init-container
-        image: vsecm/vsecm-ist-init-container:latest
+        image: vsecm/vsecm-init-container:latest
         volumeMounts:
         # Volume mount for SPIRE unix domain socket.
         - name: spire-agent-socket

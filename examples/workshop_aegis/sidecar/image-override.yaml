@@ -20,4 +20,4 @@ spec:
       - name: main
         image: localhost:5000/example-using-sidecar:0.40.0
       - name: sidecar
-        image: localhost:5000/vsecm-ist-sidecar:0.40.0
+        image: localhost:5000/vsecm-sidecar:0.40.0

@@ -409,10 +409,10 @@ then it will be FIPS-compliant.
 
 As a FIPS-compliant base image you can use the following:
 
-* [vsecm/vsecm-ist-fips-safe][vsecm-safe-istanbul-fips] (*using a Distroless 
+* [vsecm/vsecm-fips-safe][vsecm-safe-istanbul-fips] (*using a Distroless 
   base*)
 
-[vsecm-safe-istanbul-fips]: https://hub.docker.com/repository/docker/vsecm/vsecm-ist-fips-safe/general
+[vsecm-safe-istanbul-fips]: https://hub.docker.com/repository/docker/vsecm/vsecm-fips-safe/general
 
 ### VSECM_SAFE_IV_INITIALIZATION_INTERVAL
 

@@ -23,5 +23,5 @@ spec:
         image: localhost:5000/example-using-sidecar:latest
       - name: sidecar
         # Change this, if you want to use a different image
-        # image: vsecm/vsecm-ist-sidecar:latest
-        image: localhost:5000/vsecm-ist-sidecar:latest
+        # image: vsecm/vsecm-sidecar:latest
+        image: localhost:5000/vsecm-sidecar:latest

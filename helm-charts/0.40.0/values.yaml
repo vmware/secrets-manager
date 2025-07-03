@@ -53,32 +53,32 @@ global:
   images:
     # - Container registry details for VSecM Keystone.
     keystone:
-      distrolessRepository: vsecm-ist-keystone
-      distrolessFipsRepository: vsecm-ist-fips-keystone
+      distrolessRepository: vsecm-keystone
+      distrolessFipsRepository: vsecm-fips-keystone
       tag: 0.40.0
       pullPolicy: IfNotPresent
     # - Container registry details for VSecM Safe.
     safe:
-      distrolessRepository: vsecm-ist-safe
-      distrolessFipsRepository: vsecm-ist-fips-safe
+      distrolessRepository: vsecm-safe
+      distrolessFipsRepository: vsecm-fips-safe
       tag: 0.40.0
       pullPolicy: IfNotPresent
     # - Container registry details for VSecM Scout.
     scout:
-      distrolessRepository: vsecm-ist-scout
-      distrolessFipsRepository: vsecm-ist-fips-scout
+      distrolessRepository: vsecm-scout
+      distrolessFipsRepository: vsecm-fips-scout
       tag: 0.40.0
       pullPolicy: IfNotPresent
 
     # - Container registry details for VSecM Sentinel.    
     sentinel:
-      distrolessRepository: vsecm-ist-sentinel
-      distrolessFipsRepository: vsecm-ist-fips-sentinel
+      distrolessRepository: vsecm-sentinel
+      distrolessFipsRepository: vsecm-fips-sentinel
       tag: 0.40.0
       pullPolicy: IfNotPresent
     # - Container registry details of VSecM Init Container.
     initContainer:
-      repository: vsecm-ist-init-container
+      repository: vsecm-init-container
       tag: 0.40.0
 
     # -- Container registry details of SPIRE Agent.
