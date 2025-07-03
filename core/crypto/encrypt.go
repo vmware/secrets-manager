@@ -34,18 +34,9 @@ import (
 func EncryptValue(value string) (string, error) {
 	var out bytes.Buffer
 
-	fipsMode := env.FipsCompliantModeForSafe()
-
-	if fipsMode {
-		err := EncryptToWriterAes(&out, value)
-		if err != nil {
-			return "", err
-		}
-	} else {
-		err := EncryptToWriterAge(&out, value)
-		if err != nil {
-			return "", err
-		}
+	err := EncryptToWriterAes(&out, value)
+	if err != nil {
+		return "", err
 	}
 
 	base64Str := base64.StdEncoding.EncodeToString(out.Bytes())

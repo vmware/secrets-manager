@@ -19,7 +19,6 @@ import (
 
 	"github.com/vmware/secrets-manager/core/crypto"
 	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
 	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
@@ -53,9 +52,5 @@ func saveSecretToDisk(secret entity.SecretStored, dataPath string) error {
 		}
 	}(file)
 
-	if env.FipsCompliantModeForSafe() {
-		return crypto.EncryptToWriterAes(file, string(data))
-	}
-
-	return crypto.EncryptToWriterAge(file, string(data))
+	return crypto.EncryptToWriterAes(file, string(data))
 }

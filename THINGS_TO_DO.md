@@ -26,3 +26,6 @@
 * remove spire from subcharts; we will install it from upstream directly.
 * remove keystone and scout
 * remove crds; SPIRE chart already includes them.
+* remove most of the examples as depending on the project direction they may need to be revised.
+* mac-tunnel: changed; there is a better way to do it via port forwarding. -- spike does that already.
+* simplify the matrix of dockerfiles; too many combination there.

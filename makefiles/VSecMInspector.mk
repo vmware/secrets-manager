@@ -18,11 +18,6 @@ inspector-push:
 	./hack/push.sh "vsecm-inspector" \
 		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-inspector"
 
-# Pushes the "VSecM Inspector" container image to the local registry.
-inspector-push-local:
-	./hack/push.sh "vsecm-inspector" $(VERSION) \
-		"$(VSECM_LOCAL_REGISTRY_URL)/vsecm-inspector"
-
 # Deploys the "VSecM Inspector" app from the public registry into the cluster.
 inspector-deploy:
 	./hack/inspector-deploy.sh

@@ -126,18 +126,6 @@ func SecretDeleteBufferSizeForSafe() int {
 	return l
 }
 
-// FipsCompliantModeForSafe returns a boolean indicating whether VSecM Safe
-// should run in FIPS compliant mode. Note that this is not a guarantee that
-// VSecM Safe will run in FIPS compliant mode, as it depends on the underlying
-// base image. If you are using one of the official FIPS-complaint
-// VMware Secrets Manager Docker images, then it will be FIPS-compliant.
-// Check https://vsecm.com/configuration/ for more details.
-func FipsCompliantModeForSafe() bool {
-	p := env.Value(env.VSecMSafeFipsCompliant)
-
-	return val.True(p)
-}
-
 // SecretBackupCountForSafe retrieves the number of backups to keep for VSecM
 // Safe secrets. If the environment variable VSECM_SAFE_SECRET_BACKUP_COUNT
 // is not set or is not a valid integer, the default value of 3 will be returned.

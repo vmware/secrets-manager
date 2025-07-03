@@ -377,43 +377,6 @@ exposes from its `Service`.
 If not provided, it will default to:
 `"https://vsecm-safe.vsecm.svc.cluster.local:8443/"`.
 
-### VSECM_SAFE_FIPS_COMPLIANT
-
-**Used By**: *VSecM Safe*.
-
-`VSECM_SAFE_FIPS_COMPLIANT` is required for **VSecM Safe** to run in 
-FIPS-compliant mode. Defaults to `"false"`, which means **VSecM Safe** will run 
-in non-FIPS-compliant mode. Setting it to `"true"` will make **VSecM Safe** run 
-in FIPS-compliant mode.
-
-> **You Need Host Support for FIPS-Compliant Mode**
->
-> Note that this is not a guarantee that **VSecM Safe** will actually
-> run in FIPS compliant mode, as it depends on the underlying base image.
->
-> In addition, the host environment will need to be compliant too.
->
-> Furthermore, compliance with FIPS (*Federal Information Processing Standards*)
-> requires not just a technically compliant binary and system but also
-> **formal approval** by the United States National Institute of Standards and
-> Technology (*NIST*). This involves a certification process where **NIST**
-> validates that the cryptographic modules used in the software meet the
-> **FIPS 140-2 standard**.
->
-> Therefore, even if the binary and the underlying system are FIPS-compliant,
-> **VSecM Safe** will still need to undergo this formal FIPS approval process
-> to be officially recognized as FIPS compliant.
-
-If you are using one of the official FIPS-complaint VSecM Docker images,
-then it will be FIPS-compliant.
-
-As a FIPS-compliant base image you can use the following:
-
-* [vsecm/vsecm-fips-safe][vsecm-safe-istanbul-fips] (*using a Distroless 
-  base*)
-
-[vsecm-safe-istanbul-fips]: https://hub.docker.com/repository/docker/vsecm/vsecm-fips-safe/general
-
 ### VSECM_SAFE_IV_INITIALIZATION_INTERVAL
 
 **Used By**: *VSecM Safe*.

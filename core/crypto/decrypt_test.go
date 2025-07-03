@@ -54,7 +54,6 @@ func TestDecryptValue(t *testing.T) {
 				}
 				SetRootKeyInMemory(rtk.PrivateKey + "\n" + rtk.PublicKey + "\n" + rtk.AesSeed)
 
-				_ = os.Setenv(string(env.VSecMSafeFipsCompliant), "true")
 				_ = os.Setenv(string(env.VSecMSafeIvInitializationInterval), "0")
 
 				encrypted, err := EncryptValue("test-data")
@@ -67,7 +66,6 @@ func TestDecryptValue(t *testing.T) {
 			},
 
 			cleanup: func() {
-				_ = os.Unsetenv(string(env.VSecMSafeFipsCompliant))
 				_ = os.Unsetenv(string(env.VSecMSafeIvInitializationInterval))
 			},
 		},
@@ -105,7 +103,6 @@ func TestDecryptValue(t *testing.T) {
 				}
 				SetRootKeyInMemory(rtk.PrivateKey + "\n" + rtk.PublicKey + "\n" + rtk.AesSeed)
 
-				_ = os.Setenv(string(env.VSecMSafeFipsCompliant), "true")
 				_ = os.Setenv(string(env.VSecMSafeIvInitializationInterval), "0")
 
 				encrypted, err := EncryptValue("test-data")
@@ -115,7 +112,6 @@ func TestDecryptValue(t *testing.T) {
 				args.value = encrypted
 			},
 			cleanup: func() {
-				_ = os.Unsetenv(string(env.VSecMSafeFipsCompliant))
 				_ = os.Unsetenv(string(env.VSecMSafeIvInitializationInterval))
 				SetRootKeyInMemory("")
 			},
@@ -228,7 +224,6 @@ func TestDecryptBytesAes(t *testing.T) {
 				}
 				SetRootKeyInMemory(rkt.PrivateKey + "\n" + rkt.PublicKey + "\n" + rkt.AesSeed)
 
-				_ = os.Setenv(string(env.VSecMSafeFipsCompliant), "true")
 				_ = os.Setenv(string(env.VSecMSafeIvInitializationInterval), "0")
 
 				encrypted, err := EncryptValue("some-texts")
@@ -243,7 +238,6 @@ func TestDecryptBytesAes(t *testing.T) {
 				args.data = decodedValue
 			},
 			cleanup: func() {
-				_ = os.Unsetenv(string(env.VSecMSafeFipsCompliant))
 				_ = os.Unsetenv(string(env.VSecMSafeIvInitializationInterval))
 				SetRootKeyInMemory("")
 			},
@@ -464,7 +458,6 @@ func TestDecrypt(t *testing.T) {
 				}
 				SetRootKeyInMemory(rkt.PrivateKey + "\n" + rkt.PublicKey + "\n" + rkt.AesSeed)
 
-				_ = os.Setenv(string(env.VSecMSafeFipsCompliant), "true")
 				_ = os.Setenv(string(env.VSecMSafeIvInitializationInterval), "0")
 
 				args.algorithm = crypto.Aes
@@ -476,7 +469,6 @@ func TestDecrypt(t *testing.T) {
 				args.value = []byte(encrypted)
 			},
 			cleanup: func() {
-				_ = os.Unsetenv(string(env.VSecMSafeFipsCompliant))
 				_ = os.Unsetenv(string(env.VSecMSafeIvInitializationInterval))
 				SetRootKeyInMemory("")
 			},
@@ -599,7 +591,6 @@ func TestDecryptDataFromDisk(t *testing.T) {
 				}
 				tmpDir := path.Join(pwd, "tmp")
 				_ = os.Setenv(string(env.VSecMSafeDataPath), tmpDir)
-				_ = os.Setenv(string(env.VSecMSafeFipsCompliant), "true")
 				_ = os.Setenv(string(env.VSecMSafeIvInitializationInterval), "0")
 
 				encrypted, err := EncryptValue("test-data")
@@ -625,7 +616,6 @@ func TestDecryptDataFromDisk(t *testing.T) {
 			cleanup: func() {
 				_ = os.RemoveAll(env.Value(env.VSecMSafeDataPath))
 				_ = os.Unsetenv(string(env.VSecMSafeDataPath))
-				_ = os.Unsetenv(string(env.VSecMSafeFipsCompliant))
 				_ = os.Unsetenv(string(env.VSecMSafeIvInitializationInterval))
 				SetRootKeyInMemory("")
 			},

@@ -22,7 +22,6 @@ import (
 
 	"github.com/vmware/secrets-manager/core/crypto"
 	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
 	log "github.com/vmware/secrets-manager/core/log/std"
 	"github.com/vmware/secrets-manager/lib/backoff"
 )
@@ -85,25 +84,14 @@ func PersistToPostgres(secret entity.SecretStored, errChan chan<- error) {
 
 	// Encrypt the JSON data
 	var encryptedData string
-	fipsMode := env.FipsCompliantModeForSafe()
 
-	if fipsMode {
-		encryptedBytes, err := crypto.EncryptBytesAes(jsonData)
-		if err != nil {
-			errChan <- errors.Join(err, errors.New("PersistToPostgres: Failed to encrypt secret with AES"))
-			log.ErrorLn(&cid, "PersistToPostgres: Error encrypting secret with AES:", err.Error())
-			return
-		}
-		encryptedData = base64.StdEncoding.EncodeToString(encryptedBytes)
-	} else {
-		encryptedBytes, err := crypto.EncryptBytesAge(jsonData)
-		if err != nil {
-			errChan <- errors.Join(err, errors.New("PersistToPostgres: Failed to encrypt secret with Age"))
-			log.ErrorLn(&cid, "PersistToPostgres: Error encrypting secret with Age:", err.Error())
-			return
-		}
-		encryptedData = base64.StdEncoding.EncodeToString(encryptedBytes)
+	encryptedBytes, err := crypto.EncryptBytesAes(jsonData)
+	if err != nil {
+		errChan <- errors.Join(err, errors.New("PersistToPostgres: Failed to encrypt secret with AES"))
+		log.ErrorLn(&cid, "PersistToPostgres: Error encrypting secret with AES:", err.Error())
+		return
 	}
+	encryptedData = base64.StdEncoding.EncodeToString(encryptedBytes)
 
 	err = backoff.RetryExponential("PersistToPostgres", func() error {
 		pg := DB()

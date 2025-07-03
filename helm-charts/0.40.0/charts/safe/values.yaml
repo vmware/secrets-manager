@@ -97,9 +97,6 @@ environments:
   # is "file").
   - name: VSECM_SAFE_DATA_PATH
     value: "/var/local/vsecm/data"
-  # -- Should VSecM Safe use FIPS-compliant encryption?
-  - name: VSECM_SAFE_FIPS_COMPLIANT
-    value: "false"
   # -- The IV initialization interval (in milliseconds) for the VSecM Safe.
   - name: VSECM_SAFE_IV_INITIALIZATION_INTERVAL
     value: "50"

@@ -17,8 +17,3 @@ keygen-bundle:
 keygen-push:
 	./hack/push.sh "vsecm-keygen" \
 		$(VERSION) "$(VSECM_DOCKERHUB_REGISTRY_URL)/vsecm-keygen"
-
-# Pushes the "Keygen" container image to the local registry.
-keygen-push-local:
-	./hack/push.sh "vsecm-keygen" $(VERSION) \
-		"$(VSECM_LOCAL_REGISTRY_URL)/vsecm-keygen"

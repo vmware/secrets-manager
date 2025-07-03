@@ -23,7 +23,6 @@ import (
 	"github.com/vmware/secrets-manager/core/crypto"
 	"github.com/vmware/secrets-manager/core/entity/v1/data"
 	reqres "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
-	"github.com/vmware/secrets-manager/core/env"
 	log "github.com/vmware/secrets-manager/core/log/std"
 	s "github.com/vmware/secrets-manager/lib/spiffe"
 )
@@ -76,10 +75,7 @@ func doList(
 	secrets := collection.AllSecrets(cid)
 
 	if encrypted {
-		a := algo.Age
-		if env.FipsCompliantModeForSafe() {
-			a = algo.Aes
-		}
+		a := algo.Aes
 
 		secrets := collection.AllSecretsEncrypted(cid)
 

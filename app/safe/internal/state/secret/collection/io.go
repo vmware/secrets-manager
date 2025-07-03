@@ -110,13 +110,8 @@ func populateSecretsFromPostgresqlDb(cid string) error {
 
 		// Decrypt the data
 		var decryptedBytes []byte
-		fipsMode := env.FipsCompliantModeForSafe()
 
-		if fipsMode {
-			decryptedBytes, err = crypto.DecryptBytesAes(encryptedBytes)
-		} else {
-			decryptedBytes, err = crypto.DecryptBytesAge(encryptedBytes)
-		}
+		decryptedBytes, err = crypto.DecryptBytesAes(encryptedBytes)
 
 		if err != nil {
 			log.ErrorLn(&cid,

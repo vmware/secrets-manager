@@ -88,8 +88,6 @@ spec:
               value: "10"
             - name: VSECM_SAFE_BOOTSTRAP_TIMEOUT
               value: "300000"
-            - name: VSECM_SAFE_FIPS_COMPLIANT
-              value: "false"
             - name: VSECM_SYSTEM_NAMESPACE
               valueFrom:
                 fieldRef:

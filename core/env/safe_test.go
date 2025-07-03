@@ -240,59 +240,6 @@ func TestSafeSecretDeleteBufferSize(t *testing.T) {
 //	}
 //}
 
-func TestSafeFipsCompliant(t *testing.T) {
-	tests := []struct {
-		name    string
-		setup   func() error
-		cleanup func() error
-		want    bool
-	}{
-		{
-			name: "default_safe_fips_compliant",
-			want: false,
-		},
-		{
-			name: "safe_fips_compliant_from_env",
-			setup: func() error {
-				return os.Setenv("VSECM_SAFE_FIPS_COMPLIANT", "true")
-			},
-			cleanup: func() error {
-				return os.Unsetenv("VSECM_SAFE_FIPS_COMPLIANT")
-			},
-			want: true,
-		},
-		{
-			name: "invalid_safe_fips_compliant_from_env",
-			setup: func() error {
-				return os.Setenv("VSECM_SAFE_FIPS_COMPLIANT", "test")
-			},
-			cleanup: func() error {
-				return os.Unsetenv("VSECM_SAFE_FIPS_COMPLIANT")
-			},
-			want: false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if tt.setup != nil {
-				if err := tt.setup(); err != nil {
-					t.Errorf("FipsCompliantModeForSafe() = failed to setup, with error: %+v", err)
-				}
-			}
-			defer func() {
-				if tt.cleanup != nil {
-					if err := tt.cleanup(); err != nil {
-						t.Errorf("FipsCompliantModeForSafe() = failed to cleanup, with error: %+v", err)
-					}
-				}
-			}()
-			if got := FipsCompliantModeForSafe(); got != tt.want {
-				t.Errorf("FipsCompliantModeForSafe() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 //func TestSafeBackingStore(t *testing.T) {
 //	tests := []struct {
 //		name    string

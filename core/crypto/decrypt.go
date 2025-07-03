@@ -36,21 +36,14 @@ func DecryptValue(value string) (string, error) {
 		return "", err
 	}
 
-	if env.FipsCompliantModeForSafe() {
-		decrypted, err := DecryptBytesAes(decoded)
-		if err != nil {
-			return "", err
-		}
-		return string(decrypted), nil
-	}
-
-	decrypted, err := DecryptBytesAge(decoded)
+	decrypted, err := DecryptBytesAes(decoded)
 	if err != nil {
 		return "", err
 	}
-
 	return string(decrypted), nil
 }
+
+// TODO: these decryptbytes functions can be part of a library.
 
 // DecryptBytesAge decrypts data using an X25519 private key extracted
 // from memory. This function is intended to decrypt a slice of bytes that have
@@ -249,9 +242,5 @@ func DecryptDataFromDisk(key string) ([]byte, error) {
 		)
 	}
 
-	if env.FipsCompliantModeForSafe() {
-		return DecryptBytesAes(data)
-	}
-
-	return DecryptBytesAge(data)
+	return DecryptBytesAes(data)
 }
