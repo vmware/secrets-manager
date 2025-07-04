@@ -200,7 +200,6 @@ Here are the important folders and files in this repository:
       Container**.
     * `./app/inspector`: Contains the source code for the **VSecM Inspector**.
     * `./app/keygen`: Contains the source code for the **VSecM Keygen**.
-    * `./app/keystone`: Contains the **VSecM KeyStone** source code.
     * `./app/safe`: Contains the **VSecM Safe** source code.
     * `./app/sentinel`: Contains the source code for the **VSecM Sentinel**.
     * `./app/sidecar`: Contains the source code for the **VSecM Sidecar**.

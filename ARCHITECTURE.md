@@ -9,8 +9,6 @@ main system components:
 * **VSecM Safe**: The secure secrets store.
 * **VSecM Sentinel**: Entry point to the system where secrets can be registered
   to the workloads.
-* **VSecM Keystone**: A pod that is enabled only when the entire **VSecM**
-  system reconciles.
 
 ![actors.jpg](assets/actors.jpg)
 

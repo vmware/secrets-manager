@@ -12,23 +12,12 @@ package safe
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
-	"fmt"
-	"io"
-	"net/http"
-	"net/url"
-
 	"github.com/spiffe/go-spiffe/v2/spiffeid"
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
 	"github.com/vmware/secrets-manager/core/constants/key"
-	u "github.com/vmware/secrets-manager/core/constants/url"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 	"github.com/vmware/secrets-manager/core/validation"
 )
 
@@ -54,13 +43,15 @@ import (
 func CheckInitialization(
 	ctx context.Context, source *workloadapi.X509Source,
 ) (bool, error) {
-	cid := ctx.Value(key.CorrelationId).(*string)
+	// TODO: get rid of all correlation ids.
+	_ = ctx.Value(key.CorrelationId).(*string)
 
 	if source == nil {
 		return false, errors.New("check: workload source is nil")
 	}
 
-	authorizer := tlsconfig.AdaptMatcher(func(id spiffeid.ID) error {
+	// Authorizer
+	_ = tlsconfig.AdaptMatcher(func(id spiffeid.ID) error {
 		if validation.IsSafe(id.String()) {
 			return nil
 		}
@@ -70,66 +61,7 @@ func CheckInitialization(
 		)
 	})
 
-	checkUrl := u.SentinelKeystone
+	panic("TODO: this needs an updated implementation. set a secret after init command execution; and verify that it is set here.")
 
-	p, err := url.JoinPath(env.EndpointUrlForSafe(), checkUrl)
-	if err != nil {
-		return false, errors.Join(
-			err,
-			fmt.Errorf(
-				"check: I am having problem"+
-					" generating VSecM Safe secrets api endpoint URL: %s\n",
-				checkUrl,
-			),
-		)
-	}
-
-	tlsConfig := tlsconfig.MTLSClientConfig(source, source, authorizer)
-	client := &http.Client{
-		Transport: &http.Transport{
-			TLSClientConfig: tlsConfig,
-		},
-	}
-
-	r, err := client.Get(p)
-	if err != nil {
-		return false, errors.Join(
-			err,
-			fmt.Errorf(
-				"check: Problem connecting"+
-					" to VSecM Safe API endpoint URL: %s\n",
-				checkUrl,
-			),
-		)
-	}
-
-	defer func(b io.ReadCloser) {
-		if b == nil {
-			return
-		}
-		err := b.Close()
-		if err != nil {
-			log.ErrorLn(cid, "Get: Problem closing request body.")
-		}
-	}(r.Body)
-
-	res, err := io.ReadAll(r.Body)
-	if err != nil {
-		return false, errors.Join(
-			err,
-			errors.New("check: Unable to read the response body from VSecM Safe"),
-		)
-	}
-
-	log.TraceLn(cid, "json result: ' ", string(res), " ' status: ",
-		r.Status, "code", r.StatusCode)
-
-	var result entity.KeystoneStatusResponse
-
-	if err := json.Unmarshal(res, &result); err != nil {
-		log.ErrorLn(cid, "error unmarshalling JSON: %v", err.Error())
-		return false, err
-	}
-
-	return result.Status == data.Ready, nil
+	return false, nil
 }

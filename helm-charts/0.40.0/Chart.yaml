@@ -51,10 +51,6 @@ keywords:
   - security
 
 dependencies:
-  - name: keystone
-    repository: file://charts/keystone
-    version: 0.40.0
-    condition: global.deployKeystone
   - name: spire
     repository: file://charts/spire
     version: 0.40.0

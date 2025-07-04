@@ -47,16 +47,8 @@ include ./makefiles/VSecMKeyGen.mk
 ## VMware Secrets Manager
 include ./makefiles/VSecMSafe.mk
 include ./makefiles/VSecMSentinel.mk
-include ./makefiles/VSecMScout.mk
-include ./makefiles/VSecMKeystone.mk
 include ./makefiles/VSecMInitContainer.mk
 include ./makefiles/VSecMSidecar.mk
-
-## Examples
-include ./makefiles/VSecMExampleSidecar.mk
-include ./makefiles/VSecMExampleSdk.mk
-include ./makefiles/VSecMExampleMultipleSecrets.mk
-include ./makefiles/VSecMExampleInitContainer.mk
 
 ## Build
 include ./makefiles/VSecMBuild.mk

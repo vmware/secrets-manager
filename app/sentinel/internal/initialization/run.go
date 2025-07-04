@@ -95,22 +95,11 @@ func (i *Initializer) RunInitCommands(ctx context.Context) {
 
 	i.parseCommandsFile(ctx, cid, scanner)
 
-	i.Logger.TraceLn(cid, "RunInitCommands: before marking keystone")
-
-	// Mark the keystone secret.
-	success := i.markKeystone(ctx, cid)
-	if !success {
-		i.Logger.TraceLn(cid, "RunInitCommands: failed to mark keystone. exiting")
-
-		// If we cannot set the keystone secret, better to retry everything.
-		panic("RunInitCommands: failed to set keystone secret")
-	}
-
-	// Wait before notifying Keystone. This way, if there are things that
+	// Wait a while. This way, if there are things that
 	// take time to reconcile, they have a chance to do so.
 	waitInterval = i.EnvReader.InitCommandRunnerWaitIntervalBeforeInitComplete()
 	time.Sleep(waitInterval)
 
 	// Everything is set up.
-	i.Logger.InfoLn(cid, "RunInitCommands: keystone secret set successfully.")
+	i.Logger.InfoLn(cid, "RunInitCommands: completed successfully.")
 }

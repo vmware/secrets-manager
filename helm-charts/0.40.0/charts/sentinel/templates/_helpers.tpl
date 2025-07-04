@@ -76,11 +76,5 @@ Create the name of the service account to use
 Define image for VSecM Sentinel
 */}}
 {{- define "sentinel.repository" -}}
-{{- if eq (lower $.Values.global.baseImage) "distroless" }}
-{{- .Values.global.images.sentinel.distrolessRepository }}
-{{- else if eq (lower $.Values.global.baseImage) "distroless-fips" }}
-{{- .Values.global.images.sentinel.distrolessFipsRepository }}
-{{- else }}
-{{- .Values.global.images.sentinel.distrolessRepository }}
-{{- end }}
+{{- .Values.global.images.sentinel.repository }}
 {{- end }}

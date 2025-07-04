@@ -75,8 +75,7 @@ dance:
 				"skipping post initialization.",
 			)
 
-			// Move out of the loop to allow the keystone secret to be
-			// registered.
+			// Move out of the loop.
 			break dance
 		}
 		if len(parts) != 2 && line != symbol.LineDelimiter {

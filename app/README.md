@@ -12,7 +12,6 @@ This folder contains the source codes for containerized VSecM apps:
 * VSecM Init Container
 * VSecM Inspector
 * VSecM Keygen
-* VSecM Keystone
 * VSecM Safe
 * VSecM Sentinel
 * VSecM Sidecar

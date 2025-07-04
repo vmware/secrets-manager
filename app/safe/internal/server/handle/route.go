@@ -16,7 +16,6 @@ import (
 	routeDelete "github.com/vmware/secrets-manager/app/safe/internal/server/route/delete"
 	routeFallback "github.com/vmware/secrets-manager/app/safe/internal/server/route/fallback"
 	routeFetch "github.com/vmware/secrets-manager/app/safe/internal/server/route/fetch"
-	routeKeystone "github.com/vmware/secrets-manager/app/safe/internal/server/route/keystone"
 	routeList "github.com/vmware/secrets-manager/app/safe/internal/server/route/list"
 	routeReceive "github.com/vmware/secrets-manager/app/safe/internal/server/route/receive"
 	routeSecret "github.com/vmware/secrets-manager/app/safe/internal/server/route/secret"
@@ -27,17 +26,12 @@ type handler func(string, *http.Request, http.ResponseWriter)
 
 func factory(p, m string) handler {
 	switch {
-	// Route to fetch the Keystone status.
-	// The status can be "pending" or "ready".
-	case m == http.MethodGet && p == url.SentinelKeystone:
-		return routeKeystone.Status
-
-	// Route to return the secrets list. The values of the
+	// Route to return the secret list. The values of the
 	// secrets are encrypted.
 	case m == http.MethodGet && p == url.SentinelSecretsWithReveal:
 		return routeList.Encrypted
 
-	// Route to return the secrets list. This route only displays names
+	// Route to return the secret list. This route only displays names
 	// and metadata of the secrets. The values will not be provided.
 	case m == http.MethodGet && p == url.SentinelSecrets:
 		return routeList.Masked

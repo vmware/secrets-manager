@@ -76,11 +76,5 @@ Create the name of the service account to use
 Define image for vsecm safe
 */}}
 {{- define "safe.repository" -}}
-{{- if eq (lower $.Values.global.baseImage) "distroless" }}
-{{- .Values.global.images.safe.distrolessRepository }}
-{{- else if eq (lower $.Values.global.baseImage) "distroless-fips" }}
-{{- .Values.global.images.safe.distrolessFipsRepository }}
-{{- else }}
-{{- .Values.global.images.safe.distrolessRepository }}
-{{- end }}
+{{- .Values.global.images.safe.repository }}
 {{- end }}

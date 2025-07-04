@@ -41,9 +41,6 @@ global:
   # -- Deploy VSecM Scout
   deployScout: false
 
-  # -- Possible options for baseImage (distroless, distroless-fips). When in
-  # doubt, stick with distroless.
-  baseImage: distroless
   # -- Registry url. Defaults to "vsecm", which points to the public vsecm
   # DockerHub registry: <https://hub.docker.com/u/vsecm>.
   registry: vsecm
@@ -53,26 +50,26 @@ global:
   images:
     # - Container registry details for VSecM Keystone.
     keystone:
-      distrolessRepository: vsecm-keystone
+      repository: vsecm-keystone
       distrolessFipsRepository: vsecm-fips-keystone
       tag: 0.40.0
       pullPolicy: IfNotPresent
     # - Container registry details for VSecM Safe.
     safe:
-      distrolessRepository: vsecm-safe
+      repository: vsecm-safe
       distrolessFipsRepository: vsecm-fips-safe
       tag: 0.40.0
       pullPolicy: IfNotPresent
     # - Container registry details for VSecM Scout.
     scout:
-      distrolessRepository: vsecm-scout
+      repository: vsecm-scout
       distrolessFipsRepository: vsecm-fips-scout
       tag: 0.40.0
       pullPolicy: IfNotPresent
 
     # - Container registry details for VSecM Sentinel.    
     sentinel:
-      distrolessRepository: vsecm-sentinel
+      repository: vsecm-sentinel
       distrolessFipsRepository: vsecm-fips-sentinel
       tag: 0.40.0
       pullPolicy: IfNotPresent
