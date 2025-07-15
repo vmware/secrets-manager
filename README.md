@@ -2,24 +2,50 @@
 
 ![VSecM Logo](https://github.com/vmware/secrets-manager/assets/1041224/885c11ac-7269-4344-a376-0d0a0fb082a7)
 
-## Project Status
+## ⚠️ Important: v2.0.0 Work in Progress
 
-**Active Maintenance Mode**
+A major architectural redesign is underway in the 
+[`feature/v2.0.0-preview`](https://github.com/vmware/secrets-manager/tree/feature/v2.0.0-preview) 
+branch. **This `v2.0.0-preview` branch is currently non-functional 
+and under heavy development**.
 
-We are currently focusing our development efforts on 
-[SPIKE](https://github.com/spiffe/spike) to reach its v1.0 milestone. 
+### Current Status
 
-During this period:
+* **v0.x**: This version is now in **maintenance mode** and will only receive 
+  security updates.
+* **v2.0.0**: Early development phase.
 
-- **Security Issues**: We will promptly address any security vulnerabilities or 
-  CVE announcements in **VSecM**.
-- **Feature Development**: New feature implementations will be deferred until 
-  [SPIKE](https://github.com/spiffe/spike) achieves v1.0.
-- **Community Contributions**: We welcome and encourage community contributions 
-  to VSecM during this time. We will review and merge PRs as quickly as possible.
-  We will provide guidance and support to contributors.
+### What's Coming in v2
+
+The v2 release will completely transform VSecM by integrating 
+[SPIKE](https://spike.ist) as the backend storage engine:
+* Replace the secrets backing store with [SPIKE](https://spike.ist/)
+* Transform **VSecM** into a lifecycle manager and orchestration layer
+* Enhanced SPIFFE-native architecture
+* Future UI and fleet management capabilities
+
+### For Users
+
+- **All users**: Continue using v0.x---it remains stable and will receive 
+  security patches
+- **v2.0.0 timeline**: TBD---this is a major rewrite and will take time
+- **Contributing**: If you're interested in the v2 architecture, watch the 
+  preview branch but note it's not ready for contributions yet. We will
+  inform the community when the codebase is ready for contributions.
+
+### Note
+
+The v2 branch exists for development purposes only. **Do not attempt to use 
+it**---it's a work in progress, and nothing is functional yet. We'll announce 
+when there's something ready to test.
 
 Thank you for your understanding and continued support.
+
+----
+
+**Below is the v0.x README**:
+
+----
 
 ## About
 
