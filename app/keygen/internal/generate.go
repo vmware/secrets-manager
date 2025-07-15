@@ -12,8 +12,7 @@ package internal
 
 import (
 	"fmt"
-
-	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
 )
 
 // PrintGeneratedKeys generates a new collection of root keys and prints the

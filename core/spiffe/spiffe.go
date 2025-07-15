@@ -13,13 +13,12 @@ package spiffe
 import (
 	"context"
 	"errors"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
+	"github.com/vmware/secrets-manager/v2/core/validation"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-
-	"github.com/vmware/secrets-manager/core/constants/key"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // AcquireSourceForSentinel initiates an asynchronous operation to obtain an

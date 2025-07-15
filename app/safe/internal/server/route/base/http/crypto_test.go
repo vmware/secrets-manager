@@ -11,14 +11,14 @@
 package http_test
 
 import (
-	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/http"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"io"
 	"net/http/httptest"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/http"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 func TestSendEncryptedValue(t *testing.T) {

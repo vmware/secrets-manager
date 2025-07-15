@@ -17,14 +17,13 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"errors"
+	c "github.com/vmware/secrets-manager/v2/core/constants/crypto"
+	"github.com/vmware/secrets-manager/v2/core/env"
 	"io"
 	"os"
 	"path"
 
 	"filippo.io/age"
-
-	c "github.com/vmware/secrets-manager/core/constants/crypto"
-	"github.com/vmware/secrets-manager/core/env"
 )
 
 // DecryptValue takes a base64-encoded and encrypted string value and returns

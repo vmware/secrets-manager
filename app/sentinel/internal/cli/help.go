@@ -12,10 +12,9 @@ package cli
 
 import (
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/constants/sentinel"
 
 	"github.com/akamensky/argparse"
-
-	"github.com/vmware/secrets-manager/core/constants/sentinel"
 )
 
 // PrintUsage prints the usage of the CLI.

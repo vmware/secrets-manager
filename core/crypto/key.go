@@ -11,11 +11,10 @@
 package crypto
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"sync"
 
 	"filippo.io/age"
-
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // rootKey is the key used for encryption, decryption, backup, and restore.

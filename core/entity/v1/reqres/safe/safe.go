@@ -11,20 +11,20 @@
 package safe
 
 import (
-	"github.com/vmware/secrets-manager/core/constants/crypto"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/constants/crypto"
+	data2 "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 )
 
 // SecretUpsertRequest is the request to upsert a secret.
 type SecretUpsertRequest struct {
-	WorkloadIds []string          `json:"workloads"`
-	Namespaces  []string          `json:"namespaces"`
-	Value       string            `json:"value"`
-	Template    string            `json:"template"`
-	Format      data.SecretFormat `json:"format"`
-	Encrypt     bool              `json:"encrypt"`
-	NotBefore   string            `json:"notBefore"`
-	Expires     string            `json:"expires"`
+	WorkloadIds []string           `json:"workloads"`
+	Namespaces  []string           `json:"namespaces"`
+	Value       string             `json:"value"`
+	Template    string             `json:"template"`
+	Format      data2.SecretFormat `json:"format"`
+	Encrypt     bool               `json:"encrypt"`
+	NotBefore   string             `json:"notBefore"`
+	Expires     string             `json:"expires"`
 
 	Err string `json:"err,omitempty"`
 }
@@ -86,16 +86,16 @@ type SecretListRequest struct {
 
 // SecretListResponse is the response to a SecretListRequest.
 type SecretListResponse struct {
-	Secrets []data.Secret `json:"secrets"`
-	Err     string        `json:"err,omitempty"`
+	Secrets []data2.Secret `json:"secrets"`
+	Err     string         `json:"err,omitempty"`
 }
 
 // SecretEncryptedListResponse is the response that lists secrets
 // The secret values will be encrypted.
 type SecretEncryptedListResponse struct {
-	Secrets   []data.SecretEncrypted `json:"secrets"`
-	Algorithm crypto.Algorithm       `json:"algorithm"`
-	Err       string                 `json:"err,omitempty"`
+	Secrets   []data2.SecretEncrypted `json:"secrets"`
+	Algorithm crypto.Algorithm        `json:"algorithm"`
+	Err       string                  `json:"err,omitempty"`
 }
 
 // KeystoneStatusRequest is the request to check the status of
@@ -106,8 +106,8 @@ type KeystoneStatusRequest struct {
 
 // KeystoneStatusResponse is the response to a KeystoneStatusRequest.
 type KeystoneStatusResponse struct {
-	Status data.InitStatus `json:"status"`
-	Err    string          `json:"err,omitempty"`
+	Status data2.InitStatus `json:"status"`
+	Err    string           `json:"err,omitempty"`
 }
 
 // GenericRequest is the request for generic operations.

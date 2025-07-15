@@ -11,13 +11,12 @@
 package list
 
 import (
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/validation"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
+	ioState "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"net/http"
-
-	ioState "github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Masked returns all registered workloads to the system with some metadata

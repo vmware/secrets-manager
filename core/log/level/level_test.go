@@ -12,10 +12,9 @@ package level
 
 import (
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/env"
 	"os"
 	"testing"
-
-	"github.com/vmware/secrets-manager/core/env"
 )
 
 func TestLogLevel(t *testing.T) {

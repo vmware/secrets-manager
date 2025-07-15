@@ -12,11 +12,10 @@ package extract
 
 import (
 	"encoding/json"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"regexp"
-
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // WorkloadIdAndParts extracts the workload identifier and its constituent parts

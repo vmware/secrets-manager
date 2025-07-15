@@ -17,6 +17,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
+	u "github.com/vmware/secrets-manager/v2/core/constants/url"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	env2 "github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/rpc"
+	"github.com/vmware/secrets-manager/v2/core/spiffe"
 	"net/http"
 	"net/url"
 	"strings"
@@ -25,12 +31,6 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware/secrets-manager/core/constants/key"
-	u "github.com/vmware/secrets-manager/core/constants/url"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/rpc"
-	"github.com/vmware/secrets-manager/core/spiffe"
 	"github.com/vmware/secrets-manager/lib/template"
 )
 
@@ -81,7 +81,7 @@ func Post(parentContext context.Context,
 ) error {
 	ctxWithTimeout, cancel := context.WithTimeout(
 		parentContext,
-		env.SourceAcquisitionTimeoutForSafe(),
+		env2.SourceAcquisitionTimeoutForSafe(),
 	)
 	defer cancel()
 
@@ -93,7 +93,7 @@ func Post(parentContext context.Context,
 	}
 
 	hashString := "<>"
-	if env.LogSecretFingerprints() {
+	if env2.LogSecretFingerprints() {
 		secret := sc.Secret
 		uniqueData := fmt.Sprintf("%s-%d", secret, seed)
 		dataBytes := []byte(uniqueData)
@@ -146,7 +146,7 @@ func Post(parentContext context.Context,
 		if sc.SerializedRootKeys != "" {
 			log.InfoLn(cid, "Post: I am going to post the root keys.")
 
-			p, err := url.JoinPath(env.EndpointUrlForSafe(), "/sentinel/v1/keys")
+			p, err := url.JoinPath(env2.EndpointUrlForSafe(), "/sentinel/v1/keys")
 			if err != nil {
 				return errors.New("post: I am having problem" +
 					" generating VSecM Safe secrets api endpoint URL")
@@ -179,9 +179,9 @@ func Post(parentContext context.Context,
 		log.InfoLn(cid, "Post: I am going to post the secrets.")
 
 		// Generate pattern-based random secrets if the secret has the prefix.
-		if strings.HasPrefix(sc.Secret, env.SecretGenerationPrefix()) {
+		if strings.HasPrefix(sc.Secret, env2.SecretGenerationPrefix()) {
 			sc.Secret = strings.Replace(
-				sc.Secret, env.SecretGenerationPrefix(), "", 1,
+				sc.Secret, env2.SecretGenerationPrefix(), "", 1,
 			)
 			newSecret, err := template.Value(sc.Secret)
 			if err != nil {
@@ -191,7 +191,7 @@ func Post(parentContext context.Context,
 			}
 		}
 
-		p, err := url.JoinPath(env.EndpointUrlForSafe(), u.SentinelSecrets)
+		p, err := url.JoinPath(env2.EndpointUrlForSafe(), u.SentinelSecrets)
 		if err != nil {
 			return errors.Join(
 				err,

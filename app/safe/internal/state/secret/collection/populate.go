@@ -11,11 +11,10 @@
 package collection
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"sync"
-
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Secrets is where all the secrets are stored.

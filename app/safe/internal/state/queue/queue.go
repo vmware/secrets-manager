@@ -11,15 +11,15 @@
 package queue
 
 import (
-	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/deletion"
-	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/insertion"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/queue/deletion"
+	insertion2 "github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/queue/insertion"
 )
 
 // Initialize starts two goroutines: one to process the secret queue and
 // another to process the Kubernetes secret queue. These goroutines are
 // responsible for handling queued secrets and persisting them to disk.
 func Initialize() {
-	go insertion.ProcessSecretBackingStoreQueue()
-	go insertion.ProcessK8sPrefixedSecretQueue()
+	go insertion2.ProcessSecretBackingStoreQueue()
+	go insertion2.ProcessK8sPrefixedSecretQueue()
 	go deletion.ProcessSecretBackingStoreQueue()
 }

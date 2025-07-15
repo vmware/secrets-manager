@@ -15,14 +15,14 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"sync"
 	"sync/atomic"
 
 	_ "github.com/lib/pq"
 
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware/secrets-manager/core/log/std"
 	"github.com/vmware/secrets-manager/lib/backoff"
 )
 

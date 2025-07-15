@@ -12,27 +12,26 @@ package main
 
 import (
 	"context"
+	bootstrap2 "github.com/vmware/secrets-manager/v2/app/safe/internal/bootstrap"
+	server "github.com/vmware/secrets-manager/v2/app/safe/internal/server/engine"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/collection"
+	"github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	cEnv "github.com/vmware/secrets-manager/v2/core/env"
+	"github.com/vmware/secrets-manager/v2/core/log/std"
+	"github.com/vmware/secrets-manager/v2/core/probe"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-
-	"github.com/vmware/secrets-manager/app/safe/internal/bootstrap"
-	server "github.com/vmware/secrets-manager/app/safe/internal/server/engine"
-	"github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/collection"
-	"github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/constants/key"
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	cEnv "github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/core/probe"
 )
 
 func main() {
 	id := crypto.Id()
 
 	//Print the diagnostic information about the environment.
-	log.PrintEnvironmentInfo(&id, []string{
+	std.PrintEnvironmentInfo(&id, []string{
 		string(env.AppVersion),
 		string(env.VSecMLogLevel),
 	})
@@ -42,42 +41,42 @@ func main() {
 	)
 	defer cancel()
 
-	if cEnv.BackingStoreForSafe() == entity.Postgres {
+	if cEnv.BackingStoreForSafe() == data.Postgres {
 		go func() {
-			log.InfoLn(&id, "Backing store is postgres.")
-			log.InfoLn(&id, "Secrets will be stored in-memory "+
+			std.InfoLn(&id, "Backing store is postgres.")
+			std.InfoLn(&id, "Secrets will be stored in-memory "+
 				"until the internal config is loaded.")
 
-			safeConfig, err := bootstrap.PollForConfig(id, ctx)
+			safeConfig, err := bootstrap2.PollForConfig(id, ctx)
 			if err != nil {
-				log.FatalLn(&id,
+				std.FatalLn(&id,
 					"Failed to retrieve VSecM Safe internal configuration", err.Error())
 			}
 
-			log.InfoLn(&id,
+			std.InfoLn(&id,
 				"VSecM Safe internal configuration loaded. Initializing database.")
 
 			err = io.InitDB(safeConfig.Config.DataSourceName)
 			if err != nil {
-				log.FatalLn(&id, "Failed to initialize database:", err)
+				std.FatalLn(&id, "Failed to initialize database:", err)
 				return
 			}
 
-			log.InfoLn(&id, "Database connection initialized.")
+			std.InfoLn(&id, "Database connection initialized.")
 
 			// Persist secrets that have not been persisted yet to Postgres.
 
 			errChan := make(chan error, 1)
 
 			collection.Secrets.Range(func(key any, value any) bool {
-				v := value.(entity.SecretStored)
+				v := value.(data.SecretStored)
 
 				io.PersistToPostgres(v, errChan)
 
 				// This will not block since the channel has a buffer of 1.
 				for err := range errChan {
 					if err != nil {
-						log.ErrorLn(&id, "Error persisting secret", err.Error())
+						std.ErrorLn(&id, "Error persisting secret", err.Error())
 					}
 				}
 
@@ -88,13 +87,13 @@ func main() {
 			close(errChan)
 			for err := range errChan {
 				if err != nil {
-					log.ErrorLn(&id, "Error persisting secret", err.Error())
+					std.ErrorLn(&id, "Error persisting secret", err.Error())
 				}
 			}
 		}()
 	}
 
-	log.InfoLn(&id, "Acquiring identity...")
+	std.InfoLn(&id, "Acquiring identity...")
 
 	// Channel to notify when the bootstrap timeout has been reached.
 	timedOut := make(chan bool, 1)
@@ -108,8 +107,8 @@ func main() {
 	// Monitor the progress of acquiring an identity, updating the age key,
 	// and starting the server. If the timeout occurs before all three events
 	// happen, the function logs a fatal message and the process crashes.
-	go bootstrap.Monitor(&id,
-		bootstrap.ChannelsToMonitor{
+	go bootstrap2.Monitor(&id,
+		bootstrap2.ChannelsToMonitor{
 			AcquiredSvid:  acquiredSvid,
 			UpdatedSecret: updatedSecret,
 			ServerStarted: serverStarted,
@@ -117,16 +116,16 @@ func main() {
 	)
 
 	// Time out if things take too long.
-	go bootstrap.NotifyTimeout(timedOut)
+	go bootstrap2.NotifyTimeout(timedOut)
 
 	// Create initial cryptographic seeds off-cycle.
-	go bootstrap.CreateRootKey(&id, updatedSecret)
+	go bootstrap2.CreateRootKey(&id, updatedSecret)
 
 	// App is alive; however, not yet ready to accept connections.
 	<-probe.CreateLiveness()
 
-	log.InfoLn(&id, "before acquiring source...")
-	source := bootstrap.AcquireSource(ctx, acquiredSvid)
+	std.InfoLn(&id, "before acquiring source...")
+	source := bootstrap2.AcquireSource(ctx, acquiredSvid)
 	defer func(s *workloadapi.X509Source) {
 		if s == nil {
 			return
@@ -135,12 +134,12 @@ func main() {
 		// Close the source after the server (1) is done serving, likely
 		// when the app is shutting down due to an eviction or a panic.
 		if err := s.Close(); err != nil {
-			log.InfoLn(&id, "Problem closing SVID Bundle source: %v\n", err)
+			std.InfoLn(&id, "Problem closing SVID Bundle source: %v\n", err)
 		}
 	}(source)
 
 	// (1)
 	if err := server.Serve(source, serverStarted); err != nil {
-		log.FatalLn(&id, "failed to serve", err.Error())
+		std.FatalLn(&id, "failed to serve", err.Error())
 	}
 }

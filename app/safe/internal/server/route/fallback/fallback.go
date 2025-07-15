@@ -11,10 +11,9 @@
 package fallback
 
 import (
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"net/http"
-
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Fallback handles requests that don't match any defined routes.

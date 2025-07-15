@@ -11,11 +11,11 @@
 package data
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
 	"regexp"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vmware/secrets-manager/core/constants/audit"
 )
 
 // Corrected regex pattern for the log message

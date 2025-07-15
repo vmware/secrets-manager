@@ -11,20 +11,19 @@
 package main
 
 import (
+	internal2 "github.com/vmware/secrets-manager/v2/app/keygen/internal"
+	e "github.com/vmware/secrets-manager/v2/core/constants/env"
+	crypto2 "github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	"github.com/vmware/secrets-manager/v2/core/log/std"
 	"os"
-
-	"github.com/vmware/secrets-manager/app/keygen/internal"
-	e "github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 func main() {
-	id := crypto.Id()
+	id := crypto2.Id()
 
 	// Print the diagnostic information about the environment.
-	log.PrintEnvironmentInfo(&id, []string{
+	std.PrintEnvironmentInfo(&id, []string{
 		string(e.AppVersion),
 		string(e.VSecMLogLevel),
 		string(e.VSecMKeygenDecrypt),
@@ -35,14 +34,14 @@ func main() {
 		keyPath := env.RootKeyPathForKeyGen()
 
 		if _, err := os.Stat(keyPath); os.IsNotExist(err) {
-			log.FatalLn(&id,
+			std.FatalLn(&id,
 				"CreateRootKey: Secret key not mounted at", keyPath)
 			return
 		}
 
 		data, err := os.ReadFile(keyPath)
 		if err != nil {
-			log.FatalLn(&id,
+			std.FatalLn(&id,
 				"CreateRootKey: Error reading file:", err.Error())
 			return
 		}
@@ -50,11 +49,11 @@ func main() {
 		// Root key needs to be committed to memory for VSecM Keygen to be able
 		// to decrypt the secrets.
 		secret := string(data)
-		crypto.SetRootKeyInMemory(secret)
+		crypto2.SetRootKeyInMemory(secret)
 
-		internal.PrintDecryptedKeys()
+		internal2.PrintDecryptedKeys()
 		return
 	}
 
-	internal.PrintGeneratedKeys()
+	internal2.PrintGeneratedKeys()
 }

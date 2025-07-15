@@ -11,14 +11,14 @@
 package collection
 
 import (
-	"github.com/vmware/secrets-manager/core/crypto"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/stats"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	data2 "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"strings"
 
-	"github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/app/safe/internal/state/stats"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 	data "github.com/vmware/secrets-manager/lib/entity"
 )
 
@@ -46,7 +46,7 @@ import (
 //     with the correlation ID and the error message but continues execution.
 //     This does not halt the function, and it subsequently tries to fetch the
 //     secret if already available in the cache.
-func SecretByName(cid string, name string) *entity.Secret {
+func SecretByName(cid string, name string) *data2.Secret {
 	// Check existing stored secrets files.
 	// If VSecM pod is evicted and revived, it will not have knowledge about
 	// the secret it has. This loop helps it re-populate its cache.
@@ -63,9 +63,9 @@ func SecretByName(cid string, name string) *entity.Secret {
 		return nil
 	}
 
-	v := s.(entity.SecretStored)
+	v := s.(data2.SecretStored)
 
-	return &entity.Secret{
+	return &data2.Secret{
 		Name:         v.Name,
 		Created:      data.JsonTime(v.Created),
 		Updated:      data.JsonTime(v.Updated),
@@ -77,8 +77,8 @@ func SecretByName(cid string, name string) *entity.Secret {
 // AllSecrets returns a slice of entity.Secret containing all secrets
 // currently stored. If no secrets are found, an empty slice is
 // returned.
-func AllSecrets(cid string) []entity.Secret {
-	var result []entity.Secret
+func AllSecrets(cid string) []data2.Secret {
+	var result []data2.Secret
 
 	// Check existing stored secrets files.
 	// If VSecM pod is evicted and revived, it will not have knowledge about
@@ -93,9 +93,9 @@ func AllSecrets(cid string) []entity.Secret {
 
 	// Range over all existing secrets.
 	Secrets.Range(func(key any, value any) bool {
-		v := value.(entity.SecretStored)
+		v := value.(data2.SecretStored)
 
-		result = append(result, entity.Secret{
+		result = append(result, data2.Secret{
 			Name:         v.Name,
 			Created:      data.JsonTime(v.Created),
 			Updated:      data.JsonTime(v.Updated),
@@ -107,7 +107,7 @@ func AllSecrets(cid string) []entity.Secret {
 	})
 
 	if result == nil {
-		return []entity.Secret{}
+		return []data2.Secret{}
 	}
 
 	return result
@@ -116,8 +116,8 @@ func AllSecrets(cid string) []entity.Secret {
 // AllSecretsEncrypted returns a slice of entity.SecretEncrypted containing all
 // secrets currently stored. If no secrets are found, an empty slice is
 // returned.
-func AllSecretsEncrypted(cid string) []entity.SecretEncrypted {
-	var result []entity.SecretEncrypted
+func AllSecretsEncrypted(cid string) []data2.SecretEncrypted {
+	var result []data2.SecretEncrypted
 
 	// Check existing stored secrets files.
 	// If VSecM pod is evicted and revived, it will not have knowledge about
@@ -132,14 +132,14 @@ func AllSecretsEncrypted(cid string) []entity.SecretEncrypted {
 
 	// Range over all existing secrets.
 	Secrets.Range(func(key any, value any) bool {
-		v := value.(entity.SecretStored)
+		v := value.(data2.SecretStored)
 
 		// For debugging purposes, if you want to see the plain secret,
 		// you can remove this wrapper. But remember, this is a security
 		// leak; DO NOT expose this in the final source code.
 		ev, _ := crypto.EncryptValue(v.Value)
 
-		result = append(result, entity.SecretEncrypted{
+		result = append(result, data2.SecretEncrypted{
 			Name:           v.Name,
 			EncryptedValue: ev,
 			Created:        data.JsonTime(v.Created),
@@ -152,7 +152,7 @@ func AllSecretsEncrypted(cid string) []entity.SecretEncrypted {
 	})
 
 	if result == nil {
-		return []entity.SecretEncrypted{}
+		return []data2.SecretEncrypted{}
 	}
 
 	return result
@@ -170,8 +170,8 @@ func AllSecretsEncrypted(cid string) []entity.SecretEncrypted {
 // RawSecrets returns a slice of entity.Secret containing all secrets
 // currently stored with keys prefixed by "raw:". If no raw secrets are found,
 // an empty slice is returned.
-func RawSecrets(cid string) []entity.SecretStored {
-	var result []entity.SecretStored
+func RawSecrets(cid string) []data2.SecretStored {
+	var result []data2.SecretStored
 
 	// Check existing stored secrets files.
 	// If VSecM pod is evicted and revived, it will not have knowledge about
@@ -187,7 +187,7 @@ func RawSecrets(cid string) []entity.SecretStored {
 	// Range over all existing secrets.
 	Secrets.Range(func(key any, value any) bool {
 		k := key.(string)
-		v := value.(entity.SecretStored)
+		v := value.(data2.SecretStored)
 
 		// Check if the key is prefixed with "raw:"
 		if strings.HasPrefix(k, "raw:") {
@@ -198,7 +198,7 @@ func RawSecrets(cid string) []entity.SecretStored {
 	})
 
 	if result == nil {
-		return []entity.SecretStored{}
+		return []data2.SecretStored{}
 	}
 
 	return result
@@ -208,12 +208,12 @@ func RawSecrets(cid string) []entity.SecretStored {
 // object if the secret exists in the in-memory store. If the secret is not
 // found in memory, it attempts to read it from disk, store it in memory, and
 // return it. If the secret is not found on disk, it returns nil.
-func ReadSecret(cid string, key string) (*entity.SecretStored, error) {
+func ReadSecret(cid string, key string) (*data2.SecretStored, error) {
 	log.TraceLn(&cid, "ReadSecret:begin")
 
 	result, secretFoundInMemory := Secrets.Load(key)
 	if secretFoundInMemory {
-		s := result.(entity.SecretStored)
+		s := result.(data2.SecretStored)
 		log.TraceLn(&cid,
 			"ReadSecret: returning from memory.", "len", len(s.Value))
 
@@ -223,9 +223,9 @@ func ReadSecret(cid string, key string) (*entity.SecretStored, error) {
 	store := env.BackingStoreForSafe()
 
 	switch store {
-	case entity.File:
+	case data2.File:
 		log.TraceLn(&cid, "will read from file store.")
-	case entity.Postgres:
+	case data2.Postgres:
 		log.WarnLn(&cid, "TODO: fetch from postgres store")
 		return nil, nil
 	}

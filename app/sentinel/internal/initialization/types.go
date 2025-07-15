@@ -12,12 +12,11 @@ package initialization
 
 import (
 	"context"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"os"
 	"time"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // TODO: some of these type may need to go to a common package

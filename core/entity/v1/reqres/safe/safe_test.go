@@ -12,12 +12,12 @@ package safe
 
 import (
 	"encoding/json"
+	"github.com/vmware/secrets-manager/v2/core/constants/crypto"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"reflect"
 	"testing"
 	"time"
 
-	"github.com/vmware/secrets-manager/core/constants/crypto"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
 	"github.com/vmware/secrets-manager/lib/entity"
 )
 

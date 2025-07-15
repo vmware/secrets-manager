@@ -11,15 +11,14 @@
 package handle
 
 import (
+	routeDelete "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/delete"
+	routeFallback "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/fallback"
+	routeFetch "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/fetch"
+	routeList "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/list"
+	routeReceive "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/receive"
+	routeSecret "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/secret"
+	"github.com/vmware/secrets-manager/v2/core/constants/url"
 	"net/http"
-
-	routeDelete "github.com/vmware/secrets-manager/app/safe/internal/server/route/delete"
-	routeFallback "github.com/vmware/secrets-manager/app/safe/internal/server/route/fallback"
-	routeFetch "github.com/vmware/secrets-manager/app/safe/internal/server/route/fetch"
-	routeList "github.com/vmware/secrets-manager/app/safe/internal/server/route/list"
-	routeReceive "github.com/vmware/secrets-manager/app/safe/internal/server/route/receive"
-	routeSecret "github.com/vmware/secrets-manager/app/safe/internal/server/route/secret"
-	"github.com/vmware/secrets-manager/core/constants/url"
 )
 
 type handler func(string, *http.Request, http.ResponseWriter)

@@ -12,21 +12,21 @@ package fetch
 
 import (
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/extract"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/handle"
+	rv "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/collection"
+	"github.com/vmware/secrets-manager/v2/core/audit/journal"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	data2 "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	reqres "github.com/vmware/secrets-manager/v2/core/entity/v1/reqres/safe"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
+	"github.com/vmware/secrets-manager/v2/core/validation"
 	"io"
 	"net/http"
 	"time"
 
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/extract"
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/handle"
-	rv "github.com/vmware/secrets-manager/app/safe/internal/server/route/base/validation"
-	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/collection"
-	"github.com/vmware/secrets-manager/core/audit/journal"
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	reqres "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/core/validation"
 	s "github.com/vmware/secrets-manager/lib/spiffe"
 )
 
@@ -66,7 +66,7 @@ func Fetch(
 		return
 	}
 
-	j := data.JournalEntry{
+	j := data2.JournalEntry{
 		CorrelationId: cid,
 		Method:        r.Method,
 		Url:           r.RequestURI,
@@ -99,7 +99,7 @@ func Fetch(
 		return
 	}
 
-	var secrets []data.SecretStored
+	var secrets []data2.SecretStored
 
 	if workloadId == "vsecm-scout" {
 		secrets = collection.RawSecrets(cid)

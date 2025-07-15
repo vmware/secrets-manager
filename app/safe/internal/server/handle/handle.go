@@ -11,14 +11,14 @@
 package handle
 
 import (
+	routeFallback "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/fallback"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
+	"github.com/vmware/secrets-manager/v2/core/validation"
 	"net/http"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	routeFallback "github.com/vmware/secrets-manager/app/safe/internal/server/route/fallback"
-	"github.com/vmware/secrets-manager/core/crypto"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/core/validation"
 	s "github.com/vmware/secrets-manager/lib/spiffe"
 )
 

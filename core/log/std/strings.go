@@ -11,12 +11,11 @@
 package std
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/symbol"
 	"strings"
 
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
-
-	"github.com/vmware/secrets-manager/core/constants/symbol"
 )
 
 // toCustomCase formats a string to a custom case, replacing underscores

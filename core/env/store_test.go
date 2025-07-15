@@ -11,10 +11,9 @@
 package env
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"os"
 	"testing"
-
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 func TestRootKeyStoreTypeForSafe(t *testing.T) {

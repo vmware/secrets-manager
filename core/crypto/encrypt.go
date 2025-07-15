@@ -19,13 +19,12 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/env"
 	"io"
 	"math"
 	"time"
 
 	"filippo.io/age"
-
-	"github.com/vmware/secrets-manager/core/env"
 )
 
 // EncryptValue takes a string value and returns an encrypted and base64-encoded

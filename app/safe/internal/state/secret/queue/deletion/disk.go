@@ -11,22 +11,21 @@
 package deletion
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/file"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	env2 "github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"os"
 	"path"
-
-	"github.com/vmware/secrets-manager/core/constants/file"
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // SecretDeleteQueue items are persisted to files. They are buffered, so that
 // they can be written in the order they are queued and there are no concurrent
 // writes to the same file at a time.
 var SecretDeleteQueue = make(
-	chan entity.SecretStored,
-	env.SecretDeleteBufferSizeForSafe(),
+	chan data.SecretStored,
+	env2.SecretDeleteBufferSizeForSafe(),
 )
 
 // ProcessSecretBackingStoreQueue continuously processes a queue of secrets
@@ -51,7 +50,7 @@ func ProcessSecretBackingStoreQueue() {
 
 	for {
 		// Buffer overflow check.
-		if len(SecretDeleteQueue) == env.SecretBufferSizeForSafe() {
+		if len(SecretDeleteQueue) == env2.SecretBufferSizeForSafe() {
 			log.ErrorLn(
 				&cid,
 				"processSecretDeleteQueue: "+
@@ -63,22 +62,22 @@ func ProcessSecretBackingStoreQueue() {
 		// Get a secret to be removed from the disk.
 		secret := <-SecretDeleteQueue
 
-		store := env.BackingStoreForSafe()
+		store := env2.BackingStoreForSafe()
 		switch store {
-		case entity.Memory:
+		case data.Memory:
 			log.TraceLn(&cid, "ProcessSecretQueue: using in-memory store.")
 			return
-		case entity.File:
+		case data.File:
 			log.TraceLn(&cid, "ProcessSecretQueue: Will delete secret from disk.")
-		case entity.Kubernetes:
+		case data.Kubernetes:
 			panic("implement kubernetes store")
-		case entity.AwsSecretStore:
+		case data.AwsSecretStore:
 			panic("implement aws secret store")
-		case entity.AzureSecretStore:
+		case data.AzureSecretStore:
 			panic("implement azure secret store")
-		case entity.GcpSecretStore:
+		case data.GcpSecretStore:
 			panic("implement gcp secret store")
-		case entity.Postgres:
+		case data.Postgres:
 			log.WarnLn(&cid, "Delete operation has not been implemented for postgres backing store yet.")
 			return
 		}
@@ -94,7 +93,7 @@ func ProcessSecretBackingStoreQueue() {
 			"processSecretDeleteQueue: picked a secret", len(SecretDeleteQueue))
 
 		// Remove secret from disk.
-		dataPath := path.Join(env.DataPathForSafe(), secret.Name+file.AgeExtension)
+		dataPath := path.Join(env2.DataPathForSafe(), secret.Name+file.AgeExtension)
 		log.TraceLn(&cid,
 			"processSecretDeleteQueue: removing secret from disk:", dataPath)
 		err := os.Remove(dataPath)

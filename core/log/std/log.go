@@ -12,7 +12,9 @@
 // log levels.
 package std
 
-import "github.com/vmware/secrets-manager/core/log/level"
+import (
+	"github.com/vmware/secrets-manager/v2/core/log/level"
+)
 
 // FatalLn logs a fatal level message and exits.
 func FatalLn(correlationID *string, v ...any) {

@@ -12,13 +12,12 @@ package rpc
 
 import (
 	"context"
+	generated2 "github.com/vmware/secrets-manager/v2/core/log/rpc/generated"
 	stdlib "log"
 	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-
-	"github.com/vmware/secrets-manager/core/log/rpc/generated"
 )
 
 func log(message string) {
@@ -39,12 +38,12 @@ func log(message string) {
 		}
 	}(conn)
 
-	c := generated.NewLogServiceClient(conn)
+	c := generated2.NewLogServiceClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	_, err = c.SendLog(ctx, &generated.LogRequest{Message: message})
+	_, err = c.SendLog(ctx, &generated2.LogRequest{Message: message})
 	if err != nil {
 		stdlib.Printf("Logger.log could not send message: %v\n", err)
 		return

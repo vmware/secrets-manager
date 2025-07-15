@@ -12,24 +12,24 @@ package main
 
 import (
 	"context"
+	"github.com/vmware/secrets-manager/v2/app/sentinel/internal/initialization"
+	e "github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	"github.com/vmware/secrets-manager/v2/core/log/rpc"
+	"github.com/vmware/secrets-manager/v2/core/log/std"
+	"github.com/vmware/secrets-manager/v2/core/probe"
 
-	"github.com/vmware/secrets-manager/app/sentinel/internal/initialization"
 	"github.com/vmware/secrets-manager/app/sentinel/internal/oidc/server"
-	e "github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/constants/key"
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/env"
-	"github.com/vmware/secrets-manager/core/log/rpc"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/core/probe"
-	"github.com/vmware/secrets-manager/lib/system"
+	"github.com/vmware/secrets-manager/v2/lib/system"
 )
 
 func main() {
 	id := crypto.Id()
 
 	//Print the diagnostic information about the environment.
-	log.PrintEnvironmentInfo(&id, []string{
+	std.PrintEnvironmentInfo(&id, []string{
 		string(e.AppVersion),
 		string(e.VSecMLogLevel),
 	})
@@ -37,17 +37,17 @@ func main() {
 	<-probe.CreateLiveness()
 	go rpc.CreateLogServer()
 
-	log.InfoLn(&id, "Executing the initialization commands (if any)")
+	std.InfoLn(&id, "Executing the initialization commands (if any)")
 
 	ctx := context.WithValue(context.Background(),
 		key.CorrelationId, &id)
 
-	log.TraceLn(&id, "before RunInitCommands")
+	std.TraceLn(&id, "before RunInitCommands")
 
 	// Create the Initializer with all dependencies and run init commands
 	initialization.NewDefaultInitializer().RunInitCommands(ctx)
 
-	log.InfoLn(&id, "Initialization commands executed successfully")
+	std.InfoLn(&id, "Initialization commands executed successfully")
 
 	if env.SentinelEnableOIDCResourceServer() {
 		go server.Serve()

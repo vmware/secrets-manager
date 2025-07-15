@@ -11,13 +11,12 @@
 package backoff
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"math"
 	"math/rand"
 	"time"
-
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Strategy is a configuration for the backoff strategy to use when retrying

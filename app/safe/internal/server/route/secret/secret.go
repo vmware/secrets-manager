@@ -11,23 +11,23 @@
 package secret
 
 import (
+	http2 "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/http"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/json"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/state"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
+	ioState "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/v2/core/audit/journal"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/constants/val"
+	crypto2 "github.com/vmware/secrets-manager/v2/core/crypto"
+	data2 "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"net/http"
 	"strings"
 	"time"
 
-	net "github.com/vmware/secrets-manager/app/safe/internal/server/route/base/http"
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/json"
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/state"
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/validation"
-	ioState "github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/core/audit/journal"
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	"github.com/vmware/secrets-manager/core/constants/val"
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 	data "github.com/vmware/secrets-manager/lib/entity"
 	s "github.com/vmware/secrets-manager/lib/spiffe"
 )
@@ -55,7 +55,7 @@ func Secret(cid string, r *http.Request, w http.ResponseWriter) {
 		return
 	}
 
-	if !crypto.RootKeySetInMemory() {
+	if !crypto2.RootKeySetInMemory() {
 		w.WriteHeader(http.StatusBadRequest)
 		_, err := io.WriteString(w, val.NotOk)
 		if err != nil {
@@ -81,7 +81,7 @@ func Secret(cid string, r *http.Request, w http.ResponseWriter) {
 
 	log.DebugLn(&cid, "Secret: sentinel spiffeid:", spiffeid)
 
-	body, _ := net.ReadBody(cid, r)
+	body, _ := http2.ReadBody(cid, r)
 	if body == nil {
 		j.Event = audit.BadPayload
 		journal.Log(j)
@@ -127,7 +127,7 @@ func Secret(cid string, r *http.Request, w http.ResponseWriter) {
 		log.TraceLn(&cid, "Secret: workloadIds is empty or not vsecm-safe")
 
 		// If postgres mode enabled and db is not initialized, return error.
-		if env.BackingStoreForSafe() == entity.Postgres && !ioState.PostgresReady() {
+		if env.BackingStoreForSafe() == data2.Postgres && !ioState.PostgresReady() {
 			w.WriteHeader(http.StatusServiceUnavailable)
 			_, err := io.WriteString(w, val.NotOk)
 			if err != nil {
@@ -148,7 +148,7 @@ func Secret(cid string, r *http.Request, w http.ResponseWriter) {
 			respond(w)
 		}
 
-		net.SendEncryptedValue(cid, value, j, w)
+		http2.SendEncryptedValue(cid, value, j, w)
 
 		return
 	}
@@ -175,7 +175,7 @@ func Secret(cid string, r *http.Request, w http.ResponseWriter) {
 	if encrypt {
 		log.TraceLn(&cid, "Secret: Value is encrypted")
 
-		decrypted, err := crypto.DecryptValue(value)
+		decrypted, err := crypto2.DecryptValue(value)
 
 		// If decryption failed, return an error response.
 		if err != nil {
@@ -242,9 +242,9 @@ func Secret(cid string, r *http.Request, w http.ResponseWriter) {
 			continue
 		}
 
-		secretToStore := entity.SecretStored{
+		secretToStore := data2.SecretStored{
 			Name: workloadId,
-			Meta: entity.SecretMeta{
+			Meta: data2.SecretMeta{
 				Namespaces:    namespaces,
 				Template:      template,
 				Format:        format,

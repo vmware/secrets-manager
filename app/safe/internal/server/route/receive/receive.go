@@ -11,19 +11,19 @@
 package receive
 
 import (
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/bootstrap"
+	httq "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/http"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/json"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
+	"github.com/vmware/secrets-manager/v2/core/audit/journal"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"net/http"
 	"strings"
 
-	"github.com/vmware/secrets-manager/app/safe/internal/bootstrap"
-	httq "github.com/vmware/secrets-manager/app/safe/internal/server/route/base/http"
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/json"
-	"github.com/vmware/secrets-manager/app/safe/internal/server/route/base/validation"
-	"github.com/vmware/secrets-manager/core/audit/journal"
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware/secrets-manager/core/log/std"
 	s "github.com/vmware/secrets-manager/lib/spiffe"
 )
 

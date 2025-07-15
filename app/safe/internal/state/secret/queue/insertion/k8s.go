@@ -11,11 +11,11 @@
 package insertion
 
 import (
-	"github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 )
 
 // K8sSecretUpsertQueue has the secrets to be synced with their Kubernetes

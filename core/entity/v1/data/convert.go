@@ -14,11 +14,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
+	tpl "github.com/vmware/secrets-manager/v2/core/template"
 	"strings"
 	"text/template"
-
-	"github.com/vmware/secrets-manager/core/constants/key"
-	tpl "github.com/vmware/secrets-manager/core/template"
 )
 
 // convertMapToStringBytes converts a map[string]string into a map[string][]byte,

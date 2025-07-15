@@ -13,10 +13,9 @@ package io
 import (
 	"encoding/json"
 	"errors"
-	"github.com/vmware/secrets-manager/core/env"
-
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
 )
 
 // ReadFromDisk retrieves and decrypts a secret stored on disk, identified by
@@ -36,8 +35,8 @@ import (
 //     occurs during the process, a nil pointer and an error object are
 //     returned. The error provides context about the nature of the failure,
 //     such as issues with decryption or data deserialization.
-func ReadFromDisk(key string) (*entity.SecretStored, error) {
-	if env.BackingStoreForSafe() != entity.File {
+func ReadFromDisk(key string) (*data.SecretStored, error) {
+	if env.BackingStoreForSafe() != data.File {
 		panic("Attempted to read from disk when backing store is not file")
 	}
 
@@ -49,7 +48,7 @@ func ReadFromDisk(key string) (*entity.SecretStored, error) {
 		)
 	}
 
-	var secret entity.SecretStored
+	var secret data.SecretStored
 	err = json.Unmarshal(contents, &secret)
 	if err != nil {
 		return nil, errors.Join(

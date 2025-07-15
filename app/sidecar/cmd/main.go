@@ -13,24 +13,24 @@ package main
 import (
 	"fmt"
 	"github.com/spiffe/vsecm-sdk-go/sentry"
-	"github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/crypto"
-	env3 "github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/lib/system"
+	"github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	env3 "github.com/vmware/secrets-manager/v2/core/env"
+	"github.com/vmware/secrets-manager/v2/core/log/std"
+	"github.com/vmware/secrets-manager/v2/lib/system"
 	"os"
 )
 
 func main() {
 	id := crypto.Id()
-	log.InfoLn(&id, "Starting VSecM Sidecar")
+	std.InfoLn(&id, "Starting VSecM Sidecar")
 
 	//Print the diagnostic information about the environment.
 	envVarsToPrint := []string{
 		string(env.AppVersion),
 		string(env.VSecMLogLevel),
 	}
-	log.PrintEnvironmentInfo(&id, envVarsToPrint)
+	std.PrintEnvironmentInfo(&id, envVarsToPrint)
 
 	fmt.Println("-----")
 	fmt.Println("Environment info", env3.PollIntervalForSidecar())

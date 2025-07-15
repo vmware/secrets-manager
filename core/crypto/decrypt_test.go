@@ -13,14 +13,13 @@ package crypto
 import (
 	"encoding/base64"
 	"encoding/hex"
+	"github.com/vmware/secrets-manager/v2/core/constants/crypto"
+	"github.com/vmware/secrets-manager/v2/core/constants/env"
 	"os"
 	"path"
 	"reflect"
 	"strings"
 	"testing"
-
-	"github.com/vmware/secrets-manager/core/constants/crypto"
-	"github.com/vmware/secrets-manager/core/constants/env"
 )
 
 func TestDecryptValue(t *testing.T) {

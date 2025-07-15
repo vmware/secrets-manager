@@ -5,16 +5,15 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
+	io2 "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/stats"
+	f "github.com/vmware/secrets-manager/v2/core/constants/file"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"os"
 	"strings"
-
-	"github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/app/safe/internal/state/stats"
-	f "github.com/vmware/secrets-manager/core/constants/file"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 func populateSecretsFromFileStore(cid string) error {
@@ -44,7 +43,7 @@ func populateSecretsFromFileStore(cid string) error {
 			continue
 		}
 
-		secretOnDisk, err := io.ReadFromDisk(key)
+		secretOnDisk, err := io2.ReadFromDisk(key)
 		if err != nil {
 			log.ErrorLn(&cid,
 				"populateSecrets: problem reading secret from disk:",
@@ -61,11 +60,11 @@ func populateSecretsFromFileStore(cid string) error {
 }
 
 func populateSecretsFromPostgresqlDb(cid string) error {
-	if !io.PostgresReady() {
+	if !io2.PostgresReady() {
 		return errors.New("populateSecretsFromPostgresqlDb: Database connection is not ready")
 	}
 
-	pg := io.DB()
+	pg := io2.DB()
 
 	rows, err := pg.Query(`SELECT name, data FROM "vsecm-secrets"`)
 	if err != nil {

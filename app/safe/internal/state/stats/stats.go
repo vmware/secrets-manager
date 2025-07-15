@@ -11,10 +11,9 @@
 package stats
 
 import (
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/queue/insertion"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"sync"
-
-	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/insertion"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // CurrentState is a global Status object that represents the current state of

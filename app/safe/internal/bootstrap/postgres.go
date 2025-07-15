@@ -3,11 +3,10 @@ package bootstrap
 import (
 	"context"
 	"encoding/json"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/collection"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"time"
-
-	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/collection"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // PollForConfig continuously polls for the VSecM Safe internal configuration.

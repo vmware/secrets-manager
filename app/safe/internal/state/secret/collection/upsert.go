@@ -11,14 +11,13 @@
 package collection
 
 import (
+	insertion2 "github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/queue/insertion"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/stats"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"strings"
 	"time"
-
-	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/queue/insertion"
-	"github.com/vmware/secrets-manager/app/safe/internal/state/stats"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // UpsertSecret takes an entity.SecretStored object and inserts it into
@@ -73,18 +72,18 @@ func UpsertSecret(secretStored entity.SecretStored) {
 
 	log.TraceLn(
 		&cid, "UpsertSecret: Will push secret. len",
-		len(insertion.SecretUpsertQueue),
-		"cap", cap(insertion.SecretUpsertQueue))
+		len(insertion2.SecretUpsertQueue),
+		"cap", cap(insertion2.SecretUpsertQueue))
 
 	// The insertion queue will add the secret to the backing store.
 	// The backing store is determined by the env.BackingStoreForSafe()
 	// function.
-	insertion.SecretUpsertQueue <- secretStored
+	insertion2.SecretUpsertQueue <- secretStored
 
 	log.TraceLn(
 		&cid, "UpsertSecret: Pushed secret. len",
-		len(insertion.SecretUpsertQueue), "cap",
-		cap(insertion.SecretUpsertQueue))
+		len(insertion2.SecretUpsertQueue), "cap",
+		cap(insertion2.SecretUpsertQueue))
 
 	// A "raw" secret cannot be queried by regular workloads, you will need a
 	// special Kubernetes Operator to access it.
@@ -103,17 +102,17 @@ func UpsertSecret(secretStored entity.SecretStored) {
 		log.TraceLn(
 			&cid,
 			"UpsertSecret: will push Kubernetes secret. len",
-			len(insertion.K8sSecretUpsertQueue),
-			"cap", cap(insertion.K8sSecretUpsertQueue),
+			len(insertion2.K8sSecretUpsertQueue),
+			"cap", cap(insertion2.K8sSecretUpsertQueue),
 		)
 
-		insertion.K8sSecretUpsertQueue <- secretStored
+		insertion2.K8sSecretUpsertQueue <- secretStored
 
 		log.TraceLn(
 			&cid,
 			"UpsertSecret: pushed Kubernetes secret. len",
-			len(insertion.K8sSecretUpsertQueue),
-			"cap", cap(insertion.K8sSecretUpsertQueue),
+			len(insertion2.K8sSecretUpsertQueue),
+			"cap", cap(insertion2.K8sSecretUpsertQueue),
 		)
 	}
 }

@@ -11,10 +11,9 @@
 package http
 
 import (
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"net/http"
-
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // ReadBody reads the body from an HTTP request and returns it as a byte slice.

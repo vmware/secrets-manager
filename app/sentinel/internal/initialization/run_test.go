@@ -13,10 +13,9 @@ package initialization
 import (
 	"context"
 	"errors"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
 	"testing"
 	"time"
-
-	"github.com/vmware/secrets-manager/core/constants/key"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 	"github.com/stretchr/testify/assert"

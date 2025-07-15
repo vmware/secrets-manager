@@ -11,7 +11,7 @@
 package data
 
 import (
-	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
 )
 
 // JournalEntry represents a single entry in the audit journal.

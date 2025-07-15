@@ -11,10 +11,9 @@
 package journal
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"net/http"
-
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // Log prints an audit log entry to the standard output. The log entry includes

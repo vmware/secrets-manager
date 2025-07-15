@@ -13,6 +13,7 @@ package rpc
 import (
 	"context"
 	"fmt"
+	generated2 "github.com/vmware/secrets-manager/v2/core/log/rpc/generated"
 	"net"
 	"os"
 	"strings"
@@ -20,21 +21,19 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
-
-	"github.com/vmware/secrets-manager/core/log/rpc/generated"
 )
 
 var cid = "test-correlation-id"
 
 type MockLogServiceServer struct {
-	generated.UnimplementedLogServiceServer
+	generated2.UnimplementedLogServiceServer
 	ReceivedMessage string
 }
 
 func (s *MockLogServiceServer) SendLog(ctx context.Context,
-	in *generated.LogRequest) (*generated.LogResponse, error) {
+	in *generated2.LogRequest) (*generated2.LogResponse, error) {
 	s.ReceivedMessage = in.Message
-	return &generated.LogResponse{}, nil
+	return &generated2.LogResponse{}, nil
 }
 
 func TestCreateLogServer(t *testing.T) {
@@ -59,7 +58,7 @@ func TestCreateLogServer(t *testing.T) {
 func TestSendLogMessage(t *testing.T) {
 	server := &MockLogServiceServer{}
 	grpcServer := grpc.NewServer()
-	generated.RegisterLogServiceServer(grpcServer, server)
+	generated2.RegisterLogServiceServer(grpcServer, server)
 
 	lis, err := net.Listen("tcp", ":0")
 	if err != nil {
@@ -122,7 +121,7 @@ func TestSendLogMessage(t *testing.T) {
 
 func TestLogServiceSendLog(t *testing.T) {
 	// Define a mock LogRequest
-	mockRequest := &generated.LogRequest{
+	mockRequest := &generated2.LogRequest{
 		Message: "Test log message",
 	}
 
@@ -142,7 +141,7 @@ func TestLogServiceSendLog(t *testing.T) {
 	_ = os.Setenv("VSECM_SENTINEL_LOGGER_URL", lis.Addr().String())
 
 	grpcServer := grpc.NewServer()
-	generated.RegisterLogServiceServer(grpcServer, server)
+	generated2.RegisterLogServiceServer(grpcServer, server)
 
 	go func() {
 		if err := grpcServer.Serve(lis); err != nil {
@@ -163,7 +162,7 @@ func TestLogServiceSendLog(t *testing.T) {
 			fmt.Println(err.Error())
 		}
 	}(conn)
-	client := generated.NewLogServiceClient(conn)
+	client := generated2.NewLogServiceClient(conn)
 
 	// Call the SendLog method of the LogServiceServer
 	response, err := client.SendLog(context.Background(), mockRequest)

@@ -11,11 +11,10 @@
 package env
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/env"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/vmware/secrets-manager/core/constants/env"
 )
 
 // Redefine some constants to avoid import cycle.

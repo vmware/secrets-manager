@@ -12,25 +12,25 @@ package main
 
 import (
 	"github.com/spiffe/vsecm-sdk-go/startup"
+	e "github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	"github.com/vmware/secrets-manager/v2/core/log/std"
 
-	e "github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/lib/system"
+	"github.com/vmware/secrets-manager/v2/lib/system"
 )
 
 func main() {
 	id := crypto.Id()
 
 	//Print the diagnostic information about the environment.
-	log.PrintEnvironmentInfo(&id, []string{
+	std.PrintEnvironmentInfo(&id, []string{
 		string(e.AppVersion),
 		string(e.VSecMLogLevel),
 		string(e.VSecMSafeEndpointUrl),
 	})
 
-	log.InfoLn(&id, "Starting VSecM Init Container")
+	std.InfoLn(&id, "Starting VSecM Init Container")
 
 	// Wait for a specified duration before exiting the init container.
 	// This can be useful when you want things to reconcile before

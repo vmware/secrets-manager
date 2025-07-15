@@ -13,15 +13,14 @@ package engine
 import (
 	"errors"
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/handle"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	"github.com/vmware/secrets-manager/v2/core/validation"
 	"net/http"
 
 	"github.com/spiffe/go-spiffe/v2/spiffeid"
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-
-	"github.com/vmware/secrets-manager/app/safe/internal/server/handle"
-	"github.com/vmware/secrets-manager/core/env"
-	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // Serve initializes and starts an mTLS-secured HTTP server using the given

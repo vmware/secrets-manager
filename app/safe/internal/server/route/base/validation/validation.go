@@ -11,17 +11,16 @@
 package validation
 
 import (
+	ioState "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/v2/core/audit/journal"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/constants/val"
+	data2 "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
+	"github.com/vmware/secrets-manager/v2/core/validation"
 	"io"
 	"net/http"
-
-	ioState "github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/core/audit/journal"
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	"github.com/vmware/secrets-manager/core/constants/val"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // IsSentinel evaluates if a given SPIFFE ID corresponds to a VSecM Sentinel
@@ -48,7 +47,7 @@ import (
 // critical for further processing steps, and appropriate HTTP response behavior
 // needs to be enforced based on the validation results.
 func IsSentinel(
-	j data.JournalEntry, cid string, spiffeid string,
+	j data2.JournalEntry, cid string, spiffeid string,
 ) (bool, func(http.ResponseWriter)) {
 	journal.Log(j)
 
@@ -71,7 +70,7 @@ func IsSentinel(
 }
 
 func IsClerk(
-	j data.JournalEntry, cid string, spiffeid string,
+	j data2.JournalEntry, cid string, spiffeid string,
 ) (bool, func(http.ResponseWriter)) {
 	journal.Log(j)
 
@@ -94,7 +93,7 @@ func IsClerk(
 }
 
 func IsSentinelOrScout(
-	j data.JournalEntry, cid string, spiffeid string,
+	j data2.JournalEntry, cid string, spiffeid string,
 ) (bool, func(http.ResponseWriter)) {
 	journal.Log(j)
 
@@ -140,7 +139,7 @@ func IsSentinelOrScout(
 func CheckDatabaseReadiness(cid string, w http.ResponseWriter) bool {
 
 	// If postgres mode enabled and db is not initialized, return error.
-	if env.BackingStoreForSafe() == data.Postgres && !ioState.PostgresReady() {
+	if env.BackingStoreForSafe() == data2.Postgres && !ioState.PostgresReady() {
 		w.WriteHeader(http.StatusServiceUnavailable)
 		_, err := io.WriteString(w, val.NotOk)
 		if err != nil {

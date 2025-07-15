@@ -13,13 +13,12 @@ package io
 import (
 	"encoding/json"
 	"errors"
+	crypto2 "github.com/vmware/secrets-manager/v2/core/crypto"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"os"
 	"sync"
-
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 var lastBackedUpIndex = make(map[string]int)
@@ -47,10 +46,10 @@ func saveSecretToDisk(secret entity.SecretStored, dataPath string) error {
 	defer func(f io.ReadCloser) {
 		err := f.Close()
 		if err != nil {
-			id := crypto.Id()
+			id := crypto2.Id()
 			log.InfoLn(&id, "saveSecretToDisk: problem closing file", err.Error())
 		}
 	}(file)
 
-	return crypto.EncryptToWriterAes(file, string(data))
+	return crypto2.EncryptToWriterAes(file, string(data))
 }

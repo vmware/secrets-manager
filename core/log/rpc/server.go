@@ -13,19 +13,18 @@ package rpc
 import (
 	"context"
 	"fmt"
+	generated2 "github.com/vmware/secrets-manager/v2/core/log/rpc/generated"
 	stdlib "log"
 	"net"
 
 	"google.golang.org/grpc"
-
-	"github.com/vmware/secrets-manager/core/log/rpc/generated"
 )
 
 // server struct implements the UnimplementedLogServiceServer interface generated
 // by gRPC. It provides the functionality to handle log messages sent over gRPC
 // by implementing the SendLog method.
 type server struct {
-	generated.UnimplementedLogServiceServer
+	generated2.UnimplementedLogServiceServer
 }
 
 // SendLog prints the log message contained in the request to the standard output.
@@ -42,10 +41,10 @@ type server struct {
 //   - (*generated.LogResponse, error): Returns an empty LogResponse and nil
 //     error as the operation is expected to succeed without any conditional
 //     logic.
-func (s *server) SendLog(ctx context.Context, in *generated.LogRequest,
-) (*generated.LogResponse, error) {
+func (s *server) SendLog(ctx context.Context, in *generated2.LogRequest,
+) (*generated2.LogResponse, error) {
 	fmt.Printf("%s", in.Message)
-	return &generated.LogResponse{}, nil
+	return &generated2.LogResponse{}, nil
 }
 
 // CreateLogServer initializes and starts a gRPC server for logging services.
@@ -78,7 +77,7 @@ func CreateLogServer() *grpc.Server {
 	}
 	s := grpc.NewServer()
 
-	generated.RegisterLogServiceServer(s, &server{})
+	generated2.RegisterLogServiceServer(s, &server{})
 
 	stdlib.Printf("Logger.CreateLogServer listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {

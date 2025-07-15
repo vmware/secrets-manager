@@ -11,7 +11,7 @@
 package safe
 
 import (
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 )
 
 func decideSecretFormat(format string) data.SecretFormat {

@@ -11,14 +11,14 @@
 package io
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/file"
+	"github.com/vmware/secrets-manager/v2/core/constants/symbol"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	env2 "github.com/vmware/secrets-manager/v2/core/env"
 	"math"
 	"path"
 	"strconv"
 
-	"github.com/vmware/secrets-manager/core/constants/file"
-	"github.com/vmware/secrets-manager/core/constants/symbol"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
 	"github.com/vmware/secrets-manager/lib/backoff"
 )
 
@@ -33,15 +33,15 @@ import (
 //   - errChan (chan<- error): A channel through which errors are reported. This
 //     channel allows the function to operate asynchronously, notifying the
 //     caller of any issues in the process of persisting the secret.
-func PersistToDisk(secret entity.SecretStored, errChan chan<- error) {
-	if env.BackingStoreForSafe() != entity.File {
+func PersistToDisk(secret data.SecretStored, errChan chan<- error) {
+	if env2.BackingStoreForSafe() != data.File {
 		panic("Attempted to save to disk when backing store is not file")
 	}
 
-	backupCount := env.SecretBackupCountForSafe()
+	backupCount := env2.SecretBackupCountForSafe()
 
 	// Save the secret
-	dataPath := path.Join(env.DataPathForSafe(), secret.Name+file.AgeExtension)
+	dataPath := path.Join(env2.DataPathForSafe(), secret.Name+file.AgeExtension)
 
 	err := backoff.RetryExponential("PersistToDisk", func() error {
 		return saveSecretToDisk(secret, dataPath)
@@ -65,7 +65,7 @@ func PersistToDisk(secret entity.SecretStored, errChan chan<- error) {
 
 	// Save a copy
 	dataPath = path.Join(
-		env.DataPathForSafe(),
+		env2.DataPathForSafe(),
 		secret.Name+symbol.FileNameSectionDelimiter+
 			strconv.Itoa(int(newIndex))+
 			symbol.FileNameSectionDelimiter+file.AgeBackupExtension,

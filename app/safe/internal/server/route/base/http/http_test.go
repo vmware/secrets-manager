@@ -13,6 +13,7 @@ package http_test
 import (
 	"bytes"
 	"errors"
+	http_vmware "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/http"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -20,7 +21,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	http_vmware "github.com/vmware/secrets-manager/app/safe/internal/server/route/base/http" // Replace with the actual path to the `http` package
 )
 
 func TestReadBody_Success(t *testing.T) {

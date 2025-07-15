@@ -12,10 +12,9 @@ package std
 
 import (
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/log/level"
 	"log"
 	"strings"
-
-	"github.com/vmware/secrets-manager/core/log/level"
 )
 
 // getMaxEnvVarLength finds the maximum length of environment

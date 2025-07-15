@@ -13,14 +13,14 @@ package initialization
 import (
 	"context"
 	"github.com/agiledragon/gomonkey/v2"
-	"github.com/vmware/secrets-manager/core/env"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
 	"os"
 	"testing"
 	"time"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 	"github.com/stretchr/testify/mock"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // MockFileOpener mocks the FileOpener interface

@@ -12,8 +12,7 @@ package cli
 
 import (
 	"github.com/akamensky/argparse"
-
-	"github.com/vmware/secrets-manager/core/constants/sentinel"
+	"github.com/vmware/secrets-manager/v2/core/constants/sentinel"
 )
 
 // ParseList adds a flag to the parser for listing all registered workloads.

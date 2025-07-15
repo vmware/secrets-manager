@@ -12,14 +12,13 @@ package handle
 
 import (
 	"encoding/json"
+	"github.com/vmware/secrets-manager/v2/core/audit/journal"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	reqres "github.com/vmware/secrets-manager/v2/core/entity/v1/reqres/safe"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"net/http"
-
-	"github.com/vmware/secrets-manager/core/audit/journal"
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	reqres "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // BadSvidResponse logs an event for a bad SPIFFE ID and sends an HTTP 400 Bad

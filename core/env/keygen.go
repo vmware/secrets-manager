@@ -11,8 +11,8 @@
 package env
 
 import (
-	"github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/constants/val"
+	"github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/constants/val"
 )
 
 // RootKeyPathForKeyGen returns the root key path. Root key is used to decrypt

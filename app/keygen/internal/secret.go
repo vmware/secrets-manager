@@ -12,11 +12,10 @@ package internal
 
 import (
 	"encoding/json"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/reqres/safe"
+	"github.com/vmware/secrets-manager/v2/core/env"
 	"log"
 	"os"
-
-	entity "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
-	"github.com/vmware/secrets-manager/core/env"
 )
 
 func secrets() entity.SecretEncryptedListResponse {

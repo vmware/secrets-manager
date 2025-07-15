@@ -11,10 +11,9 @@
 package template
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/symbol"
+	"github.com/vmware/secrets-manager/v2/core/constants/val"
 	"strings"
-
-	"github.com/vmware/secrets-manager/core/constants/symbol"
-	"github.com/vmware/secrets-manager/core/constants/val"
 )
 
 // removeKeyValueWithNoValue takes an input string containing key-value pairs

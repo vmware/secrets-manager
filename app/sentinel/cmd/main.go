@@ -13,19 +13,18 @@ package main
 import (
 	"context"
 	"fmt"
+	cli2 "github.com/vmware/secrets-manager/v2/app/sentinel/internal/cli"
+	safe2 "github.com/vmware/secrets-manager/v2/app/sentinel/internal/safe"
+	"github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
+	"github.com/vmware/secrets-manager/v2/core/constants/sentinel"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"os"
 	"os/signal"
 	"syscall"
 
 	"github.com/akamensky/argparse"
-
-	"github.com/vmware/secrets-manager/app/sentinel/internal/cli"
-	"github.com/vmware/secrets-manager/app/sentinel/internal/safe"
-	"github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/constants/key"
-	"github.com/vmware/secrets-manager/core/constants/sentinel"
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 func main() {
@@ -54,29 +53,29 @@ func main() {
 		}
 	}()
 
-	list := cli.ParseList(parser)
-	deleteSecret := cli.ParseDeleteSecret(parser)
-	namespaces := cli.ParseNamespaces(parser)
-	inputKeys := cli.ParseInputKeys(parser)
-	workloadIds := cli.ParseWorkload(parser)
-	secret := cli.ParseSecret(parser)
-	template := cli.ParseTemplate(parser)
-	format := cli.ParseFormat(parser)
-	encrypt := cli.ParseEncrypt(parser)
-	notBefore := cli.ParseNotBefore(parser)
-	expires := cli.ParseExpires(parser)
+	list := cli2.ParseList(parser)
+	deleteSecret := cli2.ParseDeleteSecret(parser)
+	namespaces := cli2.ParseNamespaces(parser)
+	inputKeys := cli2.ParseInputKeys(parser)
+	workloadIds := cli2.ParseWorkload(parser)
+	secret := cli2.ParseSecret(parser)
+	template := cli2.ParseTemplate(parser)
+	format := cli2.ParseFormat(parser)
+	encrypt := cli2.ParseEncrypt(parser)
+	notBefore := cli2.ParseNotBefore(parser)
+	expires := cli2.ParseExpires(parser)
 
 	err := parser.Parse(os.Args)
 	if err != nil {
 		fmt.Println(err.Error())
 		fmt.Println()
-		cli.PrintUsage(parser)
+		cli2.PrintUsage(parser)
 		return
 	}
 
 	if *list {
 		if *encrypt {
-			err = safe.Get(ctx, true)
+			err = safe2.Get(ctx, true)
 			if err != nil {
 				fmt.Println("Error getting from VSecM Safe:", err.Error())
 				return
@@ -85,7 +84,7 @@ func main() {
 			return
 		}
 
-		err = safe.Get(ctx, false)
+		err = safe2.Get(ctx, false)
 		if err != nil {
 			fmt.Println("Error getting from VSecM Safe:", err.Error())
 			return
@@ -98,13 +97,13 @@ func main() {
 		*namespaces = []string{string(env.Default)}
 	}
 
-	if cli.InputValidationFailure(
+	if cli2.InputValidationFailure(
 		workloadIds, encrypt, inputKeys, secret, deleteSecret,
 	) {
 		return
 	}
 
-	err = safe.Post(ctx, entity.SentinelCommand{
+	err = safe2.Post(ctx, entity.SentinelCommand{
 		WorkloadIds:        *workloadIds,
 		Secret:             *secret,
 		Namespaces:         *namespaces,

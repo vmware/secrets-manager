@@ -14,17 +14,17 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	e "github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	env2 "github.com/vmware/secrets-manager/v2/core/env"
 
 	v1 "k8s.io/api/core/v1"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	e "github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	"github.com/vmware/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/v2/lib/backoff"
 )
 
 // PersistRootKeysToRootKeyBackingStore persists the root keys to the
@@ -67,8 +67,8 @@ func PersistRootKeysToRootKeyBackingStore(rkt data.RootKeyCollection) error {
 			APIVersion: "v1",
 		},
 		ObjectMeta: metaV1.ObjectMeta{
-			Name:      env.RootKeySecretNameForSafe(),
-			Namespace: env.NamespaceForVSecMSystem(),
+			Name:      env2.RootKeySecretNameForSafe(),
+			Namespace: env2.NamespaceForVSecMSystem(),
 		},
 		Data: dd,
 	})
@@ -81,10 +81,10 @@ func PersistRootKeysToRootKeyBackingStore(rkt data.RootKeyCollection) error {
 
 	// Update the Secret in the cluster
 	err = backoff.RetryFixed(
-		env.NamespaceForVSecMSystem(),
+		env2.NamespaceForVSecMSystem(),
 		func() error {
 			_, err = k8sApi.CoreV1().Secrets(
-				env.NamespaceForVSecMSystem()).Update(
+				env2.NamespaceForVSecMSystem()).Update(
 				context.Background(),
 				&v1.Secret{
 					TypeMeta: metaV1.TypeMeta{
@@ -92,8 +92,8 @@ func PersistRootKeysToRootKeyBackingStore(rkt data.RootKeyCollection) error {
 						APIVersion: "v1",
 					},
 					ObjectMeta: metaV1.ObjectMeta{
-						Name:      env.RootKeySecretNameForSafe(),
-						Namespace: env.NamespaceForVSecMSystem(),
+						Name:      env2.RootKeySecretNameForSafe(),
+						Namespace: env2.NamespaceForVSecMSystem(),
 						Annotations: map[string]string{
 							"kubectl.kubernetes.io/last-applied-configuration": string(secretConfigJSON),
 						},

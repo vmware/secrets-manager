@@ -1,6 +1,8 @@
 
 ## THINGS TO DO FOR THE BIG SUMMER CLEANUP
 
+*
+* Make sure that the code builds at its current `v2` state.
 * Build and test docs locally and configure CloudFlare to point to the ./public folder instead.
 * Decommission DockerHub, use GCR instead.
 * Automate container creation.

@@ -11,14 +11,13 @@
 package http
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/audit/journal"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"net/http"
-
-	"github.com/vmware/secrets-manager/core/audit/journal"
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // SendEncryptedValue takes a plain text value and encrypts it. If the

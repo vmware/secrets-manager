@@ -11,11 +11,10 @@
 package env
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/constants/val"
 	"strconv"
 	"time"
-
-	"github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/constants/val"
 )
 
 // IvInitializationIntervalForSafe fetches the Initialization Vector (IV)

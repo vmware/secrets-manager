@@ -11,13 +11,12 @@
 package insertion
 
 import (
+	io2 "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	env2 "github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"time"
-
-	"github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/core/crypto"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // SecretUpsertQueue items are persisted to files. They are buffered, so
@@ -26,11 +25,11 @@ import (
 // approach would be to have a map of queues of `SecretsStored`s per file
 // name but that feels like an overkill.
 var SecretUpsertQueue = make(
-	chan entity.SecretStored,
-	env.SecretBufferSizeForSafe(),
+	chan data.SecretStored,
+	env2.SecretBufferSizeForSafe(),
 )
 
-func pickSecretFromQueue(cid string) entity.SecretStored {
+func pickSecretFromQueue(cid string) data.SecretStored {
 	// Get a secret to be persisted.
 	secret := <-SecretUpsertQueue
 
@@ -62,7 +61,7 @@ func ProcessSecretBackingStoreQueue() {
 
 	for {
 		// Buffer overflow check.
-		if len(SecretUpsertQueue) == env.SecretBufferSizeForSafe() {
+		if len(SecretUpsertQueue) == env2.SecretBufferSizeForSafe() {
 			log.ErrorLn(
 				&cid,
 				"processSecretQueue: there are too many k8s secrets queued. "+
@@ -78,26 +77,26 @@ func ProcessSecretBackingStoreQueue() {
 		// They mean to be called inside this goroutine that
 		// `ProcessSecretBackingStoreQueue` owns.
 
-		store := env.BackingStoreForSafe()
+		store := env2.BackingStoreForSafe()
 		switch store {
-		case entity.Memory:
+		case data.Memory:
 			log.TraceLn(&cid, "ProcessSecretQueue: using in-memory store.")
 			return
-		case entity.Kubernetes:
+		case data.Kubernetes:
 			panic("implement kubernetes store")
-		case entity.AwsSecretStore:
+		case data.AwsSecretStore:
 			panic("implement aws secret store")
-		case entity.AzureSecretStore:
+		case data.AzureSecretStore:
 			panic("implement azure secret store")
-		case entity.GcpSecretStore:
+		case data.GcpSecretStore:
 			panic("implement gcp secret store")
-		case entity.File:
+		case data.File:
 			log.TraceLn(&cid, "ProcessSecretQueue: Will persist to disk.")
 
 			// This is blocking. [1]
-			io.PersistToDisk(pickSecretFromQueue(cid), errChan)
-		case entity.Postgres:
-			if !io.PostgresReady() {
+			io2.PersistToDisk(pickSecretFromQueue(cid), errChan)
+		case data.Postgres:
+			if !io2.PostgresReady() {
 				log.TraceLn(&cid, "ProcessSecretQueue: Postgres is not ready. Waiting...")
 
 				// Give the loop some time to breathe.
@@ -110,7 +109,7 @@ func ProcessSecretBackingStoreQueue() {
 			log.TraceLn(&cid, "ProcessSecretQueue: Postgres is ready. Persisting...")
 
 			// This is blocking. [2]
-			io.PersistToPostgres(pickSecretFromQueue(cid), errChan)
+			io2.PersistToPostgres(pickSecretFromQueue(cid), errChan)
 		}
 
 		log.TraceLn(&cid, "processSecretQueue: should have persisted the secret.")

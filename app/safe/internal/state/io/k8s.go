@@ -11,10 +11,10 @@
 package io
 
 import (
-	s "github.com/vmware/secrets-manager/core/constants/secret"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware/secrets-manager/core/log/std"
 	"github.com/vmware/secrets-manager/lib/backoff"
+	s "github.com/vmware/secrets-manager/v2/core/constants/secret"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 )
 
 // PersistToK8s attempts to save a provided secret entity into a Kubernetes

@@ -11,10 +11,9 @@
 package env
 
 import (
+	"github.com/vmware/secrets-manager/v2/core/constants/env"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"os"
-
-	"github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
 )
 
 // RootKeyStoreTypeForSafe determines the root key store type for

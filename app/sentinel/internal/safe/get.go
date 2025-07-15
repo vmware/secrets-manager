@@ -14,6 +14,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
+	u "github.com/vmware/secrets-manager/v2/core/constants/url"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/rpc"
+	"github.com/vmware/secrets-manager/v2/core/spiffe"
+	"github.com/vmware/secrets-manager/v2/core/validation"
 	"io"
 	"net/http"
 	"net/url"
@@ -21,13 +27,6 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffeid"
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-
-	"github.com/vmware/secrets-manager/core/constants/key"
-	u "github.com/vmware/secrets-manager/core/constants/url"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/rpc"
-	"github.com/vmware/secrets-manager/core/spiffe"
-	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // Check validates the connectivity to VSecM Safe by calling the "list secrets"

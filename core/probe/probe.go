@@ -12,11 +12,10 @@ package probe
 
 import (
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/env"
 	"log"
 	"net/http"
 	"time"
-
-	"github.com/vmware/secrets-manager/core/env"
 )
 
 // CreateLiveness sets up and starts an HTTP server on the port specified by

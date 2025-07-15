@@ -12,13 +12,12 @@ package journal
 
 import (
 	"encoding/json"
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	"github.com/vmware/secrets-manager/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	reqres "github.com/vmware/secrets-manager/v2/core/entity/v1/reqres/safe"
 	"net/http"
 	"regexp"
 	"testing"
-
-	reqres "github.com/vmware/secrets-manager/core/entity/v1/reqres/safe"
 )
 
 func TestLog(t *testing.T) {

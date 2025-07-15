@@ -12,7 +12,7 @@ package probe
 
 import (
 	"fmt"
-	"github.com/vmware/secrets-manager/core/env"
+	"github.com/vmware/secrets-manager/v2/core/env"
 	"io"
 	"net/http"
 	"os"

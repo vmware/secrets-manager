@@ -12,20 +12,20 @@ package validation
 
 import (
 	"fmt"
+	e "github.com/vmware/secrets-manager/v2/core/constants/env"
+	env2 "github.com/vmware/secrets-manager/v2/core/env"
 	"regexp"
 	"strings"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-	e "github.com/vmware/secrets-manager/core/constants/env"
-	"github.com/vmware/secrets-manager/core/env"
 )
 
 // Any SPIFFE ID regular expression matcher shall start with the
 // `^spiffe://$trustDomain` prefix for extra security.
 //
 // This variable shall be treated as constant and should not be modified.
-var spiffeRegexPrefixStart = "^spiffe://" + env.SpiffeTrustDomain() + "/"
-var spiffeIdPrefixStart = "spiffe://" + env.SpiffeTrustDomain() + "/"
+var spiffeRegexPrefixStart = "^spiffe://" + env2.SpiffeTrustDomain() + "/"
+var spiffeIdPrefixStart = "spiffe://" + env2.SpiffeTrustDomain() + "/"
 
 // IsWorkload checks if a given SPIFFE ID belongs to a workload.
 //
@@ -48,7 +48,7 @@ var spiffeIdPrefixStart = "spiffe://" + env.SpiffeTrustDomain() + "/"
 //
 //	bool: `true` if the SPIFFE ID belongs to a workload, `false` otherwise.
 func IsWorkload(spiffeid string) bool {
-	prefix := env.SpiffeIdPrefixForWorkload()
+	prefix := env2.SpiffeIdPrefixForWorkload()
 
 	if strings.HasPrefix(prefix, spiffeRegexPrefixStart) {
 		re, err := regexp.Compile(prefix)
@@ -58,12 +58,12 @@ func IsWorkload(spiffeid string) bool {
 					"for SPIFFE ID." +
 					" Check the " + string(e.VSecMSpiffeIdPrefixWorkload) +
 					" environment variable. " +
-					" val: " + env.SpiffeIdPrefixForWorkload() +
-					" trust: " + env.SpiffeTrustDomain(),
+					" val: " + env2.SpiffeIdPrefixForWorkload() +
+					" trust: " + env2.SpiffeTrustDomain(),
 			)
 		}
 
-		nrw := env.NameRegExpForWorkload()
+		nrw := env2.NameRegExpForWorkload()
 		wre, err := regexp.Compile(nrw)
 		if err != nil {
 			panic(
@@ -71,8 +71,8 @@ func IsWorkload(spiffeid string) bool {
 					"for SPIFFE ID." +
 					" Check the " + string(e.VSecMWorkloadNameRegExp) +
 					" environment variable." +
-					" val: " + env.NameRegExpForWorkload() +
-					" trust: " + env.SpiffeTrustDomain(),
+					" val: " + env2.NameRegExpForWorkload() +
+					" trust: " + env2.SpiffeTrustDomain(),
 			)
 		}
 
@@ -88,7 +88,7 @@ func IsWorkload(spiffeid string) bool {
 		return false
 	}
 
-	nrw := env.NameRegExpForWorkload()
+	nrw := env2.NameRegExpForWorkload()
 	if !strings.HasPrefix(nrw, spiffeRegexPrefixStart) {
 
 		// Insecure configuration detected.
@@ -98,8 +98,8 @@ func IsWorkload(spiffeid string) bool {
 				" Expected: ^spiffe://<trust_domain>/..." +
 				" Check the " + string(e.VSecMWorkloadNameRegExp) +
 				" environment variable." +
-				" val: " + env.NameRegExpForWorkload() +
-				" trust: " + env.SpiffeTrustDomain(),
+				" val: " + env2.NameRegExpForWorkload() +
+				" trust: " + env2.SpiffeTrustDomain(),
 		)
 	}
 
@@ -110,8 +110,8 @@ func IsWorkload(spiffeid string) bool {
 				"for SPIFFE ID." +
 				" Check the " + string(e.VSecMWorkloadNameRegExp) +
 				" environment variable." +
-				" val: " + env.NameRegExpForWorkload() +
-				" trust: " + env.SpiffeTrustDomain(),
+				" val: " + env2.NameRegExpForWorkload() +
+				" trust: " + env2.SpiffeTrustDomain(),
 		)
 	}
 
@@ -148,7 +148,7 @@ func IsSentinel(spiffeid string) bool {
 		return false
 	}
 
-	prefix := env.SpiffeIdPrefixForSentinel()
+	prefix := env2.SpiffeIdPrefixForSentinel()
 
 	if strings.HasPrefix(prefix, spiffeRegexPrefixStart) {
 		re, err := regexp.Compile(prefix)
@@ -158,8 +158,8 @@ func IsSentinel(spiffeid string) bool {
 					"for VSecM Sentinel SPIFFE ID." +
 					" Check the " + string(e.VSecMSpiffeIdPrefixSentinel) +
 					" environment variable." +
-					" val: " + env.SpiffeIdPrefixForSentinel() +
-					" trust: " + env.SpiffeTrustDomain(),
+					" val: " + env2.SpiffeIdPrefixForSentinel() +
+					" trust: " + env2.SpiffeTrustDomain(),
 			)
 		}
 
@@ -174,7 +174,7 @@ func IsScout(spiffeid string) bool {
 		return false
 	}
 
-	prefix := env.SpiffeIdPrefixForScout()
+	prefix := env2.SpiffeIdPrefixForScout()
 
 	if strings.HasPrefix(prefix, spiffeRegexPrefixStart) {
 		re, err := regexp.Compile(prefix)
@@ -184,8 +184,8 @@ func IsScout(spiffeid string) bool {
 					"for VSecM Scout SPIFFE ID." +
 					" Check the " + string(e.VSecMSpiffeIdPrefixScout) +
 					" environment variable." +
-					" val: " + env.SpiffeIdPrefixForScout() +
-					" trust: " + env.SpiffeTrustDomain(),
+					" val: " + env2.SpiffeIdPrefixForScout() +
+					" trust: " + env2.SpiffeTrustDomain(),
 			)
 		}
 
@@ -200,7 +200,7 @@ func IsClerk(spiffeid string) bool {
 		return false
 	}
 
-	prefix := env.SpiffeIdPrefixForClerk()
+	prefix := env2.SpiffeIdPrefixForClerk()
 
 	if strings.HasPrefix(prefix, spiffeRegexPrefixStart) {
 		re, err := regexp.Compile(prefix)
@@ -210,8 +210,8 @@ func IsClerk(spiffeid string) bool {
 					"for VSecM Clerk SPIFFE ID." +
 					" Check the " + string(e.VSecMSpiffeIdPrefixClerk) +
 					" environment variable." +
-					" val: " + env.SpiffeIdPrefixForClerk() +
-					" trust: " + env.SpiffeTrustDomain(),
+					" val: " + env2.SpiffeIdPrefixForClerk() +
+					" trust: " + env2.SpiffeTrustDomain(),
 			)
 		}
 
@@ -246,7 +246,7 @@ func IsSafe(spiffeid string) bool {
 		return false
 	}
 
-	prefix := env.SpiffeIdPrefixForSafe()
+	prefix := env2.SpiffeIdPrefixForSafe()
 
 	if strings.HasPrefix(prefix, spiffeRegexPrefixStart) {
 		re, err := regexp.Compile(prefix)
@@ -256,8 +256,8 @@ func IsSafe(spiffeid string) bool {
 					"for Sentinel SPIFFE ID." +
 					" Check the " + string(e.VSecMSpiffeIdPrefixSafe) +
 					" environment variable." +
-					" val: " + env.SpiffeIdPrefixForSafe() +
-					" trust: " + env.SpiffeTrustDomain(),
+					" val: " + env2.SpiffeIdPrefixForSafe() +
+					" trust: " + env2.SpiffeTrustDomain(),
 			)
 		}
 
@@ -272,7 +272,7 @@ func IsRelayServer(spiffeid string) bool {
 		return false
 	}
 
-	prefix := env.SpiffeIdPrefixForRelayServer()
+	prefix := env2.SpiffeIdPrefixForRelayServer()
 
 	if strings.HasPrefix(prefix, spiffeRegexPrefixStart) {
 		re, err := regexp.Compile(prefix)
@@ -282,8 +282,8 @@ func IsRelayServer(spiffeid string) bool {
 					"for Relay Server SPIFFE ID." +
 					" Check the " + string(e.VSecMSpiffeIdPrefixRelayServer) +
 					" environment variable." +
-					" val: " + env.SpiffeIdPrefixForRelayServer() +
-					" trust: " + env.SpiffeTrustDomain(),
+					" val: " + env2.SpiffeIdPrefixForRelayServer() +
+					" trust: " + env2.SpiffeTrustDomain(),
 			)
 		}
 
@@ -298,7 +298,7 @@ func IsRelayClient(spiffeid string) bool {
 		return false
 	}
 
-	prefix := env.SpiffeIdPrefixForRelayClient()
+	prefix := env2.SpiffeIdPrefixForRelayClient()
 
 	if strings.HasPrefix(prefix, spiffeRegexPrefixStart) {
 		re, err := regexp.Compile(prefix)
@@ -308,8 +308,8 @@ func IsRelayClient(spiffeid string) bool {
 					"for Relay Client SPIFFE ID." +
 					" Check the " + string(e.VSecMSpiffeIdPrefixRelayClient) +
 					" environment variable." +
-					" val: " + env.SpiffeIdPrefixForRelayClient() +
-					" trust: " + env.SpiffeTrustDomain(),
+					" val: " + env2.SpiffeIdPrefixForRelayClient() +
+					" trust: " + env2.SpiffeTrustDomain(),
 			)
 		}
 

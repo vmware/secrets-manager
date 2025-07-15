@@ -13,13 +13,13 @@ package initialization
 import (
 	"bufio"
 	"context"
+	"github.com/vmware/secrets-manager/v2/core/constants/sentinel"
+	"github.com/vmware/secrets-manager/v2/core/constants/symbol"
+	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"os"
 	"strconv"
 	"strings"
 
-	"github.com/vmware/secrets-manager/core/constants/sentinel"
-	"github.com/vmware/secrets-manager/core/constants/symbol"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
 	"github.com/vmware/secrets-manager/lib/backoff"
 )
 

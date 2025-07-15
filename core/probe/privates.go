@@ -12,10 +12,9 @@ package probe
 
 import (
 	"fmt"
+	"github.com/vmware/secrets-manager/v2/core/constants/val"
 	"log"
 	"net/http"
-
-	"github.com/vmware/secrets-manager/core/constants/val"
 )
 
 func ok(w http.ResponseWriter, _ *http.Request) {

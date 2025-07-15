@@ -11,16 +11,15 @@
 package state
 
 import (
-	"github.com/vmware/secrets-manager/core/env"
+	net "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/collection"
+	"github.com/vmware/secrets-manager/v2/core/audit/journal"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	"github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"net/http"
-
-	net "github.com/vmware/secrets-manager/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/app/safe/internal/state/secret/collection"
-	"github.com/vmware/secrets-manager/core/audit/journal"
-	"github.com/vmware/secrets-manager/core/constants/audit"
-	entity "github.com/vmware/secrets-manager/core/entity/v1/data"
-	log "github.com/vmware/secrets-manager/core/log/std"
 )
 
 // Upsert handles the insertion or update of a secret in the application's
@@ -39,15 +38,15 @@ import (
 //   - j (audit.JournalEntry): An audit journal entry for recording the event.
 //   - w (http.ResponseWriter): The HTTP response writer to send back the
 //     operation's outcome.
-func Upsert(secretToStore entity.SecretStored,
+func Upsert(secretToStore data.SecretStored,
 	workloadId string, cid string,
-	j entity.JournalEntry, w http.ResponseWriter,
+	j data.JournalEntry, w http.ResponseWriter,
 ) {
 	// If the secret is not internal VSecM Safe configuration secret and
 	// if db persistence is enabled, and the db is not ready,
 	// then respond with an error.
 	if secretToStore.Name != "vsecm-safe" &&
-		env.BackingStoreForSafe() == entity.Postgres &&
+		env.BackingStoreForSafe() == data.Postgres &&
 		!net.PostgresReady() {
 		log.InfoLn(&cid, "Secret: DB not ready. Responding with error.")
 		w.WriteHeader(http.StatusInternalServerError)

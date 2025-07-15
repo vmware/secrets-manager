@@ -12,18 +12,17 @@ package bootstrap
 
 import (
 	"context"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
+	"github.com/vmware/secrets-manager/v2/core/constants/val"
+	"github.com/vmware/secrets-manager/v2/core/crypto"
+	env2 "github.com/vmware/secrets-manager/v2/core/env"
+	log "github.com/vmware/secrets-manager/v2/core/log/std"
+	"github.com/vmware/secrets-manager/v2/core/validation"
 	"os"
 	"reflect"
 	"time"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-
-	"github.com/vmware/secrets-manager/core/constants/key"
-	"github.com/vmware/secrets-manager/core/constants/val"
-	"github.com/vmware/secrets-manager/core/crypto"
-	"github.com/vmware/secrets-manager/core/env"
-	log "github.com/vmware/secrets-manager/core/log/std"
-	"github.com/vmware/secrets-manager/core/validation"
 )
 
 // NotifyTimeout waits for the duration specified by
@@ -31,7 +30,7 @@ import (
 // 'timedOut' channel. This function can be used to notify other parts of the
 // application when a specific timeout has been reached.
 func NotifyTimeout(timedOut chan<- bool) {
-	time.Sleep(env.BootstrapTimeoutForSafe())
+	time.Sleep(env2.BootstrapTimeoutForSafe())
 	timedOut <- true
 }
 
@@ -126,7 +125,7 @@ func AcquireSource(
 
 	source, err := workloadapi.NewX509Source(
 		ctx, workloadapi.WithClientOptions(
-			workloadapi.WithAddr(env.SpiffeSocketUrl()),
+			workloadapi.WithAddr(env2.SpiffeSocketUrl()),
 		),
 	)
 
@@ -179,7 +178,7 @@ func AcquireSource(
 // the cluster, the function generates a new key pair, persists them, and
 // signals the updatedSecret channel.
 func CreateRootKey(id *string, updatedSecret chan<- bool) {
-	if env.RootKeyInputModeManual() {
+	if env2.RootKeyInputModeManual() {
 		log.InfoLn(id,
 			"Manual key input enabled. Skipping automatic key generation.")
 
@@ -189,7 +188,7 @@ func CreateRootKey(id *string, updatedSecret chan<- bool) {
 	}
 
 	// This is a Kubernetes Secret, mounted as a file.
-	keyPath := env.RootKeyPathForSafe()
+	keyPath := env2.RootKeyPathForSafe()
 
 	if _, err := os.Stat(keyPath); os.IsNotExist(err) {
 		log.FatalLn(id,

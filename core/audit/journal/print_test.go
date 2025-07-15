@@ -11,7 +11,7 @@
 package journal
 
 import (
-	"github.com/vmware/secrets-manager/core/constants/audit"
+	"github.com/vmware/secrets-manager/v2/core/constants/audit"
 	"log"
 	"os"
 	"regexp"

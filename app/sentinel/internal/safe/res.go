@@ -12,10 +12,9 @@ package safe
 
 import (
 	"fmt"
+	log "github.com/vmware/secrets-manager/v2/core/log/rpc"
 	"io"
 	"net/http"
-
-	log "github.com/vmware/secrets-manager/core/log/rpc"
 )
 
 func respond(cid *string, r *http.Response) {

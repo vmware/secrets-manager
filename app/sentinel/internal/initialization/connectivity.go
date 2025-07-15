@@ -13,12 +13,12 @@ package initialization
 import (
 	"context"
 	"errors"
+	"github.com/vmware/secrets-manager/v2/core/constants/key"
 	"time"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware/secrets-manager/core/constants/key"
-	"github.com/vmware/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/v2/lib/backoff"
 )
 
 func (i *Initializer) ensureApiConnectivity(ctx context.Context, cid *string) {
