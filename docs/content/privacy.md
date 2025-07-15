@@ -17,7 +17,6 @@ weight = 10
 >
 > We hate writing boring copyright stuff, so please don't make us write more.
 
-
 ## We Don't Track No Cookies
 
 Wondering how this website fares when it comes to privacy and GDPR rules and

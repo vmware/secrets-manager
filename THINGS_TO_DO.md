@@ -35,3 +35,5 @@
   which is a security risk; better to start with a basic OIDC app, like using something like okta dev
   console and then gradually implement the rest. App secret should never leave the app; that is the entire
   point of having a secret)
+* Copy over examples and use cases (that make sense for the current setup) from v1.0.
+* 
