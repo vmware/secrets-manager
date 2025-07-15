@@ -64,7 +64,7 @@ make k8s-start
 
 > **Can I Use This Other Thing Instead**?
 >
-> You can of course use other tools such as [microk8s], or [kind], [k38][k3s]
+> You can of course use other tools such as [microk8s], or [kind], [k3s][k3s]
 > or even a full-blown managed Kubernetes cluster; however it will be virtually
 > impossible to cover all possible tooling and OS combinations. Therefore,
 > we'll only provide instructions for **Minikube** in this document.
