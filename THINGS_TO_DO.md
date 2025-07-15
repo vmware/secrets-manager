@@ -36,4 +36,4 @@
   console and then gradually implement the rest. App secret should never leave the app; that is the entire
   point of having a secret)
 * Copy over examples and use cases (that make sense for the current setup) from v1.0.
-* 
+* Update v1.0 README once this branch is in a "good enough" state, redirecting users to upgrade here.
