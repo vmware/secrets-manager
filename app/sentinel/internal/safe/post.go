@@ -31,7 +31,7 @@ import (
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 
-	"github.com/vmware/secrets-manager/lib/template"
+	"github.com/vmware/secrets-manager/v2/lib/template"
 )
 
 var seed = time.Now().UnixNano()

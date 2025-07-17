@@ -24,7 +24,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	"github.com/vmware/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/v2/lib/backoff"
 )
 
 // saveSecretToKubernetes saves a given SecretStored entity to a Kubernetes

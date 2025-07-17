@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vmware/secrets-manager/lib/entity"
+	"github.com/vmware/secrets-manager/v2/lib/entity"
 )
 
 func TestSecretUpsertRequest_JSONMarshalling(t *testing.T) {

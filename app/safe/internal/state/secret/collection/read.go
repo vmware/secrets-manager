@@ -19,7 +19,7 @@ import (
 	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"strings"
 
-	data "github.com/vmware/secrets-manager/lib/entity"
+	data "github.com/vmware/secrets-manager/v2/lib/entity"
 )
 
 // SecretByName retrieves a secret by its name.

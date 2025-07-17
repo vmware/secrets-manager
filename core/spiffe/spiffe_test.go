@@ -15,7 +15,7 @@ import (
 	"crypto/x509"
 	"github.com/spiffe/go-spiffe/v2/spiffeid"
 	"github.com/stretchr/testify/assert"
-	"github.com/vmware/secrets-manager/lib/spiffe"
+	"github.com/vmware/secrets-manager/v2/lib/spiffe"
 	"net/http/httptest"
 	"net/url"
 	"testing"

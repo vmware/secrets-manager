@@ -10,7 +10,7 @@
 
 package data
 
-import "github.com/vmware/secrets-manager/lib/entity"
+import "github.com/vmware/secrets-manager/v2/lib/entity"
 
 // SecretFormat represents the format of the secret.
 type SecretFormat string

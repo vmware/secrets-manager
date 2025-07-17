@@ -24,7 +24,7 @@ import (
 	"net/http"
 	"strings"
 
-	s "github.com/vmware/secrets-manager/lib/spiffe"
+	s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 )
 
 // Keys processes a request to set root cryptographic keys within the application,

@@ -13,7 +13,7 @@ package crypto
 import (
 	"fmt"
 
-	"github.com/vmware/secrets-manager/lib/crypto"
+	"github.com/vmware/secrets-manager/v2/lib/crypto"
 )
 
 // Id generates a cryptographically-unique secure random string.

@@ -10,6 +10,8 @@
 
 package bootstrap
 
+// TODO: we don't need bootstrap anymore; secret material will be handled by SPIKE.
+
 import (
 	"context"
 	"github.com/vmware/secrets-manager/v2/core/constants/key"

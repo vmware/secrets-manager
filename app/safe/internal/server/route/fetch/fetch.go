@@ -27,7 +27,7 @@ import (
 	"net/http"
 	"time"
 
-	s "github.com/vmware/secrets-manager/lib/spiffe"
+	s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 )
 
 // Fetch handles the retrieval of a secret for a given workload, identified by

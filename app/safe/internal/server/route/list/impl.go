@@ -24,7 +24,7 @@ import (
 	"io"
 	"net/http"
 
-	s "github.com/vmware/secrets-manager/lib/spiffe"
+	s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 )
 
 func doList(

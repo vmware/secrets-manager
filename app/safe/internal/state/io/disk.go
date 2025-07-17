@@ -19,7 +19,7 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/vmware/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/v2/lib/backoff"
 )
 
 // PersistToDisk saves a given secret to disk and also creates a backup copy

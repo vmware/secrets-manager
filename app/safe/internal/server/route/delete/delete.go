@@ -23,7 +23,7 @@ import (
 	"io"
 	"net/http"
 
-	s "github.com/vmware/secrets-manager/lib/spiffe"
+	s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 )
 
 // Delete handles the deletion of a secret identified by a workload ID.

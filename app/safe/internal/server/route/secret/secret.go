@@ -28,8 +28,8 @@ import (
 	"strings"
 	"time"
 
-	data "github.com/vmware/secrets-manager/lib/entity"
-	s "github.com/vmware/secrets-manager/lib/spiffe"
+	data "github.com/vmware/secrets-manager/v2/lib/entity"
+	s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 )
 
 // Secret handles the creation, updating, and management of secrets.

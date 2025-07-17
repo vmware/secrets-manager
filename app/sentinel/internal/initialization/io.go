@@ -20,7 +20,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/vmware/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/v2/lib/backoff"
 )
 
 func (i *Initializer) commandFileScanner(

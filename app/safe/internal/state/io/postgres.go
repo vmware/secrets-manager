@@ -23,7 +23,7 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"github.com/vmware/secrets-manager/lib/backoff"
+	"github.com/vmware/secrets-manager/v2/lib/backoff"
 )
 
 var (
