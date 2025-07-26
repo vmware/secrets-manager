@@ -11,7 +11,6 @@
 package safe
 
 import (
-	"github.com/vmware/secrets-manager/v2/core/constants/crypto"
 	data2 "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 )
 
@@ -93,9 +92,10 @@ type SecretListResponse struct {
 // SecretEncryptedListResponse is the response that lists secrets
 // The secret values will be encrypted.
 type SecretEncryptedListResponse struct {
-	Secrets   []data2.SecretEncrypted `json:"secrets"`
-	Algorithm crypto.Algorithm        `json:"algorithm"`
-	Err       string                  `json:"err,omitempty"`
+	Secrets []data2.SecretEncrypted `json:"secrets"`
+	// TODO: we might need to define algorithm and version for back compat.
+	// Algorithm crypto.Algorithm        `json:"algorithm"`
+	Err string `json:"err,omitempty"`
 }
 
 // KeystoneStatusRequest is the request to check the status of

@@ -16,6 +16,8 @@ import (
 
 type VarName string
 
+// TODO: check and remove redundant env vars.
+
 const AppVersion VarName = "APP_VERSION"
 const SpiffeEndpointSocket VarName = "SPIFFE_ENDPOINT_SOCKET"
 const SpiffeTrustDomain VarName = "SPIFFE_TRUST_DOMAIN"

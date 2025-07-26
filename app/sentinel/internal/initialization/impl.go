@@ -12,10 +12,10 @@ package initialization
 
 import (
 	"context"
+
 	safe2 "github.com/vmware/secrets-manager/v2/app/sentinel/internal/safe"
 	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	env2 "github.com/vmware/secrets-manager/v2/core/env"
-	"github.com/vmware/secrets-manager/v2/core/log/std"
 	"github.com/vmware/secrets-manager/v2/core/spiffe"
 	"os"
 	"time"
@@ -58,33 +58,7 @@ func (EnvConfigReader) NamespaceForVSecMSystem() string {
 	return env2.NamespaceForVSecMSystem()
 }
 
-// StandardLogger is a struct that provides logging methods.
-type StandardLogger struct{}
-
-// InfoLn logs info level messages.
-func (StandardLogger) InfoLn(correlationID *string, v ...interface{}) {
-	std.InfoLn(correlationID, v...)
-}
-
-// ErrorLn logs error level messages.
-func (StandardLogger) ErrorLn(correlationID *string, v ...interface{}) {
-	std.ErrorLn(correlationID, v...)
-}
-
-// TraceLn logs trace level messages.
-func (StandardLogger) TraceLn(correlationID *string, v ...interface{}) {
-	std.TraceLn(correlationID, v...)
-}
-
-// WarnLn logs warning level messages.
-func (StandardLogger) WarnLn(correlationID *string, v ...interface{}) {
-	std.WarnLn(correlationID, v...)
-}
-
-// FatalLn logs fatal level messages.
-func (StandardLogger) FatalLn(correlationID *string, v ...interface{}) {
-	std.FatalLn(correlationID, v...)
-}
+// TODO: some of these entities do not belong here; move them elsewhere.
 
 // SafeClient is a struct that provides methods to interact with the safe.
 type SafeClient struct{}

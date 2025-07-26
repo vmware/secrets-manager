@@ -10,36 +10,27 @@
 
 package main
 
-import (
-	"fmt"
-	"github.com/spiffe/vsecm-sdk-go/sentry"
-	"github.com/vmware/secrets-manager/v2/core/constants/env"
-	"github.com/vmware/secrets-manager/v2/core/crypto"
-	env3 "github.com/vmware/secrets-manager/v2/core/env"
-	"github.com/vmware/secrets-manager/v2/core/log/std"
-	"github.com/vmware/secrets-manager/v2/lib/system"
-	"os"
-)
-
 func main() {
-	id := crypto.Id()
-	std.InfoLn(&id, "Starting VSecM Sidecar")
+	panic("implement me")
 
-	//Print the diagnostic information about the environment.
-	envVarsToPrint := []string{
-		string(env.AppVersion),
-		string(env.VSecMLogLevel),
-	}
-	std.PrintEnvironmentInfo(&id, envVarsToPrint)
-
-	fmt.Println("-----")
-	fmt.Println("Environment info", env3.PollIntervalForSidecar())
-	fmt.Println("env", os.Getenv("VSECM_SIDECAR_POLL_INTERVAL"))
-	fmt.Println("-----")
-
-	// Periodically update secret values:
-	go sentry.Watch()
-
-	// Keep the main routine alive:
-	system.KeepAlive()
+	//id := crypto.Id()
+	//std.InfoLn(&id, "Starting VSecM Sidecar")
+	//
+	////Print the diagnostic information about the environment.
+	//envVarsToPrint := []string{
+	//	string(env.AppVersion),
+	//	string(env.VSecMLogLevel),
+	//}
+	//std.PrintEnvironmentInfo(&id, envVarsToPrint)
+	//
+	//fmt.Println("-----")
+	//fmt.Println("Environment info", env3.PollIntervalForSidecar())
+	//fmt.Println("env", os.Getenv("VSECM_SIDECAR_POLL_INTERVAL"))
+	//fmt.Println("-----")
+	//
+	//// Periodically update secret values:
+	//go sentry.Watch()
+	//
+	//// Keep the main routine alive:
+	//system.KeepAlive()
 }

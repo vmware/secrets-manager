@@ -11,19 +11,20 @@
 package delete
 
 import (
-	"encoding/json"
-	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
-	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/collection"
-	"github.com/vmware/secrets-manager/v2/core/audit/journal"
-	"github.com/vmware/secrets-manager/v2/core/constants/audit"
-	"github.com/vmware/secrets-manager/v2/core/crypto"
-	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
-	reqres "github.com/vmware/secrets-manager/v2/core/entity/v1/reqres/safe"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
-	"io"
+	// "encoding/json"
+	// "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
+	// "github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/collection"
+	// "github.com/vmware/secrets-manager/v2/core/audit/journal"
+	// "github.com/vmware/secrets-manager/v2/core/constants/audit"
+	// "github.com/vmware/secrets-manager/v2/core/crypto"
+	// "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	// reqres "github.com/vmware/secrets-manager/v2/core/entity/v1/reqres/safe"
+	// log "github.com/vmware/secrets-manager/v2/core/log/std"
+	// "io"
+	// "net/http"
+	//
+	// s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 	"net/http"
-
-	s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 )
 
 // Delete handles the deletion of a secret identified by a workload ID.
@@ -41,135 +42,129 @@ import (
 func Delete(
 	cid string, r *http.Request, w http.ResponseWriter,
 ) {
-	spiffeid := s.IdAsString(r)
+	panic("implement me")
 
-	if !crypto.RootKeySetInMemory() {
-		log.InfoLn(&cid, "Delete: Root key not set")
-
-		w.WriteHeader(http.StatusBadRequest)
-		_, err := io.WriteString(w, "")
-		if err != nil {
-			log.InfoLn(
-				&cid, "Delete: Problem sending response",
-				err.Error())
-		}
-
-		return
-	}
-
-	if !validation.CheckDatabaseReadiness(cid, w) {
-		return
-	}
-
-	j := data.JournalEntry{
-		CorrelationId: cid,
-		Method:        r.Method,
-		Url:           r.RequestURI,
-		SpiffeId:      spiffeid,
-		Event:         audit.Enter,
-	}
-
-	// Only sentinel can execute delete requests.
-	if ok, respond := validation.IsSentinel(j, cid, spiffeid); !ok {
-		j.Event = audit.NotSentinel
-		journal.Log(j)
-		respond(w)
-		return
-	}
-
-	log.DebugLn(&cid, "Delete: sentinel spiffeid:", spiffeid)
-
-	body, err := io.ReadAll(r.Body)
-	if err != nil {
-		j.Event = audit.BrokenBody
-		journal.Log(j)
-
-		w.WriteHeader(http.StatusBadRequest)
-		_, err := io.WriteString(w, "")
-
-		if err != nil {
-			log.InfoLn(
-				&cid,
-				"Delete: Problem sending response",
-				err.Error())
-		}
-
-		return
-	}
-
-	defer func(b io.ReadCloser) {
-		if b == nil {
-			return
-		}
-
-		err := b.Close()
-		if err != nil {
-			log.InfoLn(
-				&cid,
-				"Delete: Problem closing body", err.Error())
-		}
-	}(r.Body)
-
-	log.DebugLn(&cid, "Delete: Parsed request body")
-
-	var sr reqres.SecretDeleteRequest
-	err = json.Unmarshal(body, &sr)
-	if err != nil {
-		log.DebugLn(&cid,
-			"Delete: Error unmarshalling request body",
-			err.Error())
-
-		j.Event = audit.RequestTypeMismatch
-		journal.Log(j)
-
-		w.WriteHeader(http.StatusBadRequest)
-		_, err := io.WriteString(w, "")
-		if err != nil {
-			log.InfoLn(
-				&cid,
-				"Delete: Problem sending response",
-				err.Error())
-		}
-
-		log.TraceLn(&cid, "Delete: Exiting from error case")
-		return
-	}
-
-	workloadIds := sr.WorkloadIds
-
-	if len(workloadIds) == 0 {
-		log.TraceLn(&cid, "Delete: Empty workload ids")
-
-		j.Event = audit.NoWorkloadId
-		journal.Log(j)
-
-		log.TraceLn(
-			&cid,
-			"Delete: Exiting from empty workload ids case")
-
-		return
-	}
-
-	log.DebugLn(&cid, "Secret:Delete: ", "workloadIds:", workloadIds)
-
-	for _, workloadId := range workloadIds {
-		collection.DeleteSecret(data.SecretStored{
-			Name: workloadId,
-			Meta: data.SecretMeta{
-				CorrelationId: cid,
-			},
-		})
-	}
-
-	log.DebugLn(&cid, "Delete:End: workloadIds:", workloadIds)
-
-	j.Event = audit.Ok
-	journal.Log(j)
-
-	_, err = io.WriteString(w, "OK")
-	if err != nil {
-		log.InfoLn(
-			&cid,
-			"Delete: Problem sending response", err.Error())
-	}
+	//spiffeid := s.IdAsString(r)
+	//
+	//if !crypto.RootKeySetInMemory() {
+	//	log.InfoLn(&cid, "Delete: Root key not set")
+	//
+	//	w.WriteHeader(http.StatusBadRequest)
+	//	_, err := io.WriteString(w, "")
+	//	if err != nil {
+	//		log.InfoLn(
+	//			&cid, "Delete: Problem sending response",
+	//			err.Error())
+	//	}
+	//
+	//	return
+	//}
+	//
+	//if !validation.CheckDatabaseReadiness(cid, w) {
+	//	return
+	//}
+	//
+	//// Only sentinel can execute delete requests.
+	//if ok, respond := validation.IsSentinel(j, cid, spiffeid); !ok {
+	//	j.Event = audit.NotSentinel
+	//	journal.Log(j)
+	//	respond(w)
+	//	return
+	//}
+	//
+	//log.DebugLn(&cid, "Delete: sentinel spiffeid:", spiffeid)
+	//
+	//body, err := io.ReadAll(r.Body)
+	//if err != nil {
+	//	j.Event = audit.BrokenBody
+	//	journal.Log(j)
+	//
+	//	w.WriteHeader(http.StatusBadRequest)
+	//	_, err := io.WriteString(w, "")
+	//
+	//	if err != nil {
+	//		log.InfoLn(
+	//			&cid,
+	//			"Delete: Problem sending response",
+	//			err.Error())
+	//	}
+	//
+	//	return
+	//}
+	//
+	//defer func(b io.ReadCloser) {
+	//	if b == nil {
+	//		return
+	//	}
+	//
+	//	err := b.Close()
+	//	if err != nil {
+	//		log.InfoLn(
+	//			&cid,
+	//			"Delete: Problem closing body", err.Error())
+	//	}
+	//}(r.Body)
+	//
+	//log.DebugLn(&cid, "Delete: Parsed request body")
+	//
+	//var sr reqres.SecretDeleteRequest
+	//err = json.Unmarshal(body, &sr)
+	//if err != nil {
+	//	log.DebugLn(&cid,
+	//		"Delete: Error unmarshalling request body",
+	//		err.Error())
+	//
+	//	j.Event = audit.RequestTypeMismatch
+	//	journal.Log(j)
+	//
+	//	w.WriteHeader(http.StatusBadRequest)
+	//	_, err := io.WriteString(w, "")
+	//	if err != nil {
+	//		log.InfoLn(
+	//			&cid,
+	//			"Delete: Problem sending response",
+	//			err.Error())
+	//	}
+	//
+	//	log.TraceLn(&cid, "Delete: Exiting from error case")
+	//	return
+	//}
+	//
+	//workloadIds := sr.WorkloadIds
+	//
+	//if len(workloadIds) == 0 {
+	//	log.TraceLn(&cid, "Delete: Empty workload ids")
+	//
+	//	j.Event = audit.NoWorkloadId
+	//	journal.Log(j)
+	//
+	//	log.TraceLn(
+	//		&cid,
+	//		"Delete: Exiting from empty workload ids case")
+	//
+	//	return
+	//}
+	//
+	//log.DebugLn(&cid, "Secret:Delete: ", "workloadIds:", workloadIds)
+	//
+	//for _, workloadId := range workloadIds {
+	//	collection.DeleteSecret(data.SecretStored{
+	//		Name: workloadId,
+	//		Meta: data.SecretMeta{
+	//			CorrelationId: cid,
+	//		},
+	//	})
+	//}
+	//
+	//log.DebugLn(&cid, "Delete:End: workloadIds:", workloadIds)
+	//
+	//j.Event = audit.Ok
+	//journal.Log(j)
+	//
+	//_, err = io.WriteString(w, "OK")
+	//if err != nil {
+	//	log.InfoLn(
+	//		&cid,
+	//		"Delete: Problem sending response", err.Error())
+	//}
 }

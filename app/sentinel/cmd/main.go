@@ -16,9 +16,7 @@ import (
 	cli2 "github.com/vmware/secrets-manager/v2/app/sentinel/internal/cli"
 	safe2 "github.com/vmware/secrets-manager/v2/app/sentinel/internal/safe"
 	"github.com/vmware/secrets-manager/v2/core/constants/env"
-	"github.com/vmware/secrets-manager/v2/core/constants/key"
 	"github.com/vmware/secrets-manager/v2/core/constants/sentinel"
-	"github.com/vmware/secrets-manager/v2/core/crypto"
 	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"os"
 	"os/signal"
@@ -28,16 +26,13 @@ import (
 )
 
 func main() {
-	id := crypto.Id()
-
 	parser := argparse.NewParser(
 		sentinel.CmdName,
 		"Assigns secrets to workloads.",
 	)
 
 	ctx, cancel := context.WithCancel(
-		context.WithValue(context.Background(),
-			key.CorrelationId, &id),
+		context.Background(),
 	)
 	defer cancel()
 

@@ -14,10 +14,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/vmware/secrets-manager/v2/core/constants/key"
+
+	// TODO: check if we need the former rpc-logging implemented in SPIKE Go SDK.
+
+	"github.com/spiffe/spike-sdk-go/log"
+
 	u "github.com/vmware/secrets-manager/v2/core/constants/url"
 	"github.com/vmware/secrets-manager/v2/core/env"
-	log "github.com/vmware/secrets-manager/v2/core/log/rpc"
 	"github.com/vmware/secrets-manager/v2/core/spiffe"
 	"github.com/vmware/secrets-manager/v2/core/validation"
 	"io"
@@ -47,7 +50,7 @@ import (
 //     be read. The error includes a descriptive message indicating the nature
 //     of the failure.
 func Check(ctx context.Context, source *workloadapi.X509Source) (int, string, error) {
-	cid := ctx.Value(key.CorrelationId).(*string)
+	const fName = "safe.Check"
 
 	if source == nil {
 		return -1, "", errors.New("check: workload source is nil")
@@ -109,7 +112,7 @@ func Check(ctx context.Context, source *workloadapi.X509Source) (int, string, er
 		}
 		err := b.Close()
 		if err != nil {
-			log.ErrorLn(cid, "Get: Problem closing request body.")
+			log.Log().Error(fName, "message", "Get: Problem closing request body.")
 		}
 	}(r.Body)
 
@@ -135,7 +138,7 @@ func Check(ctx context.Context, source *workloadapi.X509Source) (int, string, er
 //   - showEncryptedSecrets: A boolean flag indicating whether to retrieve
 //     encrypted secrets. If true, secrets are shown in encrypted form.
 func Get(ctx context.Context, showEncryptedSecrets bool) error {
-	cid := ctx.Value(key.CorrelationId).(*string)
+	const fName = "safe.Get"
 
 	source, proceed := spiffe.AcquireSourceForSentinel(ctx)
 	defer func(s *workloadapi.X509Source) {
@@ -144,7 +147,7 @@ func Get(ctx context.Context, showEncryptedSecrets bool) error {
 		}
 		err := s.Close()
 		if err != nil {
-			log.ErrorLn(cid, "Get: Problem closing the workload source.")
+			log.Log().Error(fName, "message", "Get: Problem closing the workload source.")
 		}
 	}(source)
 	if !proceed {
@@ -194,7 +197,7 @@ func Get(ctx context.Context, showEncryptedSecrets bool) error {
 		}
 		err := b.Close()
 		if err != nil {
-			log.ErrorLn(cid, "Get: Problem closing request body.")
+			log.Log().Error(fName, "message", "Get: Problem closing request body.")
 		}
 	}(r.Body)
 

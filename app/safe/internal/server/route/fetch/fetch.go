@@ -69,15 +69,6 @@ func Fetch(
 	//	return
 	//}
 	//
-	//j := data2.JournalEntry{
-	//	CorrelationId: cid,
-	//	Method:        r.Method,
-	//	Url:           r.RequestURI,
-	//	SpiffeId:      spiffeid,
-	//	Event:         audit.Enter,
-	//}
-	//
-	//journal.Log(j)
 	//
 	//// Only workloads can fetch.
 	//if !validation.IsWorkload(spiffeid) {

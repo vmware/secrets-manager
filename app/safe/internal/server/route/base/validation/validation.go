@@ -11,16 +11,12 @@
 package validation
 
 import (
-	ioState "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/v2/core/audit/journal"
-	"github.com/vmware/secrets-manager/v2/core/constants/audit"
-	"github.com/vmware/secrets-manager/v2/core/constants/val"
-	data2 "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/v2/core/env"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
-	"github.com/vmware/secrets-manager/v2/core/validation"
 	"io"
 	"net/http"
+
+	"github.com/spiffe/spike-sdk-go/log"
+
+	"github.com/vmware/secrets-manager/v2/core/validation"
 )
 
 // IsSentinel evaluates if a given SPIFFE ID corresponds to a VSecM Sentinel
@@ -47,107 +43,21 @@ import (
 // critical for further processing steps, and appropriate HTTP response behavior
 // needs to be enforced based on the validation results.
 func IsSentinel(
-	j data2.JournalEntry, cid string, spiffeid string,
+	cid string, spiffeid string,
 ) (bool, func(http.ResponseWriter)) {
-	journal.Log(j)
+	const fName = "validation.IsSentinel"
 
 	if validation.IsSentinel(spiffeid) {
 		return true, func(writer http.ResponseWriter) {}
 	}
 
-	j.Event = audit.BadSpiffeId
-	journal.Log(j)
-
 	var responder = func(w http.ResponseWriter) {
 		w.WriteHeader(http.StatusBadRequest)
 		_, err := io.WriteString(w, "")
 		if err != nil {
-			log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
+			log.Log().Info(fName, "message", "Fetch: Problem sending response", "err", err.Error())
 		}
 	}
 
 	return false, responder
-}
-
-func IsClerk(
-	j data2.JournalEntry, cid string, spiffeid string,
-) (bool, func(http.ResponseWriter)) {
-	journal.Log(j)
-
-	if validation.IsClerk(spiffeid) {
-		return true, func(writer http.ResponseWriter) {}
-	}
-
-	j.Event = audit.BadSpiffeId
-	journal.Log(j)
-
-	var responder = func(w http.ResponseWriter) {
-		w.WriteHeader(http.StatusBadRequest)
-		_, err := io.WriteString(w, "")
-		if err != nil {
-			log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
-		}
-	}
-
-	return false, responder
-}
-
-func IsSentinelOrScout(
-	j data2.JournalEntry, cid string, spiffeid string,
-) (bool, func(http.ResponseWriter)) {
-	journal.Log(j)
-
-	if validation.IsSentinel(spiffeid) {
-		return true, func(writer http.ResponseWriter) {}
-	}
-
-	if validation.IsScout(spiffeid) {
-		return true, func(writer http.ResponseWriter) {}
-	}
-
-	j.Event = audit.BadSpiffeId
-	journal.Log(j)
-
-	var responder = func(w http.ResponseWriter) {
-		w.WriteHeader(http.StatusBadRequest)
-		_, err := io.WriteString(w, "")
-		if err != nil {
-			log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
-		}
-	}
-
-	return false, responder
-}
-
-// CheckDatabaseReadiness checks if the database is ready for use.
-//
-// This function verifies the readiness of the database, specifically for
-// PostgreSQL mode. If the database is not initialized when PostgreSQL
-// mode is enabled, it returns an error response.
-//
-// Parameters:
-//   - cid: A string representing the context or correlation ID for logging.
-//   - w: An http.ResponseWriter to write the HTTP response.
-//
-// Returns:
-//   - bool: true if the database is ready, false otherwise.
-//
-// Side effects:
-//   - Writes an HTTP 503 (Service Unavailable) status and response body
-//     if the database is not ready.
-//   - Logs information about the database status.
-func CheckDatabaseReadiness(cid string, w http.ResponseWriter) bool {
-
-	// If postgres mode enabled and db is not initialized, return error.
-	if env.BackingStoreForSafe() == data2.Postgres && !ioState.PostgresReady() {
-		w.WriteHeader(http.StatusServiceUnavailable)
-		_, err := io.WriteString(w, val.NotOk)
-		if err != nil {
-			log.ErrorLn(&cid, "error writing response", err.Error())
-		}
-		log.InfoLn(&cid, "Secret: Database not initialized")
-		return false
-	}
-
-	return true
 }

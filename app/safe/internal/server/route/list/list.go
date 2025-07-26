@@ -11,11 +11,12 @@
 package list
 
 import (
-	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
-	ioState "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
-	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/v2/core/env"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
+	//"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
+	//ioState "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	//entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	//"github.com/vmware/secrets-manager/v2/core/env"
+	//log "github.com/vmware/secrets-manager/v2/core/log/std"
+	//"net/http"
 	"net/http"
 )
 
@@ -29,16 +30,18 @@ import (
 func Masked(
 	cid string, r *http.Request, w http.ResponseWriter,
 ) {
-	log.InfoLn(&cid, "route:Masked")
-	log.InfoLn(&cid, "Masked: Backing store:", env.BackingStoreForSafe())
-	log.InfoLn(&cid, "Masked: Postgres ready:", ioState.PostgresReady())
-	log.InfoLn(&cid, "Masked: entity:", entity.Postgres)
+	panic("implement me")
 
-	if !validation.CheckDatabaseReadiness(cid, w) {
-		return
-	}
-
-	doList(cid, w, r, false)
+	//log.InfoLn(&cid, "route:Masked")
+	//log.InfoLn(&cid, "Masked: Backing store:", env.BackingStoreForSafe())
+	//log.InfoLn(&cid, "Masked: Postgres ready:", ioState.PostgresReady())
+	//log.InfoLn(&cid, "Masked: entity:", entity.Postgres)
+	//
+	//if !validation.CheckDatabaseReadiness(cid, w) {
+	//	return
+	//}
+	//
+	//doList(cid, w, r, false)
 }
 
 // Encrypted returns all registered workloads to the system. Similar to `Masked`
@@ -52,11 +55,13 @@ func Masked(
 func Encrypted(
 	cid string, r *http.Request, w http.ResponseWriter,
 ) {
-	log.TraceLn(&cid, "route:Encrypted")
+	panic("implement me")
 
-	if !validation.CheckDatabaseReadiness(cid, w) {
-		return
-	}
-
-	doList(cid, w, r, true)
+	//log.TraceLn(&cid, "route:Encrypted")
+	//
+	//if !validation.CheckDatabaseReadiness(cid, w) {
+	//	return
+	//}
+	//
+	//doList(cid, w, r, true)
 }

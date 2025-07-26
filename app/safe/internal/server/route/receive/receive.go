@@ -11,20 +11,7 @@
 package receive
 
 import (
-	"github.com/vmware/secrets-manager/v2/app/safe/internal/bootstrap"
-	httq "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/http"
-	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/json"
-	"github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/base/validation"
-	"github.com/vmware/secrets-manager/v2/core/audit/journal"
-	"github.com/vmware/secrets-manager/v2/core/constants/audit"
-	"github.com/vmware/secrets-manager/v2/core/crypto"
-	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
-	"io"
 	"net/http"
-	"strings"
-
-	s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 )
 
 // Keys processes a request to set root cryptographic keys within the application,
@@ -48,88 +35,90 @@ import (
 //   - spiffeid (string): The SPIFFE ID associated with the requester, used for
 //     authorization validation.
 func Keys(cid string, r *http.Request, w http.ResponseWriter) {
-	spiffeid := s.IdAsString(r)
+	panic("implement me")
 
-	j := journal.CreateDefaultEntry(cid, spiffeid, r)
-	journal.Log(j)
-
-	// Only sentinel can set keys.
-	if ok, respond := validation.IsSentinel(j, cid, spiffeid); !ok {
-		respond(w)
-		j.Event = audit.NotSentinel
-		journal.Log(j)
-		return
-	}
-
-	if !validation.CheckDatabaseReadiness(cid, w) {
-		return
-	}
-
-	log.DebugLn(&cid, "Keys: sentinel spiffeid:", spiffeid)
-
-	body, _ := httq.ReadBody(cid, r)
-	if body == nil {
-		j.Event = audit.BrokenBody
-		journal.Log(j)
-
-		w.WriteHeader(http.StatusBadRequest)
-		_, err := io.WriteString(w, "")
-		if err != nil {
-			log.InfoLn(&cid, "Keys: Problem sending response", err.Error())
-		}
-
-		return
-	}
-
-	ur, _ := json.UnmarshalKeyInputRequest(body)
-	if ur == nil {
-		j.Event = audit.BadPayload
-		journal.Log(j)
-
-		w.WriteHeader(http.StatusBadRequest)
-		_, err := io.WriteString(w, "")
-		if err != nil {
-			log.InfoLn(&cid, "Keys: Problem sending response", err.Error())
-		}
-
-		return
-	}
-
-	sr := *ur
-
-	aesCipherKey := strings.TrimSpace(sr.AesCipherKey)
-	agePrivateKey := strings.TrimSpace(sr.AgeSecretKey)
-	agePublicKey := strings.TrimSpace(sr.AgePublicKey)
-
-	if aesCipherKey == "" || agePrivateKey == "" || agePublicKey == "" {
-		j.Event = audit.BadPayload
-		journal.Log(j)
-		return
-	}
-
-	rkt := data.RootKeyCollection{
-		PrivateKey: agePrivateKey,
-		PublicKey:  agePublicKey,
-		AesSeed:    aesCipherKey,
-	}
-	crypto.SetRootKeyInMemory(rkt.Combine())
-
-	if err := bootstrap.PersistRootKeysToRootKeyBackingStore(
-		data.RootKeyCollection{
-			PrivateKey: agePrivateKey,
-			PublicKey:  agePublicKey,
-			AesSeed:    aesCipherKey,
-		},
-	); err != nil {
-		log.ErrorLn(&cid, "Keys: Problem persisting keys", err.Error())
-	}
-
-	log.DebugLn(&cid, "Keys: before response")
-
-	_, err := io.WriteString(w, "OK")
-	if err != nil {
-		log.InfoLn(&cid, "Keys: Problem sending response", err.Error())
-	}
-
-	log.DebugLn(&cid, "Keys: after response")
+	//spiffeid := s.IdAsString(r)
+	//
+	//j := journal.CreateDefaultEntry(cid, spiffeid, r)
+	//journal.Log(j)
+	//
+	//// Only sentinel can set keys.
+	//if ok, respond := validation.IsSentinel(j, cid, spiffeid); !ok {
+	//	respond(w)
+	//	j.Event = audit.NotSentinel
+	//	journal.Log(j)
+	//	return
+	//}
+	//
+	//if !validation.CheckDatabaseReadiness(cid, w) {
+	//	return
+	//}
+	//
+	//log.DebugLn(&cid, "Keys: sentinel spiffeid:", spiffeid)
+	//
+	//body, _ := httq.ReadBody(cid, r)
+	//if body == nil {
+	//	j.Event = audit.BrokenBody
+	//	journal.Log(j)
+	//
+	//	w.WriteHeader(http.StatusBadRequest)
+	//	_, err := io.WriteString(w, "")
+	//	if err != nil {
+	//		log.InfoLn(&cid, "Keys: Problem sending response", err.Error())
+	//	}
+	//
+	//	return
+	//}
+	//
+	//ur, _ := json.UnmarshalKeyInputRequest(body)
+	//if ur == nil {
+	//	j.Event = audit.BadPayload
+	//	journal.Log(j)
+	//
+	//	w.WriteHeader(http.StatusBadRequest)
+	//	_, err := io.WriteString(w, "")
+	//	if err != nil {
+	//		log.InfoLn(&cid, "Keys: Problem sending response", err.Error())
+	//	}
+	//
+	//	return
+	//}
+	//
+	//sr := *ur
+	//
+	//aesCipherKey := strings.TrimSpace(sr.AesCipherKey)
+	//agePrivateKey := strings.TrimSpace(sr.AgeSecretKey)
+	//agePublicKey := strings.TrimSpace(sr.AgePublicKey)
+	//
+	//if aesCipherKey == "" || agePrivateKey == "" || agePublicKey == "" {
+	//	j.Event = audit.BadPayload
+	//	journal.Log(j)
+	//	return
+	//}
+	//
+	//rkt := data.RootKeyCollection{
+	//	PrivateKey: agePrivateKey,
+	//	PublicKey:  agePublicKey,
+	//	AesSeed:    aesCipherKey,
+	//}
+	//crypto.SetRootKeyInMemory(rkt.Combine())
+	//
+	//if err := bootstrap.PersistRootKeysToRootKeyBackingStore(
+	//	data.RootKeyCollection{
+	//		PrivateKey: agePrivateKey,
+	//		PublicKey:  agePublicKey,
+	//		AesSeed:    aesCipherKey,
+	//	},
+	//); err != nil {
+	//	log.ErrorLn(&cid, "Keys: Problem persisting keys", err.Error())
+	//}
+	//
+	//log.DebugLn(&cid, "Keys: before response")
+	//
+	//_, err := io.WriteString(w, "OK")
+	//if err != nil {
+	//	log.InfoLn(&cid, "Keys: Problem sending response", err.Error())
+	//}
+	//
+	//log.DebugLn(&cid, "Keys: after response")
 }

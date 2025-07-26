@@ -5,6 +5,10 @@
 * remove audit logging (SPIKE already audits all API actions, and all secret 
   management goes to SPIKE anyway, not much to audit here; we can add the 
   functionality later if needed.)
+* verify that all API methods work.
+* add to docs: VSecM still requrires kubernetes; if you want a bare-metal secrets manager, try SPIKE.
+* deprecate "initialization command" logic; initialization commands can very-well 
+  be scripted; there is no need to maintain them as files or configmaps.
 * we don't need a queue to push secrets; that implementation detail belongs
   to the backing store (which is SPIKE)
 * remove encryption option from secrets; the secrets are stored in encrypted form in SPIKE already.

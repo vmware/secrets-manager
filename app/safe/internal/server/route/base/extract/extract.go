@@ -12,9 +12,11 @@ package extract
 
 import (
 	"encoding/json"
+
+	"github.com/spiffe/spike-sdk-go/log"
+
 	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	"github.com/vmware/secrets-manager/v2/core/env"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"regexp"
 )
 
@@ -62,6 +64,7 @@ func WorkloadIdAndParts(spiffeid string) (string, []string) {
 //     the transformed value, a single raw value, a JSON-encoded string of
 //     multiple values, or an empty string in case of an error.
 func SecretValue(cid string, secrets []entity.SecretStored) string {
+	const fName = "Fetch:SecretValue"
 	if secrets == nil {
 		return ""
 	}
@@ -74,7 +77,7 @@ func SecretValue(cid string, secrets []entity.SecretStored) string {
 		secret := secrets[0]
 
 		if secret.ValueTransformed != "" {
-			log.TraceLn(&cid, "Fetch: using transformed value")
+			log.Log().Info(fName, "message", "Fetch: using transformed value")
 			return secret.ValueTransformed
 		}
 
@@ -82,13 +85,13 @@ func SecretValue(cid string, secrets []entity.SecretStored) string {
 		// It probably won't execute because `secret.ValueTransformed` will
 		// always be set.
 
-		log.TraceLn(&cid, "Fetch: no transformed value found. returning raw value")
+		log.Log().Info(fName, "message", "Fetch: no transformed value found. returning raw value")
 		return secret.Value
 	}
 
 	jsonData, err := json.Marshal(secrets)
 	if err != nil {
-		log.WarnLn(&cid, "Fetch: Problem marshaling secrets", err.Error())
+		log.Log().Warn(fName, "message", "Fetch: Problem marshaling secrets", "err", err.Error())
 		return ""
 	}
 

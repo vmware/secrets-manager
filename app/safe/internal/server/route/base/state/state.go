@@ -11,14 +11,16 @@
 package state
 
 import (
-	net "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
-	"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/collection"
-	"github.com/vmware/secrets-manager/v2/core/audit/journal"
-	"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	//net "github.com/vmware/secrets-manager/v2/app/safe/internal/state/io"
+	//"github.com/vmware/secrets-manager/v2/app/safe/internal/state/secret/collection"
+	//"github.com/vmware/secrets-manager/v2/core/audit/journal"
+	//"github.com/vmware/secrets-manager/v2/core/constants/audit"
+	//"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	//"github.com/vmware/secrets-manager/v2/core/env"
+	//log "github.com/vmware/secrets-manager/v2/core/log/std"
+	//"io"
+	//"net/http"
 	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
-	"github.com/vmware/secrets-manager/v2/core/env"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
-	"io"
 	"net/http"
 )
 
@@ -35,36 +37,37 @@ import (
 //   - workloadId (string): The identifier of the workload associated with the
 //     secret operation, used for logging purposes.
 //   - cid (string): Correlation ID for operation tracing and logging.
-//   - j (audit.JournalEntry): An audit journal entry for recording the event.
 //   - w (http.ResponseWriter): The HTTP response writer to send back the
 //     operation's outcome.
 func Upsert(secretToStore data.SecretStored,
 	workloadId string, cid string,
-	j data.JournalEntry, w http.ResponseWriter,
+	w http.ResponseWriter,
 ) {
-	// If the secret is not internal VSecM Safe configuration secret and
-	// if db persistence is enabled, and the db is not ready,
-	// then respond with an error.
-	if secretToStore.Name != "vsecm-safe" &&
-		env.BackingStoreForSafe() == data.Postgres &&
-		!net.PostgresReady() {
-		log.InfoLn(&cid, "Secret: DB not ready. Responding with error.")
-		w.WriteHeader(http.StatusInternalServerError)
-		_, err := io.WriteString(w, "DB not ready")
-		if err != nil {
-			log.InfoLn(&cid, "Secret: Problem sending response", err.Error())
-		}
-		return
-	}
+	panic("implement me")
 
-	collection.UpsertSecret(secretToStore)
-	log.DebugLn(&cid, "Secret:UpsertEnd: workloadId", workloadId)
-
-	j.Event = audit.Ok
-	journal.Log(j)
-
-	_, err := io.WriteString(w, "OK")
-	if err != nil {
-		log.InfoLn(&cid, "Secret: Problem sending response", err.Error())
-	}
+	//// If the secret is not internal VSecM Safe configuration secret and
+	//// if db persistence is enabled, and the db is not ready,
+	//// then respond with an error.
+	//if secretToStore.Name != "vsecm-safe" &&
+	//	env.BackingStoreForSafe() == data.Postgres &&
+	//	!net.PostgresReady() {
+	//	log.InfoLn(&cid, "Secret: DB not ready. Responding with error.")
+	//	w.WriteHeader(http.StatusInternalServerError)
+	//	_, err := io.WriteString(w, "DB not ready")
+	//	if err != nil {
+	//		log.InfoLn(&cid, "Secret: Problem sending response", err.Error())
+	//	}
+	//	return
+	//}
+	//
+	//collection.UpsertSecret(secretToStore)
+	//log.DebugLn(&cid, "Secret:UpsertEnd: workloadId", workloadId)
+	//
+	//j.Event = audit.Ok
+	//journal.Log(j)
+	//
+	//_, err := io.WriteString(w, "OK")
+	//if err != nil {
+	//	log.InfoLn(&cid, "Secret: Problem sending response", err.Error())
+	//}
 }

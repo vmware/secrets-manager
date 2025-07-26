@@ -12,11 +12,13 @@ package spiffe
 
 import (
 	"context"
-	"errors"
-	"github.com/vmware/secrets-manager/v2/core/constants/key"
-	"github.com/vmware/secrets-manager/v2/core/env"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
-	"github.com/vmware/secrets-manager/v2/core/validation"
+	//"errors"
+	//
+	//"github.com/spiffe/spike-sdk-go/log"
+	//
+	//"github.com/vmware/secrets-manager/v2/core/constants/key"
+	//"github.com/vmware/secrets-manager/v2/core/env"
+	//"github.com/vmware/secrets-manager/v2/core/validation"
 
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 )
@@ -44,51 +46,53 @@ import (
 func AcquireSourceForSentinel(
 	ctx context.Context,
 ) (*workloadapi.X509Source, bool) {
-	resultChan := make(chan *workloadapi.X509Source)
-	errorChan := make(chan error)
+	panic("implement me")
 
-	cid := ctx.Value(key.CorrelationId).(*string)
-
-	go func() {
-		source, err := workloadapi.NewX509Source(
-			ctx, workloadapi.WithClientOptions(
-				workloadapi.WithAddr(env.SpiffeSocketUrl()),
-			),
-		)
-
-		if err != nil {
-			errorChan <- err
-			return
-		}
-
-		svid, err := source.GetX509SVID()
-		if err != nil {
-			errorChan <- err
-			return
-		}
-
-		// Make sure that the binary is enclosed in a Pod that we trust.
-		if !validation.IsSentinel(svid.ID.String()) {
-			errorChan <- errors.New(
-				"acquireSource: I don't know you, and it's crazy: '" +
-					svid.ID.String() + "'")
-			return
-		}
-
-		resultChan <- source
-	}()
-
-	select {
-	case source := <-resultChan:
-		log.InfoLn(cid, "acquireSource: Source acquired.")
-		return source, true
-	case err := <-errorChan:
-		log.ErrorLn(cid, "acquireSource: "+
-			"I cannot execute command because I cannot talk to SPIRE.",
-			err.Error())
-		return nil, false
-	case <-ctx.Done():
-		log.ErrorLn(cid, "acquireSource: Operation was cancelled.")
-		return nil, false
-	}
+	//resultChan := make(chan *workloadapi.X509Source)
+	//errorChan := make(chan error)
+	//
+	//cid := ctx.Value(key.CorrelationId).(*string)
+	//
+	//go func() {
+	//	source, err := workloadapi.NewX509Source(
+	//		ctx, workloadapi.WithClientOptions(
+	//			workloadapi.WithAddr(env.SpiffeSocketUrl()),
+	//		),
+	//	)
+	//
+	//	if err != nil {
+	//		errorChan <- err
+	//		return
+	//	}
+	//
+	//	svid, err := source.GetX509SVID()
+	//	if err != nil {
+	//		errorChan <- err
+	//		return
+	//	}
+	//
+	//	// Make sure that the binary is enclosed in a Pod that we trust.
+	//	if !validation.IsSentinel(svid.ID.String()) {
+	//		errorChan <- errors.New(
+	//			"acquireSource: I don't know you, and it's crazy: '" +
+	//				svid.ID.String() + "'")
+	//		return
+	//	}
+	//
+	//	resultChan <- source
+	//}()
+	//
+	//select {
+	//case source := <-resultChan:
+	//	log.InfoLn(cid, "acquireSource: Source acquired.")
+	//	return source, true
+	//case err := <-errorChan:
+	//	log.ErrorLn(cid, "acquireSource: "+
+	//		"I cannot execute command because I cannot talk to SPIRE.",
+	//		err.Error())
+	//	return nil, false
+	//case <-ctx.Done():
+	//	log.ErrorLn(cid, "acquireSource: Operation was cancelled.")
+	//	return nil, false
+	//}
 }

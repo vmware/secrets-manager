@@ -85,13 +85,3 @@ func NewInitializer(
 		Spiffe:     spiffe,
 	}
 }
-
-func NewDefaultInitializer() *Initializer {
-	return NewInitializer(
-		&OSFileOpener{},
-		&EnvConfigReader{},
-		&StandardLogger{},
-		&SafeClient{},
-		&SpiffeClient{},
-	)
-}

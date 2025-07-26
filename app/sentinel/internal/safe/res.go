@@ -12,12 +12,17 @@ package safe
 
 import (
 	"fmt"
-	log "github.com/vmware/secrets-manager/v2/core/log/rpc"
+
+	// log "github.com/vmware/secrets-manager/v2/core/log/rpc"
+	"github.com/spiffe/spike-sdk-go/log"
+
 	"io"
 	"net/http"
 )
 
 func respond(cid *string, r *http.Response) {
+	const fName = "safe.respond"
+
 	if r == nil {
 		return
 	}
@@ -28,15 +33,15 @@ func respond(cid *string, r *http.Response) {
 		}
 		err := b.Close()
 		if err != nil {
-			log.ErrorLn(cid, "Post: Problem closing request body.", err.Error())
+			log.Log().Error(fName, "message", "Post: Problem closing request body.", "err", err.Error())
 		}
 	}(r.Body)
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		log.ErrorLn(cid,
+		log.Log().Error(fName, "message",
 			"Post: Unable to read the response body from VSecM Safe.",
-			err.Error())
+			"err", err.Error())
 		return
 	}
 

@@ -11,8 +11,6 @@
 package fallback
 
 import (
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
-	"io"
 	"net/http"
 )
 
@@ -29,11 +27,13 @@ import (
 func Fallback(
 	cid string, r *http.Request, w http.ResponseWriter,
 ) {
-	log.DebugLn(&cid, "Handler: route mismatch:", r.RequestURI)
+	panic("implement me")
 
-	w.WriteHeader(http.StatusBadRequest)
-	_, err := io.WriteString(w, "")
-	if err != nil {
-		log.WarnLn(&cid, "Problem writing response:", err.Error())
-	}
+	//log.DebugLn(&cid, "Handler: route mismatch:", r.RequestURI)
+	//
+	//w.WriteHeader(http.StatusBadRequest)
+	//_, err := io.WriteString(w, "")
+	//if err != nil {
+	//	log.WarnLn(&cid, "Problem writing response:", err.Error())
+	//}
 }

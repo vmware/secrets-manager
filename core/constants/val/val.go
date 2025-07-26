@@ -15,8 +15,6 @@ import "strings"
 const TimeNow = "now"
 const TimeNever = "never"
 
-const BlankRootKey = "{}"
-
 const Ok = "OK"
 const NotOk = "NOK!"
 

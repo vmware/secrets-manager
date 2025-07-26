@@ -11,15 +11,17 @@
 package handle
 
 import (
-	routeFallback "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/fallback"
-	"github.com/vmware/secrets-manager/v2/core/crypto"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
-	"github.com/vmware/secrets-manager/v2/core/validation"
-	"net/http"
-
+	// routeFallback "github.com/vmware/secrets-manager/v2/app/safe/internal/server/route/fallback"
+	// "github.com/vmware/secrets-manager/v2/core/crypto"
+	// log "github.com/vmware/secrets-manager/v2/core/log/std"
+	// "github.com/vmware/secrets-manager/v2/core/validation"
+	// "net/http"
+	//
+	// "github.com/spiffe/go-spiffe/v2/workloadapi"
+	//
+	// s "github.com/vmware/secrets-manager/v2/lib/spiffe"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
-
-	s "github.com/vmware/secrets-manager/v2/lib/spiffe"
+	"net/http"
 )
 
 // InitializeRoutes initializes the HTTP routes for the web server. It sets up
@@ -34,28 +36,30 @@ import (
 // during server initialization.
 func InitializeRoutes(source *workloadapi.X509Source) {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		cid := crypto.Id()
+		panic("implement me")
 
-		validation.EnsureSafe(source)
-
-		id, err := s.IdFromRequest(r)
-
-		if err != nil {
-			log.WarnLn(&cid, "Handler: blocking insecure svid", id, err)
-
-			routeFallback.Fallback(cid, r, w)
-
-			return
-		}
-
-		sid := s.IdAsString(r)
-
-		p := r.URL.Path
-		m := r.Method
-		log.DebugLn(
-			&cid,
-			"Handler: got svid:", sid, "path", p, "method", m)
-
-		route(cid, r, w)
+		//cid := crypto.Id()
+		//
+		//validation.EnsureSafe(source)
+		//
+		//id, err := s.IdFromRequest(r)
+		//
+		//if err != nil {
+		//	log.WarnLn(&cid, "Handler: blocking insecure svid", id, err)
+		//
+		//	routeFallback.Fallback(cid, r, w)
+		//
+		//	return
+		//}
+		//
+		//sid := s.IdAsString(r)
+		//
+		//p := r.URL.Path
+		//m := r.Method
+		//log.DebugLn(
+		//	&cid,
+		//	"Handler: got svid:", sid, "path", p, "method", m)
+		//
+		//route(cid, r, w)
 	})
 }

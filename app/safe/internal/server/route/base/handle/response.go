@@ -11,13 +11,8 @@
 package handle
 
 import (
-	"encoding/json"
-	"github.com/vmware/secrets-manager/v2/core/audit/journal"
-	"github.com/vmware/secrets-manager/v2/core/constants/audit"
-	"github.com/vmware/secrets-manager/v2/core/entity/v1/data"
 	reqres "github.com/vmware/secrets-manager/v2/core/entity/v1/reqres/safe"
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
-	"io"
+
 	"net/http"
 )
 
@@ -30,21 +25,19 @@ import (
 //   - w (http.ResponseWriter): The HTTP response writer to send back the
 //     response.
 //   - spiffeid (string): The SPIFFE ID that was determined to be invalid.
-//   - j (audit.JournalEntry): An audit journal entry for recording the event.
 func BadSvidResponse(
 	cid string, w http.ResponseWriter, spiffeid string,
-	j data.JournalEntry,
 ) {
-	j.Event = audit.BadSpiffeId
-	journal.Log(j)
-
-	log.DebugLn(&cid, "Fetch: bad spiffeid", spiffeid)
-
-	w.WriteHeader(http.StatusBadRequest)
-	_, err := io.WriteString(w, "")
-	if err != nil {
-		log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
-	}
+	//j.Event = audit.BadSpiffeId
+	//journal.Log(j)
+	//
+	//log.DebugLn(&cid, "Fetch: bad spiffeid", spiffeid)
+	//
+	//w.WriteHeader(http.StatusBadRequest)
+	//_, err := io.WriteString(w, "")
+	//if err != nil {
+	//	log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
+	//}
 }
 
 // BadPeerSvidResponse logs an event for a bad peer SPIFFE ID and sends an
@@ -57,19 +50,18 @@ func BadSvidResponse(
 //     response.
 //
 // - spiffeid (string): The peer's SPIFFE ID that was found to be invalid.
-// - j (audit.JournalEntry): An audit journal entry for recording the event.
 func BadPeerSvidResponse(
 	cid string, w http.ResponseWriter,
-	spiffeid string, j data.JournalEntry,
+	spiffeid string,
 ) {
-	j.Event = audit.BadPeerSvid
-	journal.Log(j)
-
-	w.WriteHeader(http.StatusBadRequest)
-	_, err := io.WriteString(w, "")
-	if err != nil {
-		log.InfoLn(&cid, "Fetch: Problem with spiffeid", spiffeid)
-	}
+	//j.Event = audit.BadPeerSvid
+	//journal.Log(j)
+	//
+	//w.WriteHeader(http.StatusBadRequest)
+	//_, err := io.WriteString(w, "")
+	//if err != nil {
+	//	log.InfoLn(&cid, "Fetch: Problem with spiffeid", spiffeid)
+	//}
 }
 
 // NoSecretResponse logs an event indicating that no secret was found and sends
@@ -80,19 +72,17 @@ func BadPeerSvidResponse(
 //   - cid (string): Correlation ID for operation tracing and logging.
 //   - w (http.ResponseWriter): The HTTP response writer to send back the
 //     response.
-//   - j (audit.JournalEntry): An audit journal entry for recording the event.
 func NoSecretResponse(
 	cid string, w http.ResponseWriter,
-	j data.JournalEntry,
 ) {
-	j.Event = audit.NoSecret
-	journal.Log(j)
-
-	w.WriteHeader(http.StatusNotFound)
-	_, err := io.WriteString(w, "")
-	if err != nil {
-		log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
-	}
+	//j.Event = audit.NoSecret
+	//journal.Log(j)
+	//
+	//w.WriteHeader(http.StatusNotFound)
+	//_, err := io.WriteString(w, "")
+	//if err != nil {
+	//	log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
+	//}
 }
 
 // SuccessResponse logs a successful operation event and sends a structured
@@ -103,30 +93,29 @@ func NoSecretResponse(
 //   - cid (string): Correlation ID for operation tracing and logging.
 //   - w (http.ResponseWriter): The HTTP response writer to send back the
 //     response.
-//   - j (audit.JournalEntry): An audit journal entry for recording the event.
 //   - sfr (reqres.SecretFetchResponse): The secret fetch response payload to be
 //     marshaled and sent.
 func SuccessResponse(cid string, w http.ResponseWriter,
-	j data.JournalEntry, sfr reqres.SecretFetchResponse) {
-	j.Event = audit.Ok
-	journal.Log(j)
-
-	resp, err := json.Marshal(sfr)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		_, err := io.WriteString(w, "Problem unmarshalling response")
-		if err != nil {
-			log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
-		}
-		return
-	}
-
-	log.DebugLn(&cid, "Fetch: before response")
-
-	_, err = io.WriteString(w, string(resp))
-	if err != nil {
-		log.InfoLn(&cid, "Problem sending response", err.Error())
-	}
-
-	log.DebugLn(&cid, "Fetch: after response")
+	sfr reqres.SecretFetchResponse) {
+	//j.Event = audit.Ok
+	//journal.Log(j)
+	//
+	//resp, err := json.Marshal(sfr)
+	//if err != nil {
+	//	w.WriteHeader(http.StatusInternalServerError)
+	//	_, err := io.WriteString(w, "Problem unmarshalling response")
+	//	if err != nil {
+	//		log.InfoLn(&cid, "Fetch: Problem sending response", err.Error())
+	//	}
+	//	return
+	//}
+	//
+	//log.DebugLn(&cid, "Fetch: before response")
+	//
+	//_, err = io.WriteString(w, string(resp))
+	//if err != nil {
+	//	log.InfoLn(&cid, "Problem sending response", err.Error())
+	//}
+	//
+	//log.DebugLn(&cid, "Fetch: after response")
 }

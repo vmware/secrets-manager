@@ -12,6 +12,8 @@ package json
 
 import (
 	"encoding/json"
+
+	// TODO: v2 v1 makes things confusing. get rid of the second version; or not.
 	reqres "github.com/vmware/secrets-manager/v2/core/entity/v1/reqres/safe"
 )
 

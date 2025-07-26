@@ -11,9 +11,10 @@
 package http
 
 import (
-	log "github.com/vmware/secrets-manager/v2/core/log/std"
 	"io"
 	"net/http"
+
+	"github.com/spiffe/spike-sdk-go/log"
 )
 
 // ReadBody reads the body from an HTTP request and returns it as a byte slice.
@@ -37,6 +38,8 @@ import (
 //	}
 //	// Use body
 func ReadBody(cid string, r *http.Request) ([]byte, error) {
+	const fName = "http.ReadBody"
+
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		return nil, err
@@ -48,7 +51,7 @@ func ReadBody(cid string, r *http.Request) ([]byte, error) {
 		}
 		err := b.Close()
 		if err != nil {
-			log.InfoLn(&cid, "ReadBody: Problem closing body", err.Error())
+			log.Log().Info(fName, "message", "ReadBody: Problem closing body", "err", err.Error())
 		}
 	}(r.Body)
 

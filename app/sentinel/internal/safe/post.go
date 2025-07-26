@@ -11,27 +11,44 @@
 package safe
 
 import (
+	//"crypto/sha256"
+	//"encoding/hex"
+	//"errors"
+	//"fmt"
+	//"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
+	//"github.com/spiffe/go-spiffe/v2/workloadapi"
+	//"github.com/vmware/secrets-manager/v2/core/constants/key"
+	//u "github.com/vmware/secrets-manager/v2/core/constants/url"
+	//"github.com/vmware/secrets-manager/v2/core/spiffe"
+	//"github.com/vmware/secrets-manager/v2/lib/template"
+	//"net/http"
+	//"net/url"
+	//"strings"
+
+	//"context"
+	//"crypto/sha256"
+	//"encoding/hex"
+	//"encoding/json"
+	//"errors"
+	//"fmt"
+	//"github.com/vmware/secrets-manager/v2/core/constants/key"
+	//u "github.com/vmware/secrets-manager/v2/core/constants/url"
+	//entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
+	//env2 "github.com/vmware/secrets-manager/v2/core/env"
+	//log "github.com/vmware/secrets-manager/v2/core/log/rpc"
+	//"github.com/vmware/secrets-manager/v2/core/spiffe"
+	//"net/http"
+	//"net/url"
+	//"strings"
+	//"time"
+	//
+	//"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
+	//"github.com/spiffe/go-spiffe/v2/workloadapi"
+	//
+	//"github.com/vmware/secrets-manager/v2/lib/template"
 	"context"
-	"crypto/sha256"
-	"encoding/hex"
-	"encoding/json"
-	"errors"
-	"fmt"
-	"github.com/vmware/secrets-manager/v2/core/constants/key"
-	u "github.com/vmware/secrets-manager/v2/core/constants/url"
 	entity "github.com/vmware/secrets-manager/v2/core/entity/v1/data"
-	env2 "github.com/vmware/secrets-manager/v2/core/env"
-	log "github.com/vmware/secrets-manager/v2/core/log/rpc"
-	"github.com/vmware/secrets-manager/v2/core/spiffe"
-	"net/http"
-	"net/url"
-	"strings"
 	"time"
-
-	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
-	"github.com/spiffe/go-spiffe/v2/workloadapi"
-
-	"github.com/vmware/secrets-manager/v2/lib/template"
 )
 
 var seed = time.Now().UnixNano()
@@ -79,151 +96,153 @@ var seed = time.Now().UnixNano()
 func Post(parentContext context.Context,
 	sc entity.SentinelCommand,
 ) error {
-	ctxWithTimeout, cancel := context.WithTimeout(
-		parentContext,
-		env2.SourceAcquisitionTimeoutForSafe(),
-	)
-	defer cancel()
+	panic("implement me")
 
-	cid := ctxWithTimeout.Value(key.CorrelationId).(*string)
-
-	ids := ""
-	for _, id := range sc.WorkloadIds {
-		ids += id + ", "
-	}
-
-	hashString := "<>"
-	if env2.LogSecretFingerprints() {
-		secret := sc.Secret
-		uniqueData := fmt.Sprintf("%s-%d", secret, seed)
-		dataBytes := []byte(uniqueData)
-		hasher := sha256.New()
-		hasher.Write(dataBytes)
-		hashBytes := hasher.Sum(nil)
-		hashString = hex.EncodeToString(hashBytes)
-	}
-
-	sourceChan := make(chan *workloadapi.X509Source)
-	proceedChan := make(chan bool)
-
-	go func() {
-		source, proceed := spiffe.AcquireSourceForSentinel(ctxWithTimeout)
-		sourceChan <- source
-		proceedChan <- proceed
-	}()
-
-	select {
-	case <-ctxWithTimeout.Done():
-		if errors.Is(ctxWithTimeout.Err(), context.DeadlineExceeded) {
-			return errors.Join(
-				ctxWithTimeout.Err(),
-				errors.New("post:"+
-					" I cannot execute command because I cannot talk to SPIRE"),
-			)
-		}
-
-		return errors.New("post: Operation was cancelled due to an unknown reason")
-	case source := <-sourceChan:
-		defer func(s *workloadapi.X509Source) {
-			if s == nil {
-				return
-			}
-			err := s.Close()
-			if err != nil {
-				log.ErrorLn(cid, "post: Problem closing the workload source")
-			}
-		}(source)
-
-		proceed := <-proceedChan
-		if !proceed {
-			return errors.New("post: Could not acquire source for Sentinel")
-		}
-
-		authorizer := createAuthorizer()
-
-		if sc.SerializedRootKeys != "" {
-			log.InfoLn(cid, "Post: I am going to post the root keys.")
-
-			p, err := url.JoinPath(env2.EndpointUrlForSafe(), "/sentinel/v1/keys")
-			if err != nil {
-				return errors.New("post: I am having problem" +
-					" generating VSecM Safe secrets api endpoint URL")
-			}
-
-			tlsConfig := tlsconfig.MTLSClientConfig(source, source, authorizer)
-			client := &http.Client{
-				Transport: &http.Transport{
-					TLSClientConfig: tlsConfig,
-				},
-			}
-
-			parts := sc.SplitRootKeys()
-			if len(parts) != 3 {
-				return errors.New("post: Bad data! Very bad data")
-			}
-
-			sr := newRootKeyUpdateRequest(parts[0], parts[1], parts[2])
-			md, err := json.Marshal(sr)
-			if err != nil {
-				return errors.Join(
-					err,
-					errors.New("post: I am having problem generating the payload"),
-				)
-			}
-
-			return doPost(cid, client, p, md)
-		}
-
-		log.InfoLn(cid, "Post: I am going to post the secrets.")
-
-		// Generate pattern-based random secrets if the secret has the prefix.
-		if strings.HasPrefix(sc.Secret, env2.SecretGenerationPrefix()) {
-			sc.Secret = strings.Replace(
-				sc.Secret, env2.SecretGenerationPrefix(), "", 1,
-			)
-			newSecret, err := template.Value(sc.Secret)
-			if err != nil {
-				sc.Secret = "ParseError:" + sc.Secret
-			} else {
-				sc.Secret = newSecret
-			}
-		}
-
-		p, err := url.JoinPath(env2.EndpointUrlForSafe(), u.SentinelSecrets)
-		if err != nil {
-			return errors.Join(
-				err,
-				errors.New("post: I am having problem "+
-					"generating VSecM Safe secrets api endpoint URL"),
-			)
-		}
-
-		tlsConfig := tlsconfig.MTLSClientConfig(source, source, authorizer)
-		client := &http.Client{
-			Transport: &http.Transport{
-				TLSClientConfig: tlsConfig,
-			},
-		}
-
-		sr := newSecretUpsertRequest(sc.WorkloadIds, sc.Secret, sc.Namespaces,
-			sc.Template, sc.Format,
-			sc.Encrypt, sc.NotBefore, sc.Expires)
-
-		md, err := json.Marshal(sr)
-		if err != nil {
-			return errors.Join(
-				err,
-				errors.New("post: I am having problem generating the payload"),
-			)
-		}
-
-		if sc.DeleteSecret {
-			return doDelete(cid, client, p, md)
-		}
-
-		log.TraceLn(cid, "doPost", "workload-ids", sc.WorkloadIds, "secret",
-			sc.Secret, "namespaces", sc.Namespaces)
-
-		return doPost(cid, client, p, md)
-	}
+	//ctxWithTimeout, cancel := context.WithTimeout(
+	//	parentContext,
+	//	env2.SourceAcquisitionTimeoutForSafe(),
+	//)
+	//defer cancel()
+	//
+	//cid := ctxWithTimeout.Value(key.CorrelationId).(*string)
+	//
+	//ids := ""
+	//for _, id := range sc.WorkloadIds {
+	//	ids += id + ", "
+	//}
+	//
+	//hashString := "<>"
+	//if env2.LogSecretFingerprints() {
+	//	secret := sc.Secret
+	//	uniqueData := fmt.Sprintf("%s-%d", secret, seed)
+	//	dataBytes := []byte(uniqueData)
+	//	hasher := sha256.New()
+	//	hasher.Write(dataBytes)
+	//	hashBytes := hasher.Sum(nil)
+	//	hashString = hex.EncodeToString(hashBytes)
+	//}
+	//
+	//sourceChan := make(chan *workloadapi.X509Source)
+	//proceedChan := make(chan bool)
+	//
+	//go func() {
+	//	source, proceed := spiffe.AcquireSourceForSentinel(ctxWithTimeout)
+	//	sourceChan <- source
+	//	proceedChan <- proceed
+	//}()
+	//
+	//select {
+	//case <-ctxWithTimeout.Done():
+	//	if errors.Is(ctxWithTimeout.Err(), context.DeadlineExceeded) {
+	//		return errors.Join(
+	//			ctxWithTimeout.Err(),
+	//			errors.New("post:"+
+	//				" I cannot execute command because I cannot talk to SPIRE"),
+	//		)
+	//	}
+	//
+	//	return errors.New("post: Operation was cancelled due to an unknown reason")
+	//case source := <-sourceChan:
+	//	defer func(s *workloadapi.X509Source) {
+	//		if s == nil {
+	//			return
+	//		}
+	//		err := s.Close()
+	//		if err != nil {
+	//			log.ErrorLn(cid, "post: Problem closing the workload source")
+	//		}
+	//	}(source)
+	//
+	//	proceed := <-proceedChan
+	//	if !proceed {
+	//		return errors.New("post: Could not acquire source for Sentinel")
+	//	}
+	//
+	//	authorizer := createAuthorizer()
+	//
+	//	if sc.SerializedRootKeys != "" {
+	//		log.InfoLn(cid, "Post: I am going to post the root keys.")
+	//
+	//		p, err := url.JoinPath(env2.EndpointUrlForSafe(), "/sentinel/v1/keys")
+	//		if err != nil {
+	//			return errors.New("post: I am having problem" +
+	//				" generating VSecM Safe secrets api endpoint URL")
+	//		}
+	//
+	//		tlsConfig := tlsconfig.MTLSClientConfig(source, source, authorizer)
+	//		client := &http.Client{
+	//			Transport: &http.Transport{
+	//				TLSClientConfig: tlsConfig,
+	//			},
+	//		}
+	//
+	//		parts := sc.SplitRootKeys()
+	//		if len(parts) != 3 {
+	//			return errors.New("post: Bad data! Very bad data")
+	//		}
+	//
+	//		sr := newRootKeyUpdateRequest(parts[0], parts[1], parts[2])
+	//		md, err := json.Marshal(sr)
+	//		if err != nil {
+	//			return errors.Join(
+	//				err,
+	//				errors.New("post: I am having problem generating the payload"),
+	//			)
+	//		}
+	//
+	//		return doPost(cid, client, p, md)
+	//	}
+	//
+	//	log.InfoLn(cid, "Post: I am going to post the secrets.")
+	//
+	//	// Generate pattern-based random secrets if the secret has the prefix.
+	//	if strings.HasPrefix(sc.Secret, env2.SecretGenerationPrefix()) {
+	//		sc.Secret = strings.Replace(
+	//			sc.Secret, env2.SecretGenerationPrefix(), "", 1,
+	//		)
+	//		newSecret, err := template.Value(sc.Secret)
+	//		if err != nil {
+	//			sc.Secret = "ParseError:" + sc.Secret
+	//		} else {
+	//			sc.Secret = newSecret
+	//		}
+	//	}
+	//
+	//	p, err := url.JoinPath(env2.EndpointUrlForSafe(), u.SentinelSecrets)
+	//	if err != nil {
+	//		return errors.Join(
+	//			err,
+	//			errors.New("post: I am having problem "+
+	//				"generating VSecM Safe secrets api endpoint URL"),
+	//		)
+	//	}
+	//
+	//	tlsConfig := tlsconfig.MTLSClientConfig(source, source, authorizer)
+	//	client := &http.Client{
+	//		Transport: &http.Transport{
+	//			TLSClientConfig: tlsConfig,
+	//		},
+	//	}
+	//
+	//	sr := newSecretUpsertRequest(sc.WorkloadIds, sc.Secret, sc.Namespaces,
+	//		sc.Template, sc.Format,
+	//		sc.Encrypt, sc.NotBefore, sc.Expires)
+	//
+	//	md, err := json.Marshal(sr)
+	//	if err != nil {
+	//		return errors.Join(
+	//			err,
+	//			errors.New("post: I am having problem generating the payload"),
+	//		)
+	//	}
+	//
+	//	if sc.DeleteSecret {
+	//		return doDelete(cid, client, p, md)
+	//	}
+	//
+	//	log.TraceLn(cid, "doPost", "workload-ids", sc.WorkloadIds, "secret",
+	//		sc.Secret, "namespaces", sc.Namespaces)
+	//
+	//	return doPost(cid, client, p, md)
+	//}
 }

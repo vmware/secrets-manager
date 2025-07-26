@@ -22,6 +22,8 @@ const Exit Command = "exit"
 // Sentinel Commands
 // These should match `./app/sentinel/cmd/parse.go` values.
 
+// TODO: since init command functionality is deprecated; most of these will be gone too.
+
 const List Command = "l"
 const ListExp Command = "list"
 const Encrypt Command = "e"

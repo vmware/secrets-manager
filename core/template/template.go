@@ -18,6 +18,8 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// TODO: this can go to VSecM Go SDK
+
 // ValidJSON checks if the provided string is a valid JSON object.
 //
 // The function takes a string as input and attempts to unmarshal it
