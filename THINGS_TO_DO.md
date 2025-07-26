@@ -1,7 +1,16 @@
 
 ## THINGS TO DO FOR THE BIG SUMMER CLEANUP
 
-*
+* strip symbols
+* remove audit logging (SPIKE already audits all API actions, and all secret 
+  management goes to SPIKE anyway, not much to audit here; we can add the 
+  functionality later if needed.)
+* we don't need a queue to push secrets; that implementation detail belongs
+  to the backing store (which is SPIKE)
+* remove encryption option from secrets; the secrets are stored in encrypted form in SPIKE already.
+* remove all tests; the code changed "so much", we'll have to rewrite them anyway.
+* use Backoff strategy from spike sdk go, that one is more battle-tested.
+* comment out all routes; we'll need to implement them one by one, proxying to SPIKE.
 * Make sure that the code builds at its current `v2` state.
 * Build and test docs locally and configure CloudFlare to point to the ./public folder instead.
 * Decommission DockerHub, use GCR instead.

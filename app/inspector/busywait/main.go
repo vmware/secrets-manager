@@ -11,7 +11,7 @@
 package main
 
 import (
-	"github.com/vmware/secrets-manager/v2/lib/system"
+	"github.com/spiffe/spike-sdk-go/system"
 )
 
 func main() {

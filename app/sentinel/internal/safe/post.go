@@ -103,8 +103,6 @@ func Post(parentContext context.Context,
 		hashString = hex.EncodeToString(hashBytes)
 	}
 
-	log.AuditLn(cid, "Sentinel:Post: ws:", ids, "h:", hashString)
-
 	sourceChan := make(chan *workloadapi.X509Source)
 	proceedChan := make(chan bool)
 

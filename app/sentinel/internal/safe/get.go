@@ -137,8 +137,6 @@ func Check(ctx context.Context, source *workloadapi.X509Source) (int, string, er
 func Get(ctx context.Context, showEncryptedSecrets bool) error {
 	cid := ctx.Value(key.CorrelationId).(*string)
 
-	log.AuditLn(cid, "Sentinel:Get")
-
 	source, proceed := spiffe.AcquireSourceForSentinel(ctx)
 	defer func(s *workloadapi.X509Source) {
 		if s == nil {

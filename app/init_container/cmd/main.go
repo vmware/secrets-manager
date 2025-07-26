@@ -11,33 +11,42 @@
 package main
 
 import (
-	"github.com/spiffe/vsecm-sdk-go/startup"
-	e "github.com/vmware/secrets-manager/v2/core/constants/env"
-	"github.com/vmware/secrets-manager/v2/core/crypto"
-	"github.com/vmware/secrets-manager/v2/core/env"
-	"github.com/vmware/secrets-manager/v2/core/log/std"
+	"os"
 
-	"github.com/vmware/secrets-manager/v2/lib/system"
+	"github.com/spiffe/spike-sdk-go/log"
+	"github.com/spiffe/spike-sdk-go/system"
+
+	"github.com/spiffe/vsecm-sdk-go/sentry"
+
+	"github.com/vmware/secrets-manager/v2/core/env"
 )
 
+func initialized() bool {
+	r, _ := sentry.Fetch()
+	v := r.Data
+	return v != ""
+}
+
+func bye() {
+	os.Exit(0)
+}
+
 func main() {
-	id := crypto.Id()
+	const fName = "init_container.main"
 
-	//Print the diagnostic information about the environment.
-	std.PrintEnvironmentInfo(&id, []string{
-		string(e.AppVersion),
-		string(e.VSecMLogLevel),
-		string(e.VSecMSafeEndpointUrl),
-	})
-
-	std.InfoLn(&id, "Starting VSecM Init Container")
+	log.Log().Info(fName, "message", "Starting VSecM Init Container")
 
 	// Wait for a specified duration before exiting the init container.
 	// This can be useful when you want things to reconcile before
 	// starting the main container.
-	go startup.Watch(env.WaitBeforeExitForInitContainer())
+	go system.Watch(system.WatchConfig{
+		WaitTimeBeforeExit:      env.WaitBeforeExitForInitContainer(),
+		PollInterval:            env.PollIntervalForInitContainer(),
+		InitializationPredicate: initialized,
+		ExitAction:              bye,
+	})
 
-	// Block the process from exiting, but also be graceful and honor the
+	// Block the process from exiting but also be graceful and honor the
 	// termination signals that may come from the orchestrator.
 	system.KeepAlive()
 }

@@ -12,11 +12,12 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/spiffe/spike-sdk-go/system"
+
 	"github.com/vmware/secrets-manager/v2/core/constants/symbol"
 
 	"github.com/spiffe/vsecm-sdk-go/sentry"
-
-	"github.com/vmware/secrets-manager/v2/lib/system"
 )
 
 func main() {
