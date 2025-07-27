@@ -6,6 +6,17 @@
   management goes to SPIKE anyway, not much to audit here; we can add the 
   functionality later if needed.)
 * verify that all API methods work.
+* enable fips w/o boringcrypto; once you do that, do the same for SPIKE too.
+
+* Make sure these URLs are still functional
+  version="${APPVERSION}" \
+  website="https://vsecm.com/" \
+  repo="https://github.com/vmware/secrets-manager" \
+  documentation="https://vsecm.com/" \
+  contact="https://vsecm.com/docs/contact/" \
+  community="https://vsecm.com/community/hello/" \
+  changelog="https://vsecm.com/timeline/changelog/"
+
 * add to docs: VSecM still requrires kubernetes; if you want a bare-metal secrets manager, try SPIKE.
 * deprecate "initialization command" logic; initialization commands can very-well 
   be scripted; there is no need to maintain them as files or configmaps.

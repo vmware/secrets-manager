@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # /*
 # |    Protect your secrets, protect your sensitive data.
 # :    Explore VMware Secrets Manager docs at https://vsecm.com/
@@ -8,4 +10,4 @@
 # >/'  SPDX-License-Identifier: BSD-2-Clause
 # */
 
-include ./makefiles/Kubernetes.mk
+kubectl port-forward -n kube-system svc/registry 5000:80

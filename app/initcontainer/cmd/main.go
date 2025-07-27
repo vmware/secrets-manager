@@ -32,7 +32,7 @@ func bye() {
 }
 
 func main() {
-	const fName = "init_container.main"
+	const fName = "initcontainer.main"
 
 	log.Log().Info(fName, "message", "Starting VSecM Init Container")
 
