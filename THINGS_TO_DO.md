@@ -16,7 +16,7 @@
   contact="https://vsecm.com/docs/contact/" \
   community="https://vsecm.com/community/hello/" \
   changelog="https://vsecm.com/timeline/changelog/"
-
+* update docs, tell that new images are in ghcr.
 * add instructions abour creating a relaese tagging etc.
 * add to docs: VSecM still requrires kubernetes; if you want a bare-metal secrets manager, try SPIKE.
 * deprecate "initialization command" logic; initialization commands can very-well 
