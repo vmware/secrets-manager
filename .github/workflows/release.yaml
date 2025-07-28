@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  REPOSITORY: spiffe
+  REPOSITORY: vmware
   COSIGN_EXPERIMENTAL: 1
 
 jobs:

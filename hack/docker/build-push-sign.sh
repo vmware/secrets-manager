@@ -68,7 +68,7 @@ docker buildx build \
   --label "org.opencontainers.image.revision=$GIT_SHA" \
   --label "org.opencontainers.image.source=https://github.com/vmware/secrets-manager" \
   --label "org.opencontainers.image.licenses=Apache-2.0" \
-  --label "org.opencontainers.image.title=spike" \
+  --label "org.opencontainers.image.title=secrets-manager" \
   --label "org.opencontainers.image.description=VSecM keeps your secrets... secret." \
   $TAG_ARGS \
   .
