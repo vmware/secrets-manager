@@ -8,7 +8,7 @@
 # >/'  SPDX-License-Identifier: BSD-2-Clause
 # */
 
-FROM --platform=$BUILDPLATFORM golang:1.24.5 AS builder
+FROM --platform=$BUILDPLATFORM golang:1.24.6 AS builder
 ARG BUILDPLATFORM
 ARG TARGETPLATFORM
 ARG TARGETOS
