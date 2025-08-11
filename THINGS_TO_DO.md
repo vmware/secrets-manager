@@ -7,6 +7,8 @@
   functionality later if needed.)
 * verify that all API methods work.
 * enable fips w/o boringcrypto; once you do that, do the same for SPIKE too.
+* Create a new architecture document that includes SPIKE, and publish an ADR
+  related to that too.
 
 * Make sure these URLs are still functional
   version="${APPVERSION}" \
